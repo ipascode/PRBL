@@ -1,0 +1,1 @@
+json.partial! "bus_models/bus_model", bus_model: @bus_model

@@ -1,0 +1,2 @@
+class BusModel < ApplicationRecord
+end

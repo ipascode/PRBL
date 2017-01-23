@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  linename: MyString
+  distance: 1.5
+
+two:
+  linename: MyString
+  distance: 1.5

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  datestarted: 2017-01-23 10:59:42
+  datefinished: 2017-01-23 10:59:42
+  repairtype: MyString
+  driver_id: 
+  bus_id: 
+  location: MyString
+
+two:
+  datestarted: 2017-01-23 10:59:42
+  datefinished: 2017-01-23 10:59:42
+  repairtype: MyString
+  driver_id: 
+  bus_id: 
+  location: MyString

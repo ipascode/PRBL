@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Buses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Busmodel</th>
+      <th>Plate no</th>
+      <th>Date purchased</th>
+      <th>Repair</th>
+      <th>Odometer</th>
+      <th>Busline</th>
+      <th>Cpk</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buses.each do |bus| %>
+      <tr>
+        <td><%= bus.BusModel %></td>
+        <td><%= bus.plate_no %></td>
+        <td><%= bus.date_purchased %></td>
+        <td><%= bus.Repair %></td>
+        <td><%= bus.odometer %></td>
+        <td><%= bus.BusLine %></td>
+        <td><%= bus.cpk %></td>
+        <td><%= link_to 'Show', bus %></td>
+        <td><%= link_to 'Edit', edit_bus_path(bus) %></td>
+        <td><%= link_to 'Destroy', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bus', new_bus_path %>

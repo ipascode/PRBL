@@ -1,0 +1,2 @@
+module BusModelsHelper
+end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Linename:</strong>
+  <%= @bus_line.linename %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @bus_line.distance %>
+</p>
+
+<%= link_to 'Edit', edit_bus_line_path(@bus_line) %> |
+<%= link_to 'Back', bus_lines_path %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  BusModel: one
+  plate_no: MyString
+  date_purchased: 2017-01-23 23:03:47
+  Repair: one
+  odometer: 1.5
+  BusLine: one
+  cpk: 1.5
+
+two:
+  BusModel: two
+  plate_no: MyString
+  date_purchased: 2017-01-23 23:03:47
+  Repair: two
+  odometer: 1.5
+  BusLine: two
+  cpk: 1.5

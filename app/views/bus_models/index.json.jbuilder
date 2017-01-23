@@ -1,0 +1,1 @@
+json.array! @bus_models, partial: 'bus_models/bus_model', as: :bus_model

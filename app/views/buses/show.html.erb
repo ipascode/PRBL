@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Busmodel:</strong>
+  <%= @bus.BusModel %>
+</p>
+
+<p>
+  <strong>Plate no:</strong>
+  <%= @bus.plate_no %>
+</p>
+
+<p>
+  <strong>Date purchased:</strong>
+  <%= @bus.date_purchased %>
+</p>
+
+<p>
+  <strong>Repair:</strong>
+  <%= @bus.Repair %>
+</p>
+
+<p>
+  <strong>Odometer:</strong>
+  <%= @bus.odometer %>
+</p>
+
+<p>
+  <strong>Busline:</strong>
+  <%= @bus.BusLine %>
+</p>
+
+<p>
+  <strong>Cpk:</strong>
+  <%= @bus.cpk %>
+</p>
+
+<%= link_to 'Edit', edit_bus_path(@bus) %> |
+<%= link_to 'Back', buses_path %>
