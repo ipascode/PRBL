@@ -27,13 +27,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :driver_id %>
-    <%= f.text_field :driver_id %>
+    <%= f.label :Driver_id %>
+    <%= f.collection_select :Driver_id, Driver.order(:lastname), :lastname, :firstname, include_blank: true %>
   </div>
 
   <div class="field">
-    <%= f.label :bus_id %>
-    <%= f.text_field :bus_id %>
+    <%= f.label :Bus_id %>
+    <%= f.collection_select :Bus_id, Bus.order(:plate_no), :plate_no, include_blank: true %>
   </div>
 
   <div class="field">
