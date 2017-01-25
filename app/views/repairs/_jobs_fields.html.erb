@@ -1,0 +1,13 @@
+<div class = "nested-fields">
+	 <%= f.label :jobparticular %>
+     <%= f.text_field :jobparticular %>
+
+     <%= f.label :timestarted %>
+     <%= f.datetime_select :timestarted %>
+     <%= f.label :timefinished %>
+     <%= f.datetime_select :timefinished %>
+
+	 <%= f.input :done, as: :boolean %>
+	 <%= link_to_remove_association "remove task", f %>
+  
+</div>

@@ -22,11 +22,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :repairtype %>
-    <%= f.text_field :repairtype %>
-  </div>
-
-  <div class="field">
     <%= f.label :Driver_id %>
     <%= f.collection_select :Driver_id, Driver.order(:lastname), :lastname, :firstname, include_blank: true %>
   </div>
@@ -40,6 +35,22 @@
     <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
+
+  <div class="field">
+    <%= f.label :repairtype %>
+    <%= f.text_field :repairtype %>
+  </div>
+
+<h3>Repairs</h3>
+
+  <div class="field">
+    <%= f.fields_for :jobs do |job| %>
+    <%= render 'jobs_fields', f: task %>
+    <%= link_to_add_association 'Add Repair', f, :jobs %>
+    <% end %>
+
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>
