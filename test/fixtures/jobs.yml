@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timestarted: 2017-01-25 10:03:26
+  timefinished: 2017-01-25 10:03:26
+  duration: 1.5
+  jobparticular: MyString
+  mechanic: one
+  done: false
+  repair: one
+
+two:
+  timestarted: 2017-01-25 10:03:26
+  timefinished: 2017-01-25 10:03:26
+  duration: 1.5
+  jobparticular: MyString
+  mechanic: two
+  done: false
+  repair: two
