@@ -31,6 +31,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 gem 'cocoon' #for nested models
 gem 'devise' #for users
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git" #for photos
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
