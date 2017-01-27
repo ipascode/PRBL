@@ -1,5 +1,5 @@
 class Bus < ApplicationRecord
   belongs_to :BusModel
-  belongs_to :Repair
+  has_many :repairs
   belongs_to :BusLine
 end

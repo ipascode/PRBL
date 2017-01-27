@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170127091326) do
+ActiveRecord::Schema.define(version: 20170127101703) do
 
   create_table "bus_lines", force: :cascade do |t|
     t.string   "linename"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20170127091326) do
     t.integer  "BusModel_id"
     t.string   "plate_no"
     t.datetime "date_purchased"
-    t.integer  "Repair_id"
     t.float    "odometer"
     t.integer  "BusLine_id"
     t.float    "cpk"
@@ -38,7 +37,6 @@ ActiveRecord::Schema.define(version: 20170127091326) do
     t.integer  "bus_no"
     t.index ["BusLine_id"], name: "index_buses_on_BusLine_id"
     t.index ["BusModel_id"], name: "index_buses_on_BusModel_id"
-    t.index ["Repair_id"], name: "index_buses_on_Repair_id"
   end
 
   create_table "drivers", force: :cascade do |t|

@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= f.label :Driver_id %>
-    <%= f.collection_select :Driver_id, Driver.order(:lastname), :lastname, :firstname, include_blank: true %>
+    <%= f.collection_select :Driver_id, Driver.order(:lastname), :id, :firstname, include_blank: true %>
   </div>
 
   <div class="field">
