@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  partname: MyString
+  part_number: MyString
+  bus_model: one
+  index_number: 1
+  price: 1.5
+  lifespan: 1
+
+two:
+  partname: MyString
+  part_number: MyString
+  bus_model: two
+  index_number: 1
+  price: 1.5
+  lifespan: 1

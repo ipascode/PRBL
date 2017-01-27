@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Partname:</strong>
+  <%= @part.partname %>
+</p>
+
+<p>
+  <strong>Part number:</strong>
+  <%= @part.part_number %>
+</p>
+
+<p>
+  <strong>Bus model:</strong>
+  <%= @part.bus_model %>
+</p>
+
+<p>
+  <strong>Index number:</strong>
+  <%= @part.index_number %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @part.price %>
+</p>
+
+<p>
+  <strong>Lifespan:</strong>
+  <%= @part.lifespan %>
+</p>
+
+<%= link_to 'Edit', edit_part_path(@part) %> |
+<%= link_to 'Back', parts_path %>

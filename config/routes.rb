@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :parts
   resources :buses
   resources :bus_lines
   resources :bus_models
