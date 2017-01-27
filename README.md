@@ -1,9 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README is for the PRBL Maintenance Application developed by Bandwidth. 
 
-Things you may want to cover:
+*Rails version 5.0.1
 
 * Ruby version
 
@@ -20,5 +19,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...

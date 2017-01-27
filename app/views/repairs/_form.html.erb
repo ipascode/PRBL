@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div class="input-group">
+    <%= f.label :Bus_id %>
+    <%= f.text_field :Bus_id %>
+</div>
+
   <div class="field">
     <%= f.label :datestarted %>
     <%= f.datetime_select :datestarted %>
@@ -27,11 +32,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :Bus_id %>
-    <%= f.collection_select :Bus_id, Bus.order(:plate_no), :plate_no, include_blank: true %>
-  </div>
-
-  <div class="field">
     <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
@@ -43,14 +43,16 @@
 
 <h3>Repairs</h3>
 
-  <div class="field">
+
+<div id='jobs'>
     <%= f.fields_for :jobs do |job| %>
-    <%= render 'jobs_fields', f: task %>
-    <%= link_to_add_association 'Add Repair', f, :jobs %>
+      <%= render 'repairs/jobs_fields', :f => job %>
     <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fields', :render_options => {:bootstrap => 'inline'} %>
+    </div>
 
   </div>
-
 
   <div class="actions">
     <%= f.submit %>
