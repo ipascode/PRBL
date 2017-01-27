@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :parts
   resources :buses
   resources :bus_lines
