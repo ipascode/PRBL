@@ -1,0 +1,19 @@
+
+<div class='nested-fields'>
+    <div class="field">
+     <%= f.label :part_id %>
+     <%= f.collection_select :part_id, Part.order(:partname), :id, :partname, include_blank: true %>
+    </div>
+
+    <div class="field">
+     <%= f.input :cost %>
+    </div>
+
+    <div class="field">
+    <%= f.input :quantity %>
+    </div>
+
+
+    <%= link_to_remove_association "Remove Part", f %>
+  </div>
+  
