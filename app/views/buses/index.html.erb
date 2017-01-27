@@ -2,12 +2,19 @@
 
 <h1>Buses</h1>
 
+<%= link_to 'Add Bus', new_bus_path %><br>
+<%= link_to 'Add Bus Model', new_bus_model_path %><br>
+<%= link_to 'Add Bus Line', new_bus_line_path %><br>
+
+<%= link_to 'Bus Lines', bus_lines_path %><br>
+<%= link_to 'Models', bus_models_path %>
+
 <table>
   <thead>
     <tr>
-      <th>Busmodel</th>
-      <th>Plate no</th>
-      <th>Date purchased</th>
+      <th>Bus Model</th>
+      <th>Plate No.</th>
+      <th>Date Purchased</th>
       <th>Repair</th>
       <th>Odometer</th>
       <th>Busline</th>
@@ -36,4 +43,4 @@
 
 <br>
 
-<%= link_to 'New Bus', new_bus_path %>
+

@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :bus_no %>
+    <%= f.text_field :bus_no %>
+  </div>
+
+  <div class="field">
     <%= f.label :BusModel_id %>
-    <%= f.text_field :BusModel_id %>
+     <%= f.collection_select :BusModel_id, BusModel.order(:brand), :id, :brand,  include_blank: true %>
   </div>
 
   <div class="field">
@@ -27,18 +32,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :Repair_id %>
-    <%= f.text_field :Repair_id %>
-  </div>
-
-  <div class="field">
     <%= f.label :odometer %>
     <%= f.text_field :odometer %>
   </div>
 
   <div class="field">
     <%= f.label :BusLine_id %>
-    <%= f.text_field :BusLine_id %>
+     <%= f.collection_select :BusLine_id, BusLine.order(:linename), :id, :linename, include_blank: true %>
   </div>
 
   <div class="field">
