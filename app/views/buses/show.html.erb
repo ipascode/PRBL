@@ -2,7 +2,7 @@
 
 <p>
   <strong>Busmodel:</strong>
-  <%= @bus.BusModel %>
+  <%= @bus.BusModel.brand %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Busline:</strong>
-  <%= @bus.BusLine %>
+  <%= @bus.BusLine.linename %>
 </p>
 
 <p>
@@ -34,3 +34,8 @@
 
 <%= link_to 'Edit', edit_bus_path(@bus) %> |
 <%= link_to 'Back', buses_path %>
+
+<h3>Bus History</h3>
+<% @bus.repairs.each do |repair| %> 
+  <%= repair.datestarted %> 
+<% end %>
