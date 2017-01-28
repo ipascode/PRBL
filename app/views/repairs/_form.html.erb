@@ -1,45 +1,30 @@
-<%= simple_form_for(repair) do |f| %>
-  <% if repair.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(repair.errors.count, "error") %> prohibited this repair from being saved:</h2>
+<%= simple_form_for(@repair) do |f| %>
+ <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
+ <% repair.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
 
+  <% if repair.errors.any? %>
       <ul>
       <% repair.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
   <% end %>
 
-  <div class="input-group">
+  
     <%= f.label :Bus_id %>
-    <%= f.text_field :Bus_id %>
-</div>
-
-  <div class="field">
-    <%= f.label :datestarted %>
-    <%= f.datetime_select :datestarted %>
+    <%= f.collection_select :Bus_id, Bus.order(:bus_no), :id, :bus_no, include_blank: true %>
   </div>
+    <%= f.input :datestarted %>
+    <%= f.input :datefinished %>
 
-  <div class="field">
-    <%= f.label :datefinished %>
-    <%= f.datetime_select :datefinished %>
-  </div>
 
-  <div class="field">
-    <%= f.label :Driver_id %>
-    <%= f.collection_select :Driver_id, Driver.order(:lastname), :id, :firstname, include_blank: true %>
-  </div>
+    <%= f.collection_select :Driver_id, Driver.order(:lastname), :id, :lastname, include_blank: true %>
+  
 
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-
-  <div class="field">
-    <%= f.label :repairtype %>
-    <%= f.text_field :repairtype %>
-  </div>
+    <%= f.input :location %>
+    <%= f.input :repairtype %>  
 
 <h3>Repairs</h3>
 

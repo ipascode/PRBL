@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170127141250) do
+ActiveRecord::Schema.define(version: 20170128052224) do
 
   create_table "bus_lines", force: :cascade do |t|
     t.string   "linename"
@@ -32,9 +32,13 @@ ActiveRecord::Schema.define(version: 20170127141250) do
     t.float    "odometer"
     t.integer  "BusLine_id"
     t.float    "cpk"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "bus_no"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["BusLine_id"], name: "index_buses_on_BusLine_id"
     t.index ["BusModel_id"], name: "index_buses_on_BusModel_id"
   end
@@ -78,8 +82,12 @@ ActiveRecord::Schema.define(version: 20170127141250) do
     t.string   "type"
     t.string   "skills"
     t.integer  "shift"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "parts", force: :cascade do |t|

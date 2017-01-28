@@ -1,4 +1,4 @@
-<%= form_for(bus) do |f| %>
+<%= simple_form_for @bus do |f| %>
   <% if bus.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bus.errors.count, "error") %> prohibited this bus from being saved:</h2>
@@ -41,10 +41,8 @@
      <%= f.collection_select :BusLine_id, BusLine.order(:linename), :id, :linename, include_blank: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :cpk %>
-    <%= f.text_field :cpk %>
-  </div>
+<%= f.input :cpk %>
+<%= f.input :avatar, as: :file %>
 
   <div class="actions">
     <%= f.submit %>
