@@ -19,3 +19,6 @@ This README is for the PRBL Maintenance Application developed by Bandwidth.
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+
+Of Note: if reference in schema is capitalized, follow it all throughout
+	Tables to note: buses, parts, repairs
