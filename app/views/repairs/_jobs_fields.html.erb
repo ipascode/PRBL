@@ -1,19 +1,9 @@
 
 <div class='nested-fields'>
-    <div class="field">
-     <%= f.label :jobparticular %>
-     <%= f.text_field :jobparticular %>
-    </div>
-
-    <div class="field">
-    <%= f.label :timestarted %>
-     <%= f.datetime_select :timestarted %>
-    </div>
-
-    <div class="field">
-     <%= f.label :timefinished %>
-     <%= f.datetime_select :timefinished %>
-    </div>
+     <%= f.input :jobparticular %>
+     <%= f.input :timestarted %>
+     <%= f.input :timefinished %>
+     <%= f.association :mechanic, label_method: :lastname, value_method: :id, include_blank: false %>
 
     <div id='job-parts'>
     <%= f.fields_for :job_parts do |job_parts| %>
