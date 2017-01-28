@@ -35,5 +35,42 @@
   <%= @repair.jobcard_num %>
 </p>
 
+<h3>Repairs</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Repair</th>
+      <th>Time Started</th>
+      <th>Time Finished</th>
+      <th>Duration</th>
+      <th>Mechanic</th>
+      <th>Part</th>
+      <th>Unit</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total Cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @repair.jobs.each do |job| %>
+      <tr>
+        <td><%= job.done %></td>
+        <td><%= job.jobparticular %></td>
+        <td><%= job.timestarted %></td>
+        <td><%= job.timefinished %></td>
+        <td><%= job.duration %></td>
+        <td><%= job.mechanic_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  
+  
+
+
 <%= link_to 'Edit', edit_repair_path(@repair) %> |
 <%= link_to 'Back', repairs_path %>
