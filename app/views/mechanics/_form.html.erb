@@ -1,4 +1,4 @@
-<%= form_for(mechanic) do |f| %>
+<%= simple_form_for @mechanic do |f| %>
   <% if mechanic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(mechanic.errors.count, "error") %> prohibited this mechanic from being saved:</h2>
@@ -11,35 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :firstname %>
-    <%= f.text_field :firstname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :middlename %>
-    <%= f.text_field :middlename %>
-  </div>
-
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.text_field :type %>
-  </div>
-
-  <div class="field">
-    <%= f.label :skills %>
-    <%= f.text_field :skills %>
-  </div>
-
-  <div class="field">
-    <%= f.label :shift %>
-    <%= f.number_field :shift %>
-  </div>
+    <%= f.input :lastname %>
+    <%= f.input :firstname %>
+    <%= f.input :middlename %>
+    <%= f.input :type %>
+    <%= f.input :skills %>
+    <%= f.input :shift %>
+    <%= f.input :avatar, as: :file %>
 
   <div class="actions">
     <%= f.submit %>

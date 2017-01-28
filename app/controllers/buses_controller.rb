@@ -69,6 +69,6 @@ class BusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bus_params
-      params.require(:bus).permit( :avatar, :BusModel_id, :plate_no, :date_purchased, :Repair_id, :odometer, :BusLine_id, :cpk)
+      params.require(:bus).permit(:avatar, :BusModel_id, :plate_no, :date_purchased, :Repair_id, :odometer, :BusLine_id, :cpk)
     end
 end
