@@ -30,5 +30,7 @@
   <%= @bus.cpk %>
 </p>
 
+<%= image_tag @bus.avatar.url(:medium) %>
+
 <%= link_to 'Edit', edit_bus_path(@bus) %> |
 <%= link_to 'Back', buses_path %>

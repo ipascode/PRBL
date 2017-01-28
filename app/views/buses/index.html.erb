@@ -12,6 +12,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Bus Model</th>
       <th>Plate No.</th>
       <th>Date Purchased</th>
@@ -25,11 +26,12 @@
   <tbody>
     <% @buses.each do |bus| %>
       <tr>
-        <td><%= bus.BusModel %></td>
+        <td><%= image_tag bus.avatar.url(:thumb) %></td>
+        <td><%= bus.BusModel.brand %></td>
         <td><%= bus.plate_no %></td>
         <td><%= bus.date_purchased %></td>
         <td><%= bus.odometer %></td>
-        <td><%= bus.BusLine %></td>
+        <td><%= bus.BusLine.linename %></td>
         <td><%= bus.cpk %></td>
         <td><%= link_to 'Show', bus %></td>
         <td><%= link_to 'Edit', edit_bus_path(bus) %></td>
