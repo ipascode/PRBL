@@ -69,6 +69,8 @@ class RepairsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
-      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :Driver_id, :Bus_id, :location, :jobcard_num, jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :done, :_destroy])
+      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :Driver_id, :Bus_id, :location, :jobcard_num, 
+        jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :done, :_destroy, 
+        job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
 end

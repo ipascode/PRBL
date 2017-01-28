@@ -18,9 +18,7 @@
     <%= f.input :jobcard_num %>
     <%= f.input :datestarted %>
     <%= f.input :datefinished %>
-
     <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false %>
-
     <%= f.input :location %>
     <%= f.input :repairtype %>  
 
@@ -31,9 +29,10 @@
     <%= f.fields_for :jobs do |job| %>
       <%= render 'repairs/jobs_fields', :f => job %>
     <% end %>
-    <div class='links'>
-      <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fields', :render_options => {:bootstrap => 'inline'} %>
-    </div>
+
+<div class='links'>
+  <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fields', :render_options => {:bootstrap => 'inline'} %>
+</div>
 
   </div>
 

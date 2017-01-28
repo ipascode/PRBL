@@ -2,7 +2,7 @@
 <div class='nested-fields'>
     <div class="field">
      <%= f.label :part_id %>
-     <%= f.collection_select :part_id, Part.order(:partname), :id, :partname, include_blank: true %>
+     <%= f.association :part,  label_method: :partname, value_method: :id, include_blank: false  %>
     </div>
 
     <div class="field">
