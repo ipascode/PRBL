@@ -16,6 +16,7 @@
     <%= f.label :Bus_id %>
     <%= f.collection_select :Bus_id, Bus.order(:bus_no), :id, :bus_no, include_blank: true %>
   </div>
+    <%= f.input :jobcard_num %>
     <%= f.input :datestarted %>
     <%= f.input :datefinished %>
 
