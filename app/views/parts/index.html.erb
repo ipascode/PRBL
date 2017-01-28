@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Parts</h1>
-
+<%= link_to 'New Part', new_part_path %>
 <table>
   <thead>
     <tr>
@@ -20,7 +20,7 @@
       <tr>
         <td><%= part.partname %></td>
         <td><%= part.part_number %></td>
-        <td><%= part.bus_model %></td>
+        <td><%= part.BusModel.brand %></td>
         <td><%= part.index_number %></td>
         <td><%= part.price %></td>
         <td><%= part.lifespan %></td>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Part', new_part_path %>
+

@@ -4,7 +4,11 @@
   <div class="form-inputs">
     <%= f.input :partname %>
     <%= f.input :part_number %>
-    <%= f.association :bus_model, :label_method => :brand, :value_method => :id %>
+     
+    <div class="field">
+    <%= f.label :BusModel_id %>
+     <%= f.collection_select :BusModel_id, BusModel.order(:brand), :id, :brand,  include_blank: true %>
+  </div>
     <%= f.input :index_number %>
     <%= f.input :price %>
     <%= f.input :lifespan %>

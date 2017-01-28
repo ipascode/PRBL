@@ -1,3 +1,3 @@
 class Part < ApplicationRecord
-  belongs_to :bus_model, optional: true
+  belongs_to :BusModel, optional: true
 end
