@@ -11,21 +11,13 @@
     </div>
   <% end %>
 
-    <%= f.input :bus_no %>
-    
-  <div class="field">
-    <%= f.label :BusModel_id %>
-     <%= f.collection_select :BusModel_id, BusModel.order(:brand), :id, :brand,  include_blank: true %>
-  </div>
+  <%= f.input :bus_no %>
+  <%= f.association :BusModel, label_method: :brand, value_method: :id, include_blank: false %>
 
   <%= f.input :plate_no %>
   <%= f.input :date_purchased %>
   <%= f.input :odometer %>
-
-  <div class="field">
-    <%= f.label :BusLine_id %>
-     <%= f.collection_select :BusLine_id, BusLine.order(:linename), :id, :linename, include_blank: true %>
-  </div>
+  <%= f.association :BusLine, label_method: :linename, value_method: :id, include_blank: false %>
 
 <%= f.input :cpk %>
 <%= f.input :avatar, as: :file %>
