@@ -10,10 +10,13 @@
   <%= @part.part_number %>
 </p>
 
-<p>
+<% if !@part.BusModel.nil? -%>
+ <p>
   <strong>Bus model:</strong>
   <%= @part.BusModel.brand %>
 </p>
+<% end %>
+
 
 <p>
   <strong>Index number:</strong>
