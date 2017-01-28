@@ -1,3 +1,3 @@
 class Driver < ApplicationRecord
-	has_many :repairs
+	has_many :Repairs
 end

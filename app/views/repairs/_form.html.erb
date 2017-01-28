@@ -13,16 +13,13 @@
   <% end %>
 
   
-    <%= f.label :Bus_id %>
-    <%= f.collection_select :Bus_id, Bus.order(:bus_no), :id, :bus_no, include_blank: true %>
-  </div>
+    
+    <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false %>
     <%= f.input :jobcard_num %>
     <%= f.input :datestarted %>
     <%= f.input :datefinished %>
 
-
-    <%= f.collection_select :Driver_id, Driver.order(:lastname), :id, :lastname, include_blank: true %>
-  
+    <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false %>
 
     <%= f.input :location %>
     <%= f.input :repairtype %>  
