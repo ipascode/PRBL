@@ -2,13 +2,16 @@
 
 This README is for the PRBL Maintenance Application developed by Bandwidth. 
 
-*Rails version 5.0.1
+* Rails version 5.0.1
 
-* Ruby version
+* Ruby version 2.2.5
 
 * System dependencies
 
 * Configuration
+
+* Requirements
+ImageMagick must be installed and Paperclip must have access to it.
 
 * Database creation
 
