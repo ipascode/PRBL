@@ -41,6 +41,54 @@
 <%= link_to 'Back', buses_path %>
 
 <h3>Bus History</h3>
-<% @bus.repairs.each do |repair| %> 
-  <%= repair.datestarted %> 
-<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date Started</th>
+      <th>Date Finished</th>
+      <th>Repair Type</th>
+      <th>Driver</th>
+      <th>Repair</th>
+      <th>Status</th>
+      <th>Time Started</th>
+      <th>Time Finished</th>
+      <th>Duration</th>
+      <th>Mechanic</th>
+      <th>Part</th>
+      <th>Unit</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+<tbody>
+    <% @bus.repairs.each do |repair| %> 
+      <td><%= repair.datestarted %> </td>
+      <td><%= repair.datefinished %> </td>
+      <td><%= repair.repairtype %></td> 
+      <td><%= repair.Driver.lastname %><%= repair.Driver.firstname %> </td>
+
+        <% repair.jobs.each do |job| %> 
+          <td><%= job.jobparticular %> </td>
+          <td><%= job.done %> </td>
+          <td><%= job.timestarted %> </td>
+          <td><%= job.timefinished %> </td>
+          <td><%= job.duration %> </td>
+          <td><%= job.mechanic_id%> </td>
+        
+
+            <% job.job_parts.each do |job_part| %> 
+              <td><%= job_part.part_id %> </td>
+              <td>  </td>
+              <td><%= job_part.quantity %> </td>
+              <td><%= job_part.cost %> </td>
+              <td>   </td>
+          <% end %>
+          
+        <% end %>
+    <% end %>
+  </tbody>
+</table>
