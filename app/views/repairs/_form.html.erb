@@ -12,13 +12,12 @@
       </ul>
   <% end %>
 
-    <!-- Strange that there are no closing tags here, but strangely, it works! -->
-    <label>Bus</label><div class="input-field col s3"><select class="browser-default"><%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false, class: "browser-default" %>
+    <!-- The selection for the association here isn't rendering. Gotta find a solution soon. -->
+    <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false, class: "browser-default" %>
     <%= f.input :jobcard_num %>
     <%= f.input :datestarted %>
     <%= f.input :datefinished %>
-    <!-- Strange that there are no closing tags here, but strangely, it works! -->
-    <label>Driver</label><div class="input-field col s3"><select class="browser-default"><%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false, class: "browser-default"%>
+    <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false, class: "browser-default"%>
     <%= f.input :location %>
     <%= f.input :repairtype %>  
 
