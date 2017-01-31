@@ -69,10 +69,11 @@ ActiveRecord::Schema.define(version: 20170130181112) do
     t.string   "jobparticular"
     t.integer  "mechanic_id"
     t.boolean  "done"
+    t.integer  "repair_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "repair_id"
     t.index ["mechanic_id"], name: "index_jobs_on_mechanic_id"
+    t.index ["repair_id"], name: "index_jobs_on_repair_id"
   end
 
   create_table "mechanics", force: :cascade do |t|
