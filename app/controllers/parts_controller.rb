@@ -61,6 +61,8 @@ class PartsController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_part
@@ -71,4 +73,11 @@ class PartsController < ApplicationController
     def part_params
       params.require(:part).permit(:partname, :part_number, :BusModel_id, :index_number, :price, :lifespan)
     end
+
+    def get_csv
+    require 'csv'    
+    CSV.foreach(filename, :headers => true) do |row|
+      Moulding.create!(row.to_hash)
+    end
+  end
 end
