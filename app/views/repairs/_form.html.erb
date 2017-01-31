@@ -12,12 +12,12 @@
       </ul>
   <% end %>
 
-    <!-- The selection for the association here isn't rendering. Gotta find a solution soon. -->
-    <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false, class: "browser-default" %>
+    <!-- The selection for the association and the dates here isn't rendering. Gotta find a solution soon. -->
+    <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false%>
     <%= f.input :jobcard_num %>
     <%= f.input :datestarted %>
     <%= f.input :datefinished %>
-    <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false, class: "browser-default"%>
+    <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false%>
     <%= f.input :location %>
     <%= f.input :repairtype %>  
 
