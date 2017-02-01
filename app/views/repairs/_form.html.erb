@@ -3,23 +3,37 @@
  <% repair.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
+      <br>
 
-  <% if repair.errors.any? %>
-      <ul>
-      <% repair.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-  <% end %>
-
-    <!-- The selection for the association and the dates here isn't rendering. Gotta find a solution soon. -->
-    <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false%>
-    <%= f.input :jobcard_num %>
-    <%= f.input :datestarted %>
-    <%= f.input :datefinished %>
-    <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false%>
-    <%= f.input :location %>
-    <%= f.input :repairtype %>  
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+      <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+      <%= f.input :jobcard_num %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <%= f.input :datestarted %>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <%= f.input :datefinished %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <%= f.input :location %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <%= f.input :repairtype %>
+      </div>
+    </div>
 
 <h3>Repairs</h3>
 
@@ -30,12 +44,12 @@
     <% end %>
 
 <div class='links'>
-  <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fields', :render_options => {:bootstrap => 'inline'} %>
+   <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-default" %>
 </div>
 
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :Submit, class: "btn btn-default" %>
   </div>
 <% end %>

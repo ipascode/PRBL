@@ -8,8 +8,8 @@
 </div>
 
 
-
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Date Started</th>
@@ -22,7 +22,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-hover">
     <% @repairs.each do |repair| %>
       <tr>
         <td><%= repair.datestarted %></td>
@@ -38,6 +38,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
