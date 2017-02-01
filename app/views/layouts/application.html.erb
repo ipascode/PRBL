@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+<!-- OLD MATERIALIZE CODE
 <style>
     html, body, h1, h2, h3, h4, h5, h6, div {
       padding: 0;
@@ -23,7 +23,6 @@
 </style>
 
   <body>
-  <!-- Nav bar -->
 
   <div class="navbar-fixed">
     <nav>
@@ -44,8 +43,9 @@
       </div>
     </nav>
   </div>
+-->
 
-<!--
+<!-- Bootstrap -->
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
@@ -69,9 +69,14 @@
         <li><%= link_to "Parts", parts_path%> <span class="sr-only"></li>
         <li><%= link_to "Personnel", mechanics_path%><span class="sr-only"></li>
         <li><a href="#">Users</a></li>
-        <li><input type="text" class="form-control" placeholder="Search"></li>
-        <li><button type="submit" class="btn btn-default">Submit</button></li>
       </ul>
+
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
 
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -87,7 +92,7 @@
     </div>
   </div>
 </nav>
--->
+
 <div class="container">
     <%= yield %>
 </div>
