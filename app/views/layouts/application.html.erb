@@ -7,6 +7,78 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <style>
+  .navbar-default {
+    background-color: #9b59b6;
+    border-color: #8e44ad;
+  }
+  .navbar-default .navbar-brand {
+    color: #ececec;
+  }
+  .navbar-default .navbar-brand:hover,
+  .navbar-default .navbar-brand:focus {
+    color: #e6d0ff;
+  }
+  .navbar-default .navbar-text {
+    color: #ececec;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: #ececec;
+  }
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus {
+    color: #e6d0ff;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: #e6d0ff;
+    background-color: #8e44ad;
+  }
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    color: #e6d0ff;
+    background-color: #8e44ad;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #8e44ad;
+  }
+  .navbar-default .navbar-toggle:hover,
+  .navbar-default .navbar-toggle:focus {
+    background-color: #8e44ad;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #ececec;
+  }
+  .navbar-default .navbar-collapse,
+  .navbar-default .navbar-form {
+    border-color: #ececec;
+  }
+  .navbar-default .navbar-link {
+    color: #ececec;
+  }
+  .navbar-default .navbar-link:hover {
+    color: #e6d0ff;
+  }
+
+  @media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #ececec;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: #e6d0ff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+      color: #e6d0ff;
+      background-color: #8e44ad;
+    }
+  }
+  </style>
+
 <!-- OLD MATERIALIZE CODE
 <style>
     html, body, h1, h2, h3, h4, h5, h6, div {
@@ -97,9 +169,9 @@
     <%= yield %>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom" style="background-color:#d5d5d5; border-color:#a5a5a5;">
   <div class="container">
-    <p class="navbar-text navbar-left">Application by Bandwidth</p>
+    <p class="navbar-text navbar-left" style="color:#5c5c5c;">Application by Bandwidth</p>
   </div>
 </nav>
             

@@ -36,7 +36,8 @@
 </p>
 
 <h3>Repairs</h3>
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Status</th>
@@ -54,7 +55,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-hover">
     <% @repair.jobs.each do |job| %>
       <tr>
         <td><%= job.done %></td>
@@ -70,6 +71,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 
 <%= link_to 'Edit', edit_repair_path(@repair) %> |
