@@ -16,7 +16,24 @@
 @import "bootstrap";
 @import "bootstrap-sprockets";
 
+@font-face {
+    font-family: Karla;
+    src: url(../fonts/karla/Karla-regular.ttf);
+}
+
+@font-face {
+    font-family: Karla;
+    font-weight: bold;
+    src: url(../fonts/karla/Karla-Bold.ttf);
+}
+
 body { 
 		padding-top: 70px; 
 		padding-bottom: 70px;
+		font-family: Karla;
+		font-weight: 300px;
 	}
+
+h1{
+	font-family: Karla;
+}
