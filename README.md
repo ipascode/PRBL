@@ -25,4 +25,3 @@ ImageMagick must be installed and Paperclip must have access to it.
 
 Of Note: if reference in schema is capitalized, follow it all throughout
 	Tables to note: buses, parts, repairs
-*PontanoSans-Regular.ttf: Copyright (c) 2012, vernon adams (vern@newtypography.co.uk), with Reserved Font Names "Potano"
