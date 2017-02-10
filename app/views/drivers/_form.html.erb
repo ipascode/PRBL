@@ -1,4 +1,4 @@
-<%= form_for(driver) do |f| %>
+<%= simple_form_for(driver) do |f| %>
   <% if driver.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(driver.errors.count, "error") %> prohibited this driver from being saved:</h2>
@@ -11,22 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :firstname %>
-    <%= f.text_field :firstname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :middlename %>
-    <%= f.text_field :middlename %>
-  </div>
+    <%= f.input :lastname %>
+    <%= f.input :firstname %>
+    <%= f.input :middlename %>
+    <%= f.input :avatar, as: :file %>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
