@@ -7,9 +7,8 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-6">
-     <!-- <%= f.association :Bus, label_method: :bus_no, include_blank: false, class: 'bus_no-select'  %> -->
 
-      <%= f.input :Bus_id,  class: 'bus_no-select'  %>
+     <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false %>
 
       </div>
       <div class="col-xs-12 col-md-6">

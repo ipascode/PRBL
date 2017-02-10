@@ -7,117 +7,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <style>
-  .navbar-default {
-    background-color: #9b59b6;
-    border-color: #8e44ad;
-  }
-  .navbar-default .navbar-brand {
-    color: #ececec;
-  }
-  .navbar-default .navbar-brand:hover,
-  .navbar-default .navbar-brand:focus {
-    color: #e6d0ff;
-  }
-  .navbar-default .navbar-text {
-    color: #ececec;
-  }
-  .navbar-default .navbar-nav > li > a {
-    color: #ececec;
-  }
-  .navbar-default .navbar-nav > li > a:hover,
-  .navbar-default .navbar-nav > li > a:focus {
-    color: #e6d0ff;
-  }
-  .navbar-default .navbar-nav > .active > a,
-  .navbar-default .navbar-nav > .active > a:hover,
-  .navbar-default .navbar-nav > .active > a:focus {
-    color: #e6d0ff;
-    background-color: #8e44ad;
-  }
-  .navbar-default .navbar-nav > .open > a,
-  .navbar-default .navbar-nav > .open > a:hover,
-  .navbar-default .navbar-nav > .open > a:focus {
-    color: #e6d0ff;
-    background-color: #8e44ad;
-  }
-  .navbar-default .navbar-toggle {
-    border-color: #8e44ad;
-  }
-  .navbar-default .navbar-toggle:hover,
-  .navbar-default .navbar-toggle:focus {
-    background-color: #8e44ad;
-  }
-  .navbar-default .navbar-toggle .icon-bar {
-    background-color: #ececec;
-  }
-  .navbar-default .navbar-collapse,
-  .navbar-default .navbar-form {
-    border-color: #ececec;
-  }
-  .navbar-default .navbar-link {
-    color: #ececec;
-  }
-  .navbar-default .navbar-link:hover {
-    color: #e6d0ff;
-  }
-
-  @media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-      color: #ececec;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: #e6d0ff;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-      color: #e6d0ff;
-      background-color: #8e44ad;
-    }
-  }
-  </style>
-
-<!-- OLD MATERIALIZE CODE
-<style>
-    html, body, h1, h2, h3, h4, h5, h6, div {
-      padding: 0;
-      border: 0;
-      margin: 0;
-    }
-    .top {
-      padding: 0;
-      height: 170px;
-      background-color: #ef9a9a;
-      margin: 0px;
-    }
-</style>
 
   <body>
-
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">PRBL Maintenance</a>
-        <ul class="right hide-on-med-and-down">
-          <li><%= link_to "Home", root_path%></li>
-          <li><%= link_to "Buses", buses_path%></li>
-          <li><a href="#">Work Order</a></li>
-          <li><a href="#">Report</a></li>
-          <li><%= link_to "Parts", parts_path%></li>
-          <li><%= link_to "Personnel", mechanics_path%></li>
-          <li><a href="#">Users</a></li>
-          <li><input type="text" class="form-control" placeholder="Search"></li>
-          <li><button type="submit" class="btn btn-default">Submit</button></li>
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Account</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
--->
-
-<!-- Bootstrap -->
+  <!-- Bootstrap -->
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
@@ -147,7 +39,7 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" style="background-color: #000000; color: #ffffff;">Submit</button>
       </form>
 
       <ul class="nav navbar-nav navbar-right">
@@ -163,17 +55,17 @@
       </ul>
     </div>
   </div>
-</nav>
+  </nav>
 
-<div class="container">
-    <%= yield %>
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom" style="background-color:#d5d5d5; border-color:#a5a5a5;">
   <div class="container">
-    <p class="navbar-text navbar-left" style="color:#5c5c5c;">Application by Bandwidth</p>
+      <%= yield %>
   </div>
-</nav>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom" style="background-color:#d5d5d5; border-color:#a5a5a5;">
+    <div class="container">
+      <p class="navbar-text navbar-left" style="color:#5c5c5c;">Application by Bandwidth</p>
+    </div>
+  </nav>
             
   </body>
 </html>
