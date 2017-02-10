@@ -1,6 +1,8 @@
 <h1>Editing Bus Model</h1>
 
-<%= render 'form', bus_model: @bus_model %>
+<div class="panel panel-default" style="padding: 10px;">
+	<%= render 'form', bus_model: @bus_model %>
+</div>
 
-<%= link_to 'Show', @bus_model %> |
-<%= link_to 'Back', bus_models_path %>
+<%= link_to 'View', @bus_model, :class => "btn btn-primary"  %> |
+<%= link_to 'Back', bus_models_path, :class => "btn btn-primary"  %>

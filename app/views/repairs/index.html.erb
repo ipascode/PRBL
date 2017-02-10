@@ -3,7 +3,7 @@
 <h1>Maintenance Home</h1>
 
 <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default"><%= link_to 'Add Job Card', new_repair_path %></button>
+  <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-default" %>
   <button type="button" class="btn btn-default">Expand All</button>
 </div>
 
@@ -31,9 +31,9 @@
         <td><%= repair.Driver.lastname %></td>
         <td><%= repair.Bus.bus_no %></td>
         <td><%= repair.location %></td>
-        <td><%= link_to 'Show', repair %></td>
-        <td><%= link_to 'Edit', edit_repair_path(repair) %></td>
-        <td><%= link_to 'Destroy', repair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', repair, :class => "btn btn-primary"%></td>
+        <td><%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-warning"%></td>
+        <td><%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%></td>
       </tr>
     <% end %>
   </tbody>
