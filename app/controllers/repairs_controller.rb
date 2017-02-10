@@ -24,6 +24,7 @@ class RepairsController < ApplicationController
   # POST /repairs
   # POST /repairs.json
   def create
+    @bus = Bus.all
     @repair = Repair.new(repair_params)
 
     respond_to do |format|
