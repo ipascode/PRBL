@@ -23,7 +23,7 @@
       <a class="navbar-brand" href="#">PRBL Maintenance</a>
     </div>
 
-
+    <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_path%> <span class="sr-only"></span></li>
@@ -41,7 +41,6 @@
         </div>
         <button type="submit" class="btn btn-default" style="background-color: #000000; color: #ffffff;">Submit</button>
       </form>
-      <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
@@ -53,11 +52,11 @@
           </ul>
         </li>
       </ul>
-      <% end %>
     </div>
+    <% end %>
   </div>
   </nav>
-
+  
   <div class="container">
       <%= yield %>
   </div>
