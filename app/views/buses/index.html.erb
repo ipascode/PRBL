@@ -2,14 +2,16 @@
 
 <h1>Buses</h1>
 
-<%= link_to 'Add Bus', new_bus_path %><br>
-<%= link_to 'Add Bus Model', new_bus_model_path %><br>
-<%= link_to 'Add Bus Line', new_bus_line_path %><br>
+<div class="btn-group" role="group" aria-label="...">
+  <%= link_to 'Add Bus', new_bus_path, :class => "btn btn-default" %>
+  <%= link_to 'Add Bus Model', new_bus_model_path, :class => "btn btn-default"  %>
+  <%= link_to 'Add Bus Line', new_bus_line_path, :class => "btn btn-default"  %>
+  <%= link_to 'Bus Lines', bus_lines_path, :class => "btn btn-default"  %>
+  <%= link_to 'Models', bus_models_path, :class => "btn btn-default"  %>
+</div>
 
-<%= link_to 'Bus Lines', bus_lines_path %><br>
-<%= link_to 'Models', bus_models_path %>
-
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Image</th>
@@ -18,13 +20,13 @@
       <th>Plate No.</th>
       <th>Date Purchased</th>
       <th>Odometer</th>
-      <th>Busline</th>
-      <th>Cpk</th>
-      <th colspan="3"></th>
+      <th>Bus line</th>
+      <th>Cost/KM</th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-hover">
     <% @buses.each do |bus| %>
       <tr>
         <td><%= image_tag bus.avatar.url(:thumb) %></td>
@@ -35,13 +37,14 @@
         <td><%= bus.odometer %></td>
         <td><%= bus.BusLine.linename %></td>
         <td><%= bus.cpk %></td>
-        <td><%= link_to 'Show', bus %></td>
-        <td><%= link_to 'Edit', edit_bus_path(bus) %></td>
-        <td><%= link_to 'Destroy', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', bus, :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-warning"  %></td>
+        <td><%= link_to 'Delete', bus, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 

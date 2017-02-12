@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :linename %>
+    <%= f.label :linename, label: "Line name" %>
     <%= f.text_field :linename %>
   </div>
 
@@ -20,8 +20,9 @@
     <%= f.label :distance %>
     <%= f.text_field :distance %>
   </div>
-
+  <br>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>
