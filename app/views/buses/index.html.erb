@@ -1,44 +1,102 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Buses</h1>
+<div class="row">
 
-<div class="btn-group" role="group" aria-label="...">
-  <%= link_to 'Add Bus', new_bus_path, :class => "btn btn-default" %>
-  <%= link_to 'Add Bus Model', new_bus_model_path, :class => "btn btn-default"  %>
-  <%= link_to 'Add Bus Line', new_bus_line_path, :class => "btn btn-default"  %>
+<div class="col-md-6 col-xs-3">
+<h1>Buses</h1>
+</div>
+
+<div class="col-md-6 col-xs-9">
+<div class="btn-group pull-right" role="group" aria-label="..." style="padding-top:18px;">
+  <%= link_to '+ Bus', new_bus_path, :class => "btn btn-default" %>
+  <%= link_to '+ Bus Model', new_bus_model_path, :class => "btn btn-default"  %>
+  <%= link_to '+ Bus Line', new_bus_line_path, :class => "btn btn-default"  %>
   <%= link_to 'Bus Lines', bus_lines_path, :class => "btn btn-default"  %>
   <%= link_to 'Models', bus_models_path, :class => "btn btn-default"  %>
+</div>
+</div>
+
+</div>
+<br>
+
+<div class="row">
+
+<div class="col-md-2 col-xs-4">
+<div class="input-group">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button">Go</button>
+  </span>
+  <input type="text" class="form-control" placeholder="Search">
+</div><!-- /input-group -->
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
+      Model: All
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">All</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Daewoo</a></li>
+      <li><a href="#">Higer</a></li>
+      <li><a href="#">King Long</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
+      Line: All
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">All</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">MNL - TAR</a></li>
+      <li><a href="#">MNL - ALA</a></li>
+      <li><a href="#">MNL - ANG</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <a href="#">Advanced Filters</a>
+</div>
+
 </div>
 
 <div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th>Image</th>
-      <th>Bus Number</th>
-      <th>Bus Model</th>
+      <!-- <th>Image</th> -->
+      <th>Bus No.</th>
       <th>Plate No.</th>
+      <th>Model</th>
+      <th>Line</th>
       <th>Date Purchased</th>
       <th>Odometer</th>
-      <th>Bus line</th>
-      <th>Cost/KM</th>
-      <th colspan="3">Actions</th>
+      <th>CPK (Php)</th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
 
   <tbody class="table-hover">
     <% @buses.each do |bus| %>
       <tr>
-        <td><%= image_tag bus.avatar.url(:thumb) %></td>
-        <td><%= bus.bus_no %></td>
-        <td><%= bus.BusModel.brand %></td>
+        <!-- <td><%= image_tag bus.avatar.url(:thumb) %></td> -->
+        <td><%= link_to bus.bus_no, bus %></td>
         <td><%= bus.plate_no %></td>
+        <td><%= bus.BusModel.brand %></td>
+        <td><%= bus.BusLine.linename %></td>
         <td><%= bus.date_purchased %></td>
         <td><%= bus.odometer %></td>
-        <td><%= bus.BusLine.linename %></td>
         <td><%= bus.cpk %></td>
-        <td><%= link_to 'View', bus, :class => "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-warning"  %></td>
+        <!-- <td><%= link_to 'View', bus, :class => "btn btn-default" %></td> -->
+        <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-default"  %></td>
         <td><%= link_to 'Delete', bus, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %></td>
       </tr>
     <% end %>
