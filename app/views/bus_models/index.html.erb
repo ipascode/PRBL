@@ -2,6 +2,14 @@
 
 <h1>Bus Models</h1>
 
+<%= link_to 'New Bus Model', new_bus_model_path, :class => "btn btn-primary" %>
+<%= link_to 'Back', buses_path, :class => "btn btn-primary" %>
+<h3>Import a CSV File</h3>
+  <%= form_tag import_bus_models_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
 <div class="table-responsive">
 <table class="table">
   <thead>
@@ -26,5 +34,4 @@
 
 <br>
 
-<%= link_to 'New Bus Model', new_bus_model_path, :class => "btn btn-primary" %>
-<%= link_to 'Back', buses_path, :class => "btn btn-primary" %>
+

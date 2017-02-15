@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :bus_lines do
    collection { post :import }
    end
-  resources :bus_models
+  resources :bus_models do
+   collection { post :import }
+   end
   resources :mechanics
   resources :repairs 
   resources :drivers

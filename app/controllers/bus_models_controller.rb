@@ -12,6 +12,15 @@ class BusModelsController < ApplicationController
   def show
   end
 
+  def import
+  begin
+    BusModel.import(params[:file])
+    redirect_to bus_models_url, notice: "Bus models imported."
+  rescue
+      redirect_to bus_models_url, notice: "Invalid CSV file format."
+    end
+  end
+
   # GET /bus_models/new
   def new
     @bus_model = BusModel.new
