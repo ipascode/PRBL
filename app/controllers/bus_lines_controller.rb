@@ -5,6 +5,16 @@ class BusLinesController < ApplicationController
   # GET /bus_lines.json
   def index
     @bus_lines = BusLine.all
+    #BusLine.import(params[:file])
+  end
+
+ def import
+  #begin
+    BusLine.import(params[:file])
+    redirect_to bus_lines_url, notice: "Products imported."
+  #rescue
+   #   redirect_to bus_lines_url, notice: "Invalid CSV file format."
+    #end
   end
 
   # GET /bus_lines/1

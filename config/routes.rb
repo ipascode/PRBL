@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :parts
   resources :buses
-  resources :bus_lines
+  resources :bus_lines do
+   collection { post :import }
+   end
   resources :bus_models
   resources :mechanics
   resources :repairs 
