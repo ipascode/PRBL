@@ -2,6 +2,16 @@
 
 <h1>Drivers</h1>
 
+
+<%= link_to 'New Driver', new_driver_path %>
+
+<h3>Import a CSV File</h3>
+  <%= form_tag import_drivers_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -30,4 +40,3 @@
 
 <br>
 
-<%= link_to 'New Driver', new_driver_path %>

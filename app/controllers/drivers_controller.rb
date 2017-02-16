@@ -12,6 +12,15 @@ class DriversController < ApplicationController
   def show
   end
 
+  def import
+  begin
+    Driver.import(params[:file])
+    redirect_to drivers_url, notice: "Drivers imported."
+  rescue
+      redirect_to drivers_url, notice: "Invalid CSV file format."
+    end
+  end
+
   # GET /drivers/new
   def new
     @driver = Driver.new

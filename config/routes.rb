@@ -10,7 +10,9 @@ Rails.application.routes.draw do
    end
   resources :mechanics
   resources :repairs 
-  resources :drivers
+  resources :drivers do
+   collection { post :import }
+   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root :to => "repairs#index"
