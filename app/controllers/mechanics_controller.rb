@@ -7,6 +7,15 @@ class MechanicsController < ApplicationController
     @mechanics = Mechanic.all
   end
 
+  def import
+  begin
+    Mechanic.import(params[:file])
+    redirect_to mechanics_url, notice: "Mechanics imported."
+  rescue
+      redirect_to mechanics_url, notice: "Invalid CSV file format."
+    end
+  end
+
   # GET /mechanics/1
   # GET /mechanics/1.json
   def show

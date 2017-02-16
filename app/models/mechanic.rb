@@ -3,4 +3,20 @@ class Mechanic < ApplicationRecord
 	
 	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
+  	require 'csv'
+
+	def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+     mechanic_hash = row.to_hash
+      mechanic = Mechanic.where(id: mechanic_hash["id"])
+
+      if mechanic.count == 1
+       mechanic.first.update_attributes(mechanic_hash)
+      else
+        Mechanic.create! row.to_hash
+      end # end if !mechanic.nil?
+    end # end CSV.foreach
+  end # end self.import(file)
+
 end

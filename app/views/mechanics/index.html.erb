@@ -4,6 +4,14 @@
 
 <h1>Mechanics</h1>
 <%= link_to 'New Mechanic', new_mechanic_path %><br>
+
+<h3>Import a CSV File</h3>
+  <%= form_tag import_mechanics_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
