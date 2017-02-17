@@ -8,12 +8,12 @@ class PartsController < ApplicationController
   end
 
   def import
- # begin
+  begin
     Part.import(params[:file])
     redirect_to parts_url, notice: "Parts imported."
-  #rescue
-   #   redirect_to parts_url, notice: "Invalid CSV file format."
-    #end
+  rescue
+      redirect_to parts_url, notice: "Invalid CSV file format."
+    end
   end
 
   # GET /parts/1
@@ -80,7 +80,7 @@ class PartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def part_params
-      params.require(:part).permit(:partname, :part_number, :BusModel_id, :index_number, :price, :lifespan)
+      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan)
     end
 
     def get_csv

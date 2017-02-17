@@ -4,7 +4,6 @@ class CreateDrivers < ActiveRecord::Migration[5.0]
       t.string :lastname
       t.string :firstname
       t.string :middlename
-      t.references :Repair, foreign_key: true
 
       t.timestamps
     end

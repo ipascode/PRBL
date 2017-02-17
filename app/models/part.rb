@@ -1,9 +1,9 @@
 class Part < ApplicationRecord
-  belongs_to :BusModel, optional: true
+  belongs_to :bus_model, optional: true
   require 'csv'
-  
+
   def brand
-      BusModel.brand
+      bus_model.brand
     end
 
   def self.import(file)
@@ -11,7 +11,7 @@ class Part < ApplicationRecord
      part_hash = row.to_hash
 
       part = Part.where(id: part_hash["id"])
-      row['BusModel_id'] = BusModel.find_or_create_by(brand: row['BusModel_id'])
+      row['bus_model_id'] = BusModel.find_or_create_by(brand: row['bus_model_id'])
 
       if part.count == 1
         part.first.update_attributes(part_hash)

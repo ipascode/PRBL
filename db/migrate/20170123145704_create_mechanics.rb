@@ -4,7 +4,7 @@ class CreateMechanics < ActiveRecord::Migration[5.0]
       t.string :lastname
       t.string :firstname
       t.string :middlename
-      t.string :type
+      t.string :position
       t.string :skills
       t.integer :shift
 

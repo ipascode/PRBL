@@ -7,7 +7,7 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <%= f.association :Bus, label_method: :bus_no, value_method: :id, include_blank: false %>
+        <%= f.association :bus, label_method: :bus_no, value_method: :id, include_blank: false %>
       </div>
       
       <div class="col-xs-12 col-md-6">
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <%= f.association :Driver, label_method: :lastname, value_method: :id, include_blank: false %>
+        <%= f.association :driver, label_method: :lastname, value_method: :id, include_blank: false %>
       </div>
       <div class="col-xs-12 col-md-6">
         <%= f.input :location %>

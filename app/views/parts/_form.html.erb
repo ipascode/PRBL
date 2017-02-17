@@ -6,8 +6,8 @@
     <%= f.input :part_number %>
      
     <div class="field">
-    <%= f.label :BusModel_id %>
-     <%= f.collection_select :BusModel_id, BusModel.order(:brand), :id, :brand,  include_blank: true %>
+    <%= f.label :bus_model_id %>
+     <%= f.collection_select :bus_model_id, BusModel.order(:brand), :id, :brand,  include_blank: true %>
   </div>
     <%= f.input :index_number %>
     <%= f.input :price %>

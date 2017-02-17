@@ -28,8 +28,8 @@
         <td><%= repair.datestarted %></td>
         <td><%= repair.datefinished %></td>
         <td><%= repair.repairtype %></td>
-        <td><%= repair.Driver.lastname %></td>
-        <td><%= repair.Bus.bus_no %></td>
+        <td><%= repair.driver.lastname %></td>
+        <td><%= repair.bus.bus_no %></td>
         <td><%= repair.location %></td>
         <td><%= link_to 'View', repair, :class => "btn btn-primary"%></td>
         <td><%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-warning"%></td>
