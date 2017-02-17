@@ -7,6 +7,15 @@ class PartsController < ApplicationController
     @parts = Part.all
   end
 
+  def import
+ # begin
+    Part.import(params[:file])
+    redirect_to parts_url, notice: "Parts imported."
+  #rescue
+   #   redirect_to parts_url, notice: "Invalid CSV file format."
+    #end
+  end
+
   # GET /parts/1
   # GET /parts/1.json
   def show
