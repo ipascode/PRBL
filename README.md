@@ -23,5 +23,4 @@ ImageMagick must be installed and Paperclip must have access to it.
 
 * Deployment instructions
 
-Of Note: if reference in schema is capitalized, follow it all throughout
-	Tables to note: buses, parts, repairs
+
