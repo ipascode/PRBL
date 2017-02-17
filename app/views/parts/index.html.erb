@@ -6,7 +6,7 @@
 <h3>Import a CSV File</h3>
   <%= form_tag import_parts_path, multipart: true do %>
     <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
+    <%= submit_tag "Import CSV", :class => "btn btn-default" %>
   <% end %>
 </div>
 

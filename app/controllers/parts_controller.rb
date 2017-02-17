@@ -8,12 +8,12 @@ class PartsController < ApplicationController
   end
 
   def import
-  begin
+  #begin
     Part.import(params[:file])
     redirect_to parts_url, notice: "Parts imported."
-  rescue
-      redirect_to parts_url, notice: "Invalid CSV file format."
-    end
+  #rescue
+  #    redirect_to parts_url, notice: "Invalid CSV file format."
+  #  end
   end
 
   # GET /parts/1
