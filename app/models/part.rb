@@ -1,6 +1,7 @@
 class Part < ApplicationRecord
   belongs_to :BusModel, optional: true
-
+  require 'csv'
+  
   def brand
       BusModel.brand
     end
@@ -10,7 +11,7 @@ class Part < ApplicationRecord
      part_hash = row.to_hash
 
       part = Part.where(id: part_hash["id"])
-      row['BusModel_id'] = BusModel.find_or_create_by(brand: params[:brand])
+      row['BusModel_id'] = BusModel.find_or_create_by(brand: row['BusModel_id'])
 
       if part.count == 1
         part.first.update_attributes(part_hash)
