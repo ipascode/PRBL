@@ -2,15 +2,17 @@ class Part < ApplicationRecord
   belongs_to :bus_model, optional: true
   require 'csv'
 
-  def brand
-      bus_model.brand
-    end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
+      part_hash = row.to_hash
+      part = Part.where(id: part_hash["id"])
 
-       part = where(id: row["id"]).first_or_create!(row.to_hasparts.bus_models.where(name: row['brand']).first_or_create!(row.to_hash))
-
+      if part.count == 1
+       part.first.update_attributes(part_hash)
+      else
+        Part.create! row.to_hash
+     end  
     end # end CSV.foreach
   end # end self.import(file)
 
