@@ -1,29 +1,82 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Parts</h1>
-<%= link_to 'New Part', new_part_path %>
+<div class="row">
+  <div class="col-md-6 col-xs-3">
+    <h1>Parts</h1>
+  </div>
 
-<h3>Import a CSV File</h3>
-  <%= form_tag import_parts_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV", :class => "btn btn-default" %>
-  <% end %>
+  <div class="col-md-6 col-xs-9">
+    <div class="btn-group pull-right" role="group" aria-label="..." style="padding-top:18px;">
+      <%= link_to '+ Part', new_part_path, :class => "btn btn-default" %>
+      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseCSV" aria-expanded="false" aria-controls="collapseExample">
+        Import
+      </button>
+    </div>
+  </div>
 </div>
 
-<table>
+<div class="row">
+  <div class="col-xs-12 col-md-3 pull-right">
+  <div class="collapse" id="collapseCSV">
+    <div class="well">
+      <%= form_tag import_parts_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV", :class => "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+
+<div class="col-md-2 col-xs-4">
+<div class="input-group">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button">Go</button>
+  </span>
+  <input type="text" class="form-control" placeholder="Search">
+</div><!-- /input-group -->
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
+      Model: All
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">All</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Daewoo</a></li>
+      <li><a href="#">Higer</a></li>
+      <li><a href="#">King Long</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <a href="#">Advanced Filters</a>
+</div>
+
+</div>
+
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
-      <th>Partname</th>
-      <th>Part number</th>
-      <th>Bus model</th>
-      <th>Index number</th>
-      <th>Price</th>
-      <th>Lifespan</th>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Model</th>
+      <th>Index No.</th>
+      <th>Last Updated</th>
+      <th>Price (Php)</th>
+      <!-- <th>Lifespan</th> -->
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-hover">
     <% @parts.each do |part| %>
       <tr>
         <td><%= part.partname %></td>
@@ -34,15 +87,17 @@
         <% end %>
         </td>
         <td><%= part.index_number %></td>
+        <td>01-01-17</td>
         <td><%= part.price %></td>
-        <td><%= part.lifespan %></td>
-        <td><%= link_to 'Show', part %></td>
+        <!-- <td><%= part.lifespan %></td> -->
+        <td><%= link_to 'View', part %></td>
         <td><%= link_to 'Edit', edit_part_path(part) %></td>
-        <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
