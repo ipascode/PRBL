@@ -1,0 +1,64 @@
+
+
+<div class = "col-xs-6">
+  <h2 class = "sub-header">Buses to be Repaired</h2>
+  <div class="table-responsive">
+    <table class = "table table-hover">
+      <!-- <thead>
+        <tr>
+          <th>Bus</th>
+          <th>Bus Number</th>
+          <th>Bus Model</th>
+          <th>Date Purchased</th>
+          <th>Odometer</th>
+          <th>Busline</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead> -->
+      <tbody>
+      <% @buses.each do |bus| %> 
+      <% bus.repairs.each do |repair| %>
+        <tr data-toggle="collapse" data-target="#accordion" class="clickable">
+          <tr>
+            <td><%= bus.bus_no %></td>
+          </tr>
+        </tr>
+        <tr>
+            <td colspan="6"> <!-- repairs is an array so kailangan i loop para isa-isahain-->
+                <div id="accordion" class="collapse"><%= repair.repairtype %></div>
+            </td>
+        </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <% form_tag repairs_path, method: :post do %>
+  <% submit_tag 'Start Repair' %>
+  <% end %>
+
+
+   <% form_tag repairs_path, method: :post do %>
+  <% submit_tag 'End Repair' %>
+<% end %>
+
+<div class = "col-xs-6">
+  <h2 class = "sub-header">Buses in Repair</h2>
+  <div class ="table-responsive">
+    <table class = "table">
+      <thead>
+        <tr>
+          <th>Bus</th>
+          <th>Bus Number</th>
+          <th>Bus Model</th>
+          <th>Date Purchased</th>
+          <th>Odometer</th>
+          <th>Busline</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

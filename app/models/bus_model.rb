@@ -1,6 +1,7 @@
 class BusModel < ApplicationRecord
 	has_many :buses, dependent: :destroy
-    has_many :parts
+  has_many :parts
+  accepts_nested_attributes_for :buses
     require 'csv'
 
 	def self.import(file)
