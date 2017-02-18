@@ -90,9 +90,9 @@
         <td>01-01-17</td>
         <td><%= part.price %></td>
         <!-- <td><%= part.lifespan %></td> -->
-        <td><%= link_to 'View', part %></td>
-        <td><%= link_to 'Edit', edit_part_path(part) %></td>
-        <td><%= link_to 'Delete', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', part, :class => "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_part_path(part), :class => "btn btn-default" %></td>
+        <td><%= link_to 'Delete', part, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
