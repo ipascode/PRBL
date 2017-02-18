@@ -26,21 +26,21 @@ ActiveRecord::Schema.define(version: 20170210181331) do
   end
 
   create_table "buses", force: :cascade do |t|
-    t.integer  "bus_no"
-    t.integer  "bus_model_id"
+    t.integer  "BusModel_id"
     t.string   "plate_no"
     t.datetime "date_purchased"
     t.float    "odometer"
-    t.integer  "bus_line_id"
+    t.integer  "BusLine_id"
     t.float    "cpk"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "bus_no"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["bus_line_id"], name: "index_buses_on_bus_line_id"
-    t.index ["bus_model_id"], name: "index_buses_on_bus_model_id"
+    t.index ["BusLine_id"], name: "index_buses_on_BusLine_id"
+    t.index ["BusModel_id"], name: "index_buses_on_BusModel_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20170210181331) do
     t.string   "lastname"
     t.string   "firstname"
     t.string   "middlename"
-    t.string   "position"
+    t.string   "type"
     t.string   "skills"
     t.integer  "shift"
     t.datetime "created_at",          null: false
@@ -98,28 +98,28 @@ ActiveRecord::Schema.define(version: 20170210181331) do
   create_table "parts", force: :cascade do |t|
     t.string   "partname"
     t.string   "part_number"
-    t.string   "unit"
-    t.integer  "bus_model_id"
+    t.integer  "BusModel_id"
     t.integer  "index_number"
     t.float    "price"
     t.integer  "lifespan"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["bus_model_id"], name: "index_parts_on_bus_model_id"
+    t.string   "unit"
+    t.index ["BusModel_id"], name: "index_parts_on_BusModel_id"
   end
 
   create_table "repairs", force: :cascade do |t|
     t.datetime "datestarted"
     t.datetime "datefinished"
     t.string   "repairtype"
-    t.integer  "driver_id"
-    t.integer  "bus_id"
+    t.integer  "Driver_id"
+    t.integer  "Bus_id"
     t.string   "location"
-    t.integer  "jobcard_num"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["bus_id"], name: "index_repairs_on_bus_id"
-    t.index ["driver_id"], name: "index_repairs_on_driver_id"
+    t.integer  "jobcard_num"
+    t.index ["Bus_id"], name: "index_repairs_on_Bus_id"
+    t.index ["Driver_id"], name: "index_repairs_on_Driver_id"
   end
 
   create_table "users", force: :cascade do |t|
