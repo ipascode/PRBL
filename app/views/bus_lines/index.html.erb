@@ -1,15 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bus Lines</h1><br>
+<div class="row">
+  <div class="col-md-6 col-xs-3">
+    <h1>Bus Lines</h1>
+  </div>
 
-<%= link_to 'Back', buses_path, :class => "btn btn-default" %>
-<%= link_to 'New Bus Line', new_bus_line_path, :class => "btn btn-default" %>
+  <div class="col-md-6 col-xs-9">
+    <div class="btn-group pull-right" role="group" aria-label="..." style="padding-top:18px;">
+      <%= link_to 'Back', buses_path, :class => "btn btn-default" %>
+      <%= link_to 'New Bus Line', new_bus_line_path, :class => "btn btn-default" %>
+      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseCSV" aria-expanded="false" aria-controls="collapseExample">
+        Import
+      </button>
+    </div>
+  </div>
+</div>
 
-<h3>Import a CSV File</h3>
-  <%= form_tag import_bus_lines_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
-  <% end %>
+<div class="row">
+  <div class="col-xs-12 col-md-3 pull-right">
+  <div class="collapse" id="collapseCSV">
+    <div class="well">
+      <%= form_tag import_bus_lines_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV", :class => "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+  </div>
 </div>
 
 <div class="table-responsive">

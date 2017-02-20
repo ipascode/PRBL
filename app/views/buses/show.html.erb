@@ -1,55 +1,111 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
-<p>
-  <strong>Bus Number: </strong>
-  <%= @bus.bus_no %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= image_tag @bus.avatar.url(:medium), class: "img-responsive" %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <h1><strong><%= @bus.bus_no %></strong></h1>
+    <table>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Brand</strong></td>
+        <td style="padding-right: 10px;"><%= @bus.bus_model.brand %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Line</strong></td>
+        <td style="padding-right: 10px;"><%= @bus.bus_line.linename %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>CPK</strong></td>
+        <td style="padding-right: 10px;"><%= @bus.cpk %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Odometer</strong></td>
+        <td style="padding-right: 10px;"><%= @bus.odometer %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Last Repaired</strong></td>
+        <td style="padding-right: 10px;">Date here</td>
+      </tr>
+    </table>
+    <br>
+    <%= link_to 'Edit', edit_bus_path(@bus), :class => "btn btn-default" %>
+    <%= link_to 'Back', buses_path, :class => "btn btn-default"  %>
+  </div>
+</div>
 
-<p>
-  <strong>Busmodel: </strong>
-  <%= @bus.bus_model.brand %>
-</p>
-
-<p>
-  <strong>Plate no: </strong>
-  <%= @bus.plate_no %>
-</p>
-
-<p>
-  <strong>Date purchased: </strong>
-  <%= @bus.date_purchased %>
-</p>
-
-<p>
-  <strong>Odometer: </strong>
-  <%= @bus.odometer %>
-</p>
-
-<p>
-  <strong>Busline: </strong>
-  <%= @bus.bus_line.linename %>
-</p>
-
-<p>
-  <strong>Cost/KM: </strong>
-  <%= @bus.cpk %>
-</p>
-
-<p>
-  <strong>Picture: </strong>
-  <%= image_tag @bus.avatar.url(:medium), class: "img-responsive" %>
-</p>
-
-<%= link_to 'Edit', edit_bus_path(@bus), :class => "btn btn-default" %>
-<%= link_to 'Back', buses_path, :class => "btn btn-default"  %>
-
-<h3>Bus History</h3>
+<h1>Parts (to replace)</h1>
 <div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th>Date Started</th>
+      <th>Quantity</th>
+      <th>Part</th>
+      <th>Est. Price (Php)</th>
+    </tr>
+  </thead>
+  <tbody class="table-hover">
+    <tr>
+      <td>1</td>
+      <td>Turbo</td>
+      <td>25000</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>History</h1>
+
+<div class="row">
+
+<div class="col-md-2 col-xs-4">
+<div class="input-group">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button">Go</button>
+  </span>
+  <input type="text" class="form-control" placeholder="Search">
+</div><!-- /input-group -->
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
+      Duration: All
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">All</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Daewoo</a></li>
+      <li><a href="#">Higer</a></li>
+      <li><a href="#">King Long</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-2 col-xs-4">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
+      Duration: All
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">All</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">MNL - TAR</a></li>
+      <li><a href="#">MNL - ALA</a></li>
+      <li><a href="#">MNL - ANG</a></li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
       <th>Date Finished</th>
+      <th>Date Started</th>
       <th>Repair Type</th>
       <th>Driver</th>
       <th>Repair</th>
@@ -69,8 +125,8 @@
 
 <tbody class="table-hover">
     <% @bus.repairs.each do |repair| %> 
-      <td><%= repair.datestarted %> </td>
       <td><%= repair.datefinished %> </td>
+      <td><%= repair.datestarted %> </td>
       <td><%= repair.repairtype %></td> 
       <td><%= repair.driver.lastname %><%= repair.driver.firstname %> </td>
 
