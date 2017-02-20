@@ -4,8 +4,6 @@ class CreateRepairs < ActiveRecord::Migration[5.0]
       t.datetime :datestarted
       t.datetime :datefinished
       t.string :repairtype
-      t.references :driver, foreign_key: true
-      t.references :bus, foreign_key: true
       t.string :location
       t.integer :jobcard_num
 

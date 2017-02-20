@@ -10,40 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210181331) do
+ActiveRecord::Schema.define(version: 20170220022219) do
 
-  create_table "bus_lines", force: :cascade do |t|
+  create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename"
-    t.float    "distance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "distance",   limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "bus_models", force: :cascade do |t|
+  create_table "bus_models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "brand"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "buses", force: :cascade do |t|
+  create_table "buses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "bus_no"
     t.integer  "bus_model_id"
     t.string   "plate_no"
     t.datetime "date_purchased"
-    t.float    "odometer"
+    t.float    "odometer",            limit: 24
     t.integer  "bus_line_id"
-    t.float    "cpk"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.float    "cpk",                 limit: 24
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["bus_line_id"], name: "index_buses_on_bus_line_id"
-    t.index ["bus_model_id"], name: "index_buses_on_bus_model_id"
+    t.index ["bus_line_id"], name: "index_buses_on_bus_line_id", using: :btree
+    t.index ["bus_model_id"], name: "index_buses_on_bus_model_id", using: :btree
   end
 
-  create_table "drivers", force: :cascade do |t|
+  create_table "drivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "lastname"
     t.string   "firstname"
     t.string   "middlename"
@@ -55,32 +55,32 @@ ActiveRecord::Schema.define(version: 20170210181331) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "job_parts", force: :cascade do |t|
+  create_table "job_parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "part_id"
     t.integer  "quantity"
-    t.float    "cost"
+    t.float    "cost",       limit: 24
     t.integer  "job_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_job_parts_on_job_id"
-    t.index ["part_id"], name: "index_job_parts_on_part_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["job_id"], name: "index_job_parts_on_job_id", using: :btree
+    t.index ["part_id"], name: "index_job_parts_on_part_id", using: :btree
   end
 
-  create_table "jobs", force: :cascade do |t|
+  create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "timestarted"
     t.datetime "timefinished"
-    t.float    "duration"
+    t.float    "duration",      limit: 24
     t.string   "jobparticular"
     t.integer  "mechanic_id"
     t.boolean  "done"
     t.integer  "repair_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["mechanic_id"], name: "index_jobs_on_mechanic_id"
-    t.index ["repair_id"], name: "index_jobs_on_repair_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["mechanic_id"], name: "index_jobs_on_mechanic_id", using: :btree
+    t.index ["repair_id"], name: "index_jobs_on_repair_id", using: :btree
   end
 
-  create_table "mechanics", force: :cascade do |t|
+  create_table "mechanics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "lastname"
     t.string   "firstname"
     t.string   "middlename"
@@ -95,34 +95,34 @@ ActiveRecord::Schema.define(version: 20170210181331) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "parts", force: :cascade do |t|
+  create_table "parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "partname"
     t.string   "part_number"
     t.string   "unit"
     t.integer  "bus_model_id"
     t.integer  "index_number"
-    t.float    "price"
+    t.float    "price",        limit: 24
     t.integer  "lifespan"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["bus_model_id"], name: "index_parts_on_bus_model_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
   end
 
-  create_table "repairs", force: :cascade do |t|
+  create_table "repairs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "datestarted"
     t.datetime "datefinished"
     t.string   "repairtype"
-    t.integer  "driver_id"
-    t.integer  "bus_id"
     t.string   "location"
     t.integer  "jobcard_num"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["bus_id"], name: "index_repairs_on_bus_id"
-    t.index ["driver_id"], name: "index_repairs_on_driver_id"
+    t.integer  "driver_id"
+    t.integer  "bus_id"
+    t.index ["bus_id"], name: "index_repairs_on_bus_id", using: :btree
+    t.index ["driver_id"], name: "index_repairs_on_driver_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "username"
@@ -146,10 +146,19 @@ ActiveRecord::Schema.define(version: 20170210181331) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  add_foreign_key "buses", "bus_lines"
+  add_foreign_key "buses", "bus_models"
+  add_foreign_key "job_parts", "jobs"
+  add_foreign_key "job_parts", "parts"
+  add_foreign_key "jobs", "mechanics"
+  add_foreign_key "jobs", "repairs"
+  add_foreign_key "parts", "bus_models"
+  add_foreign_key "repairs", "buses"
+  add_foreign_key "repairs", "drivers"
 end
