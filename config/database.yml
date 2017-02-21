@@ -6,7 +6,7 @@ development:
   pool: 5
   host: localhost
   username: root
-  password: 123456
+  password: jammin64
   #socket: /tmp/mysql.sock
   #**socket: /opt/local/var/run/mysql5/mysqld.sock**
 test:
@@ -16,7 +16,7 @@ test:
   database: maintainapp_test
   pool: 5
   username: root
-  password: 123456
+  password: jammin64
   #socket: /tmp/mysql.sock
   #socket: /opt/local/var/run/mysql5/mysqld.sock
 
@@ -27,6 +27,6 @@ production:
   database: maintainapp_production
   pool: 5
   username: root
-  password: 123456
+  password: jammin64
   #socket: /tmp/mysql.sock
   #socket: **/opt/local/var/run/mysql5/mysqld.sock**

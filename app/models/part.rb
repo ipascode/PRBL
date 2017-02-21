@@ -7,7 +7,7 @@ class Part < ApplicationRecord
     CSV.foreach(file.path, headers: true) do |row|
       part_hash = row.to_hash
       part = Part.where(id: part_hash["id"])
-
+      
       if part.count == 1
        part.first.update_attributes(part_hash)
       else
