@@ -4,7 +4,7 @@ class MechanicsController < ApplicationController
   # GET /mechanics
   # GET /mechanics.json
   def index
-    @mechanics = Mechanic.all
+    @mechanics = Mechanic.all.order(:lastname)
   end
 
   def import
