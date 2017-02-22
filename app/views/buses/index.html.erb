@@ -99,6 +99,7 @@
       <th>Date Purchased</th>
       <th>Odometer</th>
       <th>CPK (Php)</th>
+      <th>Active?</th>
       <th colspan="2">Actions</th>
     </tr>
   </thead>
@@ -114,6 +115,7 @@
         <td><%= bus.date_purchased %></td>
         <td><%= bus.odometer %></td>
         <td><%= bus.cpk %></td>
+        <td><%= bus.active %></td>
         <!-- <td><%= link_to 'View', bus, :class => "btn btn-default" %></td> -->
         <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-default"  %></td>
         <td><%= link_to 'Delete', bus, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %></td>

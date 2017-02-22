@@ -27,6 +27,10 @@
         <td style="padding-right: 10px;"><strong>Last Repaired</strong></td>
         <td style="padding-right: 10px;">Date here</td>
       </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Active?</strong></td>
+        <td style="padding-right: 10px;"><%= @bus.active %></td>
+      </tr>
     </table>
     <br>
     <%= link_to 'Edit', edit_bus_path(@bus), :class => "btn btn-default" %>
