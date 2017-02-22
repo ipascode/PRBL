@@ -13,100 +13,78 @@
           <th colspan="3"></th>
         </tr>
       </thead> -->
+
       <tbody>
       <% @buses.each do |bus| %> 
-        <tr data-toggle="collapse" data-parent="#accordion2" class="clickable">
+        <tr>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#modal-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
+                    <%= bus.bus_no %>
+                  </a>
+                </h4>
+              </div>
+              <!-- <% @buses.each do |bus| %> -->
+              <div id="modal-<%= bus.bus_no %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <h3>Bus History</h3>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Date Started</th>
+                            <th>Date Finished</th>
+                            <th>Driver</th>
+                            <th>Repair</th>
+                            <th>Time Started</th>
+                            <th>Time Finished</th>
+                            <th>Duration</th>
+                            <th>Mechanic</th>
+                            <th>Part</th>
+                            <th>Unit</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th colspan="5"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-hover">
+                        <tr>
+                        <% bus.repairs.each do |repair| %> 
+                          <td><%= repair.datestarted %></td>  
+                          <td><%= repair.datefinished %></td>
+                          <td><%= repair.driver_id %></td>
 
-          <tr>
-            <td data-toggle="modal" data-target="#modal-<%= bus.bus_no %>"><%= bus.bus_no %></td>
-          </tr>
-          </tr>
-       
-        <% end %>
-      
+                          <!--  -->
+                          <% repair.jobs.each do |job| %> 
+                            <td><%= job.jobparticular %> </td>
+                            <td><%= job.timestarted %> </td>
+                            <td><%= job.timefinished %> </td>
+                            <td><%= job.duration %> </td>
+                            <td><%= job.mechanic_id%> </td>
+                                                
+                              <% job.job_parts.each do |job_part| %> 
+                                <td><%= job_part.part_id %> </td>
+                                <td></td>
+                                <td><%= job_part.quantity %> </td>
+                                <td><%= job_part.cost %> </td>                
+                              <% end %>
+                          <% end %>
+                        <% end %>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div> <!-- panel body -->
+              </div>
+              <!-- <% end %> -->
+            </div>
+        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>
-</div>
-
-
- <% @buses.each do |bus| %>
-<div class="modal fade" id="modal-<%= bus.bus_no %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          <%= bus.bus_no%>
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <h3>Bus History</h3>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-            <tr>
-              <th>Date Started</th>
-              <th>Date Finished</th>
-              <th>Driver</th>
-              <th>Repair</th>
-              <th>Time Started</th>
-              <th>Time Finished</th>
-              <th>Duration</th>
-              <th>Mechanic</th>
-              <th>Part</th>
-              <th>Unit</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-              <th colspan="5"></th>
-            </tr>
-        </thead>
-
-        <% bus.repairs.each do |repair| %> 
-                <td><%= repair.datestarted %></td>  
-                <td><%= repair.datefinished %></td>
-                <td><%= repair.driver_id %></td>
-
-          <!-- <tbody class="table-hover"> -->
-          <% repair.jobs.each do |job| %> 
-                    <td><%= job.jobparticular %> </td>
-                    <td><%= job.timestarted %> </td>
-                    <td><%= job.timefinished %> </td>
-                    <td><%= job.duration %> </td>
-                    <td><%= job.mechanic_id%> </td>
-                  
-
-                      <% job.job_parts.each do |job_part| %> 
-                        <td><%= job_part.part_id %> </td>
-                        <td></td>
-                        <td><%= job_part.quantity %> </td>
-                        <td><%= job_part.cost %> </td>
-                       
-                    <% end %>
-            <% end %>
-
-          
-              
-           <!-- </tbody> -->
-      </table>
-    </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      
-      </div>
-     <% end %>
-    </div>
-
-  </div>
-
-</div>
-
-<% end %>
-
 
   <% form_tag repairs_path, method: :post do %>
   <% submit_tag 'Start Repair' %>
@@ -136,5 +114,3 @@
       </table>
     </div>
   </div>
-
-</div>
