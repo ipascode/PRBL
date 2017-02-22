@@ -63,10 +63,15 @@ class DriversController < ApplicationController
   # DELETE /drivers/1
   # DELETE /drivers/1.json
   def destroy
-    @driver.destroy
-    respond_to do |format|
-      format.html { redirect_to drivers_url, notice: 'Driver was successfully destroyed.' }
-      format.json { head :no_content }
+    begin
+      @driver.destroy
+      respond_to do |format|
+        format.html { redirect_to drivers_url, notice: 'Driver was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+      
+       rescue
+        redirect_to drivers_url, notice: "Driver cannot be deleted. Remove all related records first."
     end
   end
 
