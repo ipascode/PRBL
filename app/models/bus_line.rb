@@ -6,7 +6,7 @@ class BusLine < ApplicationRecord
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
      busline_hash = row.to_hash
-      busline = BusLine.where(id: busline_hash["id"])
+      busline = BusLine.where(linename: busline_hash["linename"])
 
       if busline.count == 1
         busline.first.update_attributes(busline_hash)
