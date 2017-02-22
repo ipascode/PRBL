@@ -69,7 +69,6 @@ class BusLinesController < ApplicationController
         format.html { redirect_to bus_lines_url, notice: 'Bus line was successfully destroyed.' }
         format.json { head :no_content }
       end
-    end
 
     rescue  
         redirect_to bus_lines_url, notice: 'Bus line has associated records. Remove them first before deleting.'
@@ -86,4 +85,5 @@ class BusLinesController < ApplicationController
     def bus_line_params
       params.require(:bus_line).permit(:linename, :distance)
     end
+  
 end

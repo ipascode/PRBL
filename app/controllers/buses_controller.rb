@@ -14,7 +14,8 @@ class BusesController < ApplicationController
 
   def import
   begin
-    
+    @bus_models = BusModel.all
+    @bus_lines = BusLine.all
     Bus.import(params[:file])
     redirect_to buses_url, notice: "Buses imported."
   rescue
