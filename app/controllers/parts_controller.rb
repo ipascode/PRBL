@@ -9,6 +9,7 @@ class PartsController < ApplicationController
 
   def import
   #begin
+    @bus_models = BusModel.all
     Part.import(params[:file])
     redirect_to parts_url, notice: "Parts imported."
   #rescue
