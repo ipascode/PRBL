@@ -31,8 +31,8 @@
         <td><%= repair.driver.lastname %></td>
         <td><%= repair.bus.bus_no %></td>
         <td><%= repair.location %></td>
-        <td><%= link_to 'View', repair, :class => "btn btn-primary"%></td>
-        <td><%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-warning"%></td>
+        <td><%= link_to 'View', repair, :class => "btn btn-default"%></td>
+        <td><%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%></td>
         <td><%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%></td>
       </tr>
     <% end %>

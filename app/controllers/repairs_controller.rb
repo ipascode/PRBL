@@ -55,7 +55,11 @@ class RepairsController < ApplicationController
   # DELETE /repairs/1
   # DELETE /repairs/1.json
   def destroy
-    @repair.destroy
+    if @repair.destroy then
+       redirect_to repairs_url
+    else
+      render :action => :edit
+    end
     respond_to do |format|
       format.html { redirect_to repairs_url, notice: 'Repair was successfully destroyed.' }
       format.json { head :no_content }
