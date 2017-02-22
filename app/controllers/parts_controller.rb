@@ -64,10 +64,15 @@ class PartsController < ApplicationController
   # DELETE /parts/1
   # DELETE /parts/1.json
   def destroy
+    begin
     @part.destroy
     respond_to do |format|
       format.html { redirect_to parts_url, notice: 'Part was successfully destroyed.' }
       format.json { head :no_content }
+    end
+
+    rescue
+      redirect_to parts_url, notice: 'Part used in job card. Cannot be deleted.'
     end
   end
 

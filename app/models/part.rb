@@ -1,6 +1,5 @@
 class Part < ApplicationRecord
-  belongs_to :bus_model, optional: true, :foreign_key => "bus_model_id"
-  delegate :brand, :to => :bus_model
+  belongs_to :bus_model, optional: true
   require 'csv'
 
 
