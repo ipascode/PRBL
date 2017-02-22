@@ -54,11 +54,17 @@ class BusesController < ApplicationController
   # DELETE /buses/1
   # DELETE /buses/1.json
   def destroy
-    @bus.destroy
-    respond_to do |format|
-      format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
-      format.json { head :no_content }
+    begin
+        @bus.destroy
+      respond_to do |format|
+        format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    rescue 
+      redirect_to buses_url, notice: 'Bus has repair records. Cannot be deleted.'
     end
+    
   end
 
   private
