@@ -6,7 +6,7 @@ class Bus < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   scope :remain_active, lambda { where(:active => true)}
-  scope :in_repair, lambda {where(:status => "repair")}
+  scope :in_repair, lambda {where(:status => "in repair")}
   scope :to_repair, lambda {where(:status => "repair")}
   
   require 'csv'
