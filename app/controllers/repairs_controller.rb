@@ -31,6 +31,9 @@ class RepairsController < ApplicationController
       if @repair.save
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
+
+        #buses status updates to to be repaired
+        @repair.bus.update(status: "repair")
       else
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -45,6 +48,8 @@ class RepairsController < ApplicationController
       if @repair.update(repair_params)
         format.html { redirect_to @repair, notice: 'Repair was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair }
+        #buses status updates to to be repaired
+        @repair.bus.update(status: "repair")
       else
         format.html { render :edit }
         format.json { render json: @repair.errors, status: :unprocessable_entity }

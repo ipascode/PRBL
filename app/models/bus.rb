@@ -5,10 +5,10 @@ class Bus < ApplicationRecord
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
-  scope :remain_active, lambda { where(:status => "repair")}
-  #scope :in_repair, lambda {where(:status => "in repair")}
-  #scope :to_repair, lambda {where(:status => "to repair")}
-
+  scope :remain_active, lambda { where(:active => true)}
+  scope :in_repair, lambda {where(:status => "repair")}
+  scope :to_repair, lambda {where(:status => "repair")}
+  
   require 'csv'
 
   def self.import(file)
@@ -32,9 +32,9 @@ class Bus < ApplicationRecord
 
 
       if bus.count == 1
-       bus.first.update_attributes(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], cpk: bus_hash['cpk'], avatar_file_name: bus_hash['avatar_file_name']) 
+       bus.first.update_attributes(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], cpk: bus_hash['cpk'], avatar_file_name: bus_hash['avatar_file_name'], status: bus_hash['status'], active: bus_hash['active']) 
       else
-        Bus.create(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], cpk: bus_hash['cpk'], avatar_file_name: bus_hash['avatar_file_name']) 
+        Bus.create(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], cpk: bus_hash['cpk'], avatar_file_name: bus_hash['avatar_file_name'],  status: bus_hash['status'], active: bus_hash['active']) 
       end
 
     end # end CSV.foreach
