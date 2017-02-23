@@ -47,7 +47,8 @@
                     </thead>
                     <tbody class="table-hover">
                       <tr>
-                        <% bus.repairs.where(done: false).each do |repair| %> 
+
+                        <% bus.repairs.to_finish.each do |repair| %> 
                         <td><%= repair.datestarted %></td>  
                         <td><%= repair.datefinished %></td>
                         <td><%= repair.driver_id %></td>
