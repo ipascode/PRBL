@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Done?</th>
       <th>Date Started</th>
       <th>Date Finished</th>
       <th>Repair Type</th>
@@ -18,6 +19,7 @@
   <tbody class="table-hover">
     <% @repairs.each do |repair| %>
       <tr>
+        <td><%= repair.done %></td>
         <td><%= repair.datestarted %></td>
         <td><%= repair.datefinished %></td>
         <td><%= repair.repairtype %></td>
