@@ -17,14 +17,16 @@
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
                 <%= bus.bus_no %>
-                <% end %>
               </a>
             </h4>
           </div>
-          <!-- <% @buses.each do |bus| %> -->
+
+
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-              <h3>Bus History</h3>
+              
+
+                  <h3>Bus History</h3>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -47,27 +49,30 @@
                     </thead>
                     <tbody class="table-hover">
                       <tr>
-                        <% bus.repairs.each do |repair| %> 
+                        <% bus.repairs.where(done: false).each do |repair| %> 
                         <td><%= repair.datestarted %></td>  
                         <td><%= repair.datefinished %></td>
                         <td><%= repair.driver_id %></td>
 
-                        <% repair.jobs.each do |job| %> 
-                        <td><%= job.jobparticular %> </td>
-                        <td><%= job.timestarted %> </td>
-                        <td><%= job.timefinished %> </td>
-                        <td><%= job.duration %> </td>
-                        <td><%= job.mechanic_id%> </td>
-                                                  
-                        <% job.job_parts.each do |job_part| %> 
-                        <td><%= job_part.part_id %> </td>
-                        <td></td>
-                        <td><%= job_part.quantity %> </td>
-                        <td><%= job_part.cost %> </td>
+                            <% repair.jobs.each do |job| %> 
+                            <td><%= job.jobparticular %> </td>
+                            <td><%= job.timestarted %> </td>
+                            <td><%= job.timefinished %> </td>
+                            <td><%= job.duration %> </td>
+                            <td><%= job.mechanic_id%> </td>
+                                                      
+                                <% job.job_parts.each do |job_part| %> 
+                                <td><%= job_part.part_id %> </td>
+                                <td></td>
+                                <td><%= job_part.quantity %> </td>
+                                <td><%= job_part.cost %> </td>
+                                <% end %>
+                             <% end %>
+                        <% end %>
 
-                        <% end %>
-                        <% end %>
-                        <% end %>
+                        
+                       
+
                         </tr>
                     </tbody>
                   </table>
