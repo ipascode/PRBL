@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222154507) do
+ActiveRecord::Schema.define(version: 20170223171246) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20170222154507) do
     t.integer  "lifespan"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.datetime "last_used"
     t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
   end
 
