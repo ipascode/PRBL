@@ -33,5 +33,10 @@
   <%= @part.lifespan %>
 </p>
 
+<p>
+  <strong>Last Used:</strong>
+  <%= @part.last_used %>
+</p>
+
 <%= link_to 'Edit', edit_part_path(@part), :class => "btn btn-default" %>
 <%= link_to 'Back', parts_path, :class => "btn btn-default" %>
