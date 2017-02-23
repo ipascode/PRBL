@@ -18,7 +18,7 @@
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
                 <%= bus.bus_no %>
-                <%= link_to 'Bus History', bus %>
+                <%= link_to 'View', bus %>
               </a>
             </h4>
           </div>
@@ -53,14 +53,14 @@
                         <% bus.repairs.to_finish.each do |repair| %> 
                         <td><%= repair.datestarted %></td>  
                         <td><%= repair.datefinished %></td>
-                        <td><%= repair.driver_id %></td>
+                        <td><%= repair.driver.lastname %> <%= repair.driver.firstname %></td>
 
                             <% repair.jobs.each do |job| %> 
                             <td><%= job.jobparticular %> </td>
                             <td><%= job.timestarted %> </td>
                             <td><%= job.timefinished %> </td>
                             <td><%= job.duration %> </td>
-                            <td><%= job.mechanic_id%> </td>
+                            <td><%= job.mechanic.lastname%> <%= job.mechanic.firstname%> </td>
                                                       
                                 <% job.job_parts.each do |job_part| %> 
                                 <td><%= job_part.part_id %> </td>
