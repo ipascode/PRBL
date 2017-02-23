@@ -86,7 +86,7 @@ class PartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def part_params
-      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan)
+      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan, :last_used)
     end
 
     def get_csv

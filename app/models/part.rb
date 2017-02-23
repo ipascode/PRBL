@@ -20,10 +20,10 @@ class Part < ApplicationRecord
 
 
       if part.count == 1
-       part.first.update_attributes(partname: part_hash['partname'], part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id) 
+       part.first.update_attributes(partname: part_hash['partname'], part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
       
       else
-        Part.create(partname: part_hash['partname'], part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id) 
+        Part.create(partname: part_hash['partname'], part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
       end
 
     end # end CSV.foreach
