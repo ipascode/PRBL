@@ -4,7 +4,7 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    @buses = Bus.where(repair.).order(:bus_no)
+    @buses = Bus.order(:bus_no)
   end
 
   # GET /buses/1
