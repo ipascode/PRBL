@@ -1,18 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Drivers', drivers_path %><br>
+<div class="row">
+  <div class="col-xs-3 col-md-6">
+  <h1>Mechanics</h1>
+  </div>
 
-<h1>Mechanics</h1>
-<%= link_to 'New Mechanic', new_mechanic_path %><br>
+  <div class="col-md-6 col-xs-9">
+    <div class="btn-group pull-right" role="group" aria-label="..." style="padding-top:18px;">
+      <%= link_to 'Drivers', drivers_path, :class => 'btn btn-default' %>
+      <%= link_to '+ Mechanic', new_mechanic_path, :class => 'btn btn-default' %>
+      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseCSV" aria-expanded="false" aria-controls="collapseExample">
+        Import
+      </button>
+    </div>
+  </div>
 
-<h3>Import a CSV File</h3>
-  <%= form_tag import_mechanics_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
-  <% end %>
+  <div class="col-xs-12 col-md-3 pull-right">
+  <div class="collapse" id="collapseCSV">
+    <div class="well">
+      <%= form_tag import_mechanics_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV" %>
+      <% end %>
+    </div>
+  </div>
+  </div>
 </div>
 
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Avatar</th>
@@ -26,7 +42,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-hover">
     <% @mechanics.each do |mechanic| %>
       <tr>
         <td><%= image_tag mechanic.avatar.url(:thumb) %></td>
@@ -36,13 +52,14 @@
         <td><%= mechanic.position %></td>
         <td><%= mechanic.skills %></td>
         <td><%= mechanic.shift %></td>
-        <td><%= link_to 'Show', mechanic %></td>
-        <td><%= link_to 'Edit', edit_mechanic_path(mechanic) %></td>
-        <td><%= link_to 'Destroy', mechanic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', mechanic, :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_mechanic_path(mechanic), :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', mechanic, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
