@@ -14,19 +14,20 @@ class Repair < ApplicationRecord
     CSV.foreach(file.path, headers: true) do |row|
       repair_hash = row.to_hash
       repair = Repair.where(jobcard_num: repair_hash["Job Card Number"])
-
-      #look for the bus
-      br = Bus.where(:bus_no => repair_hash["Bus Number"]).first
-         if br == nil
-          br = Bus.create(:bus_no => repair_hash["Bus Number"])
-         end
+     
 
       #look for the bus line
       bl = BusLine.where(linename: repair_hash["Line"]).first
          if bl == nil
           bl = BusLine.create(linename: repair_hash["Line"])
          end   
-      br.bus_line_id = bl.id #assign bus line to bus
+
+
+         #look for the bus
+      br = Bus.where(:bus_no => repair_hash["Bus Number"]).first
+         if br == nil
+          br = Bus.create(bus_no: repair_hash["Bus Number"], bus_model_id: 1, bus_line_id: bl.id)
+         end
 
      # look for driver
      dr = Driver.where(lastname: repair_hash["Driver"]).first
