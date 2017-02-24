@@ -15,3 +15,9 @@ options = {
     searchField: ‘bus_no’
     create: true
 }
+
+$('#driver-selectize').selectize({
+    create: true,
+    sortField: 'text'
+});
+

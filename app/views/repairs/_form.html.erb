@@ -25,7 +25,12 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <%= f.association :driver, label_method: :lastname, value_method: :id, include_blank: false %>
+        <%= f.input :driver_id, label: "Driver",
+        collection: @drivers,
+        label_method: :lastname,
+        input_html: {class: 'driver-selectize'} %>
+
+
       </div>
       <div class="col-xs-12 col-md-6">
         <%= f.input :location %>
