@@ -36,7 +36,6 @@ gem 'cocoon' #for nested models
 gem 'devise' #for users
 gem "paperclip" #for photos
 gem "activerecord-import", ">= 0.2.0" #so activerecord won't have to insert data one by one
-gem 'materialize-sass' 
 gem 'selectize-rails' 
 gem 'better_errors'
 # Use Capistrano for deployment
