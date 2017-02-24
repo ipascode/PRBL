@@ -44,8 +44,7 @@ class Repair < ApplicationRecord
      #look for parts
      pr = Part.where(partname: repair_hash["Parts and Materials Used"]).first
          if pr == nil
-          pr = Part.create(partname: repair_hash["Parts and Materials Used"], 
-          	unit: repair_hash['Unit'])
+          pr = Part.create(partname: repair_hash["Parts and Materials Used"], unit: repair_hash['Unit'])
          end
       
        
