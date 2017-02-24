@@ -1,4 +1,25 @@
 
+    <div class="btn-group pull-right" role="group" aria-label="..." style="padding-top:18px;">
+      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseCSV" aria-expanded="false" aria-controls="collapseExample">
+        Import
+      </button>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-xs-12 col-md-3 pull-right">
+  <div class="collapse" id="collapseCSV">
+    <div class="well">
+      <%= form_tag import_repairs_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV", :class => "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+  </div>
+</div>
+<br>
 
 
 <div class="table-responsive">
