@@ -63,11 +63,16 @@ class BusLinesController < ApplicationController
   # DELETE /bus_lines/1
   # DELETE /bus_lines/1.json
   def destroy
-    @bus_line.destroy
-    respond_to do |format|
-      format.html { redirect_to bus_lines_url, notice: 'Bus line was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      begin
+      @bus_line.destroy
+      respond_to do |format|
+        format.html { redirect_to bus_lines_url, notice: 'Bus line was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    rescue  
+        redirect_to bus_lines_url, notice: 'Bus line has associated records. Remove them first before deleting.'
+      end
   end
 
   private
@@ -80,4 +85,5 @@ class BusLinesController < ApplicationController
     def bus_line_params
       params.require(:bus_line).permit(:linename, :distance)
     end
+  
 end

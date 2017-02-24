@@ -8,12 +8,13 @@ class PartsController < ApplicationController
   end
 
   def import
-  #begin
+  begin
+    @bus_models = BusModel.all
     Part.import(params[:file])
     redirect_to parts_url, notice: "Parts imported."
-  #rescue
-  #    redirect_to parts_url, notice: "Invalid CSV file format."
-  #  end
+  rescue
+      redirect_to parts_url, notice: "Invalid CSV file format."
+    end
   end
 
   # GET /parts/1
@@ -63,10 +64,15 @@ class PartsController < ApplicationController
   # DELETE /parts/1
   # DELETE /parts/1.json
   def destroy
+    begin
     @part.destroy
     respond_to do |format|
       format.html { redirect_to parts_url, notice: 'Part was successfully destroyed.' }
       format.json { head :no_content }
+    end
+
+    rescue
+      redirect_to parts_url, notice: 'Part used in job card. Cannot be deleted.'
     end
   end
 
@@ -80,7 +86,7 @@ class PartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def part_params
-      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan)
+      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan, :last_used)
     end
 
     def get_csv

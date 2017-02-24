@@ -4,7 +4,7 @@ class MechanicsController < ApplicationController
   # GET /mechanics
   # GET /mechanics.json
   def index
-    @mechanics = Mechanic.all
+    @mechanics = Mechanic.all.order(:lastname)
   end
 
   def import
@@ -63,10 +63,14 @@ class MechanicsController < ApplicationController
   # DELETE /mechanics/1
   # DELETE /mechanics/1.json
   def destroy
-    @mechanic.destroy
-    respond_to do |format|
-      format.html { redirect_to mechanics_url, notice: 'Mechanic was successfully destroyed.' }
-      format.json { head :no_content }
+    begin
+      @mechanic.destroy
+      respond_to do |format|
+        format.html { redirect_to mechanics_url, notice: 'Mechanic was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    rescue
+      redirect_to mechanics_url, notice: "Mechanic cannot be deleted. Remove all related records first."
     end
   end
 

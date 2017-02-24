@@ -1,17 +1,32 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Maintenance Home</h1>
+    <div class="btn-group pull-right" role="group" aria-label="..." style="padding-top:18px;">
+      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseCSV" aria-expanded="false" aria-controls="collapseExample">
+        Import
+      </button>
+    </div>
+  </div>
 
-<div class="btn-group" role="group" aria-label="...">
-  <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-default" %>
-  <button type="button" class="btn btn-default">Expand All</button>
+
+<div class="row">
+  <div class="col-xs-12 col-md-3 pull-right">
+  <div class="collapse" id="collapseCSV">
+    <div class="well">
+      <%= form_tag import_repairs_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV", :class => "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+  </div>
 </div>
+<br>
 
 
 <div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
+      <th>Done?</th>
       <th>Date Started</th>
       <th>Date Finished</th>
       <th>Repair Type</th>
@@ -25,6 +40,7 @@
   <tbody class="table-hover">
     <% @repairs.each do |repair| %>
       <tr>
+        <td><%= repair.done %></td>
         <td><%= repair.datestarted %></td>
         <td><%= repair.datefinished %></td>
         <td><%= repair.repairtype %></td>

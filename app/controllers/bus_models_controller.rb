@@ -63,11 +63,17 @@ class BusModelsController < ApplicationController
   # DELETE /bus_models/1
   # DELETE /bus_models/1.json
   def destroy
-    @bus_model.destroy
-    respond_to do |format|
-      format.html { redirect_to bus_models_url, notice: 'Bus model was successfully destroyed.' }
-      format.json { head :no_content }
+    begin
+      @bus_model.destroy
+      respond_to do |format|
+        format.html { redirect_to bus_models_url, notice: 'Bus model was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    rescue  
+      redirect_to bus_models_url, notice: 'Bus model has associated records. Remove them first before deleting.'
     end
+   
   end
 
   private

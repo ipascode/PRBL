@@ -5,12 +5,23 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    @buses = Bus.all
+    @buses = Bus.order(:bus_no)
   end
 
   # GET /buses/1
   # GET /buses/1.json
   def show
+  end
+
+  def import
+    #begin
+      @bus_models = BusModel.all
+      @bus_lines = BusLine.all
+      Bus.import(params[:file])
+      redirect_to buses_url, notice: "Buses imported."
+    #rescue
+    #    redirect_to buses_url, notice: "Invalid CSV file format."
+    #  end
   end
 
   # GET /buses/new
@@ -55,12 +66,18 @@ class BusesController < ApplicationController
   # DELETE /buses/1
   # DELETE /buses/1.json
   def destroy
-    @bus.destroy
 
-    respond_to do |format|
-      format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
-      format.json { head :no_content }
+    begin
+        @bus.destroy
+      respond_to do |format|
+        format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    rescue 
+      redirect_to buses_url, notice: 'Bus has repair records. Cannot be deleted.'
     end
+    
   end
 
   private
@@ -71,6 +88,6 @@ class BusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bus_params
-      params.require(:bus).permit(:avatar, :bus_model_id, :plate_no, :date_purchased, :repair_id, :odometer, :bus_line_id, :cpk, :bus_no)
+      params.require(:bus).permit(:avatar, :bus_model_id, :plate_no, :date_purchased, :repair_id, :odometer, :bus_line_id, :cpk, :bus_no, :status, :active)
     end
 end

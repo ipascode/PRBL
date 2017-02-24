@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220022219) do
+ActiveRecord::Schema.define(version: 20170223203257) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "linename"
@@ -33,12 +33,14 @@ ActiveRecord::Schema.define(version: 20170220022219) do
     t.float    "odometer",            limit: 24
     t.integer  "bus_line_id"
     t.float    "cpk",                 limit: 24
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "status"
+    t.boolean  "active",                         default: true
     t.index ["bus_line_id"], name: "index_buses_on_bus_line_id", using: :btree
     t.index ["bus_model_id"], name: "index_buses_on_bus_model_id", using: :btree
   end
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170220022219) do
     t.integer  "lifespan"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.datetime "last_used"
     t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
   end
 
@@ -114,10 +117,11 @@ ActiveRecord::Schema.define(version: 20170220022219) do
     t.string   "repairtype"
     t.string   "location"
     t.integer  "jobcard_num"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "driver_id"
     t.integer  "bus_id"
+    t.boolean  "done",         default: false
     t.index ["bus_id"], name: "index_repairs_on_bus_id", using: :btree
     t.index ["driver_id"], name: "index_repairs_on_driver_id", using: :btree
   end

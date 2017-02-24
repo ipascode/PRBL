@@ -7,7 +7,7 @@ class BusModel < ApplicationRecord
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
      busmodel_hash = row.to_hash
-      busmodel = BusModel.where(id: busmodel_hash["id"])
+      busmodel = BusModel.where(brand: busmodel_hash["brand"])
 
       if busmodel.count == 1
         busmodel.first.update_attributes(busmodel_hash)
@@ -16,4 +16,5 @@ class BusModel < ApplicationRecord
       end # end if !busmodel.nil?
     end # end CSV.foreach
   end # end self.import(file)
+
 end

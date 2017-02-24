@@ -5,8 +5,22 @@ class RepairsController < ApplicationController
   # GET /repairs.json
   def index
     @repairs = Repair.all
+    @drivers = Driver.all
+    @mechanics = Mechanic.all
+    @buses = Bus.all
+    @bus_lines = BusLine.all
+    @parts = Part.all
+
   end
 
+  def import
+    #begin
+      Repair.import(params[:file])
+      redirect_to repairs_url, notice: "Repairs imported."
+    #rescue
+    #    redirect_to repairs_url, notice: "Invalid CSV file format."
+    #  end
+  end
   # GET /repairs/1
   # GET /repairs/1.json
   def show
@@ -31,6 +45,9 @@ class RepairsController < ApplicationController
       if @repair.save
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
+
+        #buses status updates to to be repaired
+        @repair.bus.update(status: "repair")
       else
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -45,6 +62,8 @@ class RepairsController < ApplicationController
       if @repair.update(repair_params)
         format.html { redirect_to @repair, notice: 'Repair was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair }
+        #buses status updates to to be repaired
+        @repair.bus.update(status: "repair")
       else
         format.html { render :edit }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -74,7 +93,7 @@ class RepairsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
-      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :location, :jobcard_num, 
+      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :location, :jobcard_num, :done,
         jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :done, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
