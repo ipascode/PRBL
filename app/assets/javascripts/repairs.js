@@ -9,3 +9,10 @@ $('#driver-selectize').selectize({
     sortField: 'text'
 });
 
+$('#bus-selectize').selectize({
+    sortField: 'text'
+});
+
+$('#type-selectize').selectize({
+});
+
