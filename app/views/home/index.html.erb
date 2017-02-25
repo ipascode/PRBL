@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Maintenance Home</h1>
-<h4><%= pluralize((@buses.in_repair.count + @buses.to_repair.count), 'bus') %> (<%= @buses.in_repair.count%> in repair, <%= @buses.to_repair.count%> to repair)</h4> 
+<h4><%= pluralize(@buses.in_repair.count, 'bus') %></h4> 
 
 <div class="btn-group" role="group" aria-label="...">
   <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-default" %>
@@ -12,7 +12,7 @@
   <div class = "col-xs-12 col-md-12">
     <br>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <% @buses.to_repair.each do |bus| %>
+      <% @buses.in_repair.each do |bus| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">

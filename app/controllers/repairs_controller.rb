@@ -57,7 +57,7 @@ class RepairsController < ApplicationController
         format.json { render :show, status: :created, location: @repair }
 
         #buses status updates to to be repaired
-        @repair.bus.update(status: "repair")
+        @repair.bus.update(status: "In repair")
       else
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -73,7 +73,7 @@ class RepairsController < ApplicationController
         format.html { redirect_to @repair, notice: 'Repair was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair }
         #buses status updates to to be repaired
-        @repair.bus.update(status: "repair")
+        @repair.bus.update(status: "In repair")
       else
         format.html { render :edit }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -99,8 +99,8 @@ class RepairsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
-      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :location, :jobcard_num, :status,
-        jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :done, :_destroy, 
+      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :location, :jobcard_num, :done,
+        jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :status, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
 end

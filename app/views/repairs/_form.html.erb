@@ -62,7 +62,8 @@
 
  <div class="row">
       <div class="col-xs-12 col-md-12">
-        <%= f.input :status, label: "Status", collection: ["Not Started", "Repairing", "Done"] %>
+        
+    <%= f.input :done, :as => :boolean %>
       </div>
     </div>
 
