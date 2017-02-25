@@ -37,7 +37,7 @@ class RepairsController < ApplicationController
         end
 
         @bus= Bus.find(@repair.bus_id)
-        if @bus.repairs.count == @bus.repairs.done.count
+        if @bus.repairs.count == @bus.repairs.done.count 
           @bus.update(status: nil )
         end
 
@@ -89,6 +89,20 @@ class RepairsController < ApplicationController
       if @repair.update(repair_params)
         format.html { redirect_to @repair, notice: 'Repair was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair }
+
+        if @repair.jobs.count == @repair.jobs.done.count
+          @repair.update(done: true)
+        end
+
+        @bus= Bus.find(@repair.bus_id)
+        if @bus.repairs.to_finish.count > 0
+            @bus.update(status: "In Repair" )
+        end 
+
+        if @bus.repairs.count == @bus.repairs.done.count  
+          @bus.update(status: nil )
+
+        end
 
       else
         format.html { render :edit }

@@ -5,14 +5,14 @@
 
 <div class="btn-group" role="group" aria-label="...">
   <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-default" %>
-  <button type="button" class="btn btn-default">Expand All</button>
+  <button type="button" class="btn btn-default openall">Expand All</button>
 </div>
 
 <div class="row">
   <div class = "col-xs-12 col-md-12">
     <br>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <% @buses.in_repair.each do |bus| %>
+      <% @buses.each do |bus| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
