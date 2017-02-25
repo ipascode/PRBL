@@ -31,7 +31,13 @@
                   <table class="table">
                      
                     <thead>
-                      <p>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <%= repair.datefinished.strftime("%x") %>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %> </p>
+                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <%= repair.datefinished.strftime("%x") %>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %>
+
+                      <div class="btn-group pull-right" role="group" aria-label="...">
+                        <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%>
+                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%>
+                      </div>
+                      </span>
                       <tr>
                         <th></th>
                         <th>Repair</th>
@@ -89,15 +95,6 @@
       <% end %>
     </div>
   </div>
-
-  <% form_tag repairs_path, method: :post do %>
-  <% submit_tag 'Start Repair' %>
-  <% end %>
-
-
-  <% form_tag repairs_path, method: :post do %>
-  <% submit_tag 'End Repair' %>
-  <% end %>
 
 
 </div> <!-- row -->
