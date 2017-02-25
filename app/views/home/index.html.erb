@@ -61,7 +61,7 @@
                              class: "btn btn-default",
                              'aria-label'=> "Left Align", 
                              remote: true do %>
-                              <p id = 'job-<%=job.id %>'>Start</p>
+                              <p id = 'job-<%=job.id %>'><%= job.status %></p>
                               <% end %> </td>
 
                             <td><%= job.jobparticular %> </td>
