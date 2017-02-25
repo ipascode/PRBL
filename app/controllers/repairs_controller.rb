@@ -28,7 +28,13 @@ class RepairsController < ApplicationController
 
   def job_start
     @job= Job.find(params[:id])
-    @job.update(timestarted: Time.now, status: "Repairing")
+
+    if @job.status == "Repairing"
+      @job.update(timefinished: Time.now, status: "Done")
+    else
+      @job.update(timestarted: Time.now, status: "Repairing")
+    end
+
     respond_to do |format|
         format.js
       end
