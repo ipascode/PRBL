@@ -54,10 +54,19 @@
                         <td><%= repair.datestarted %></td>  
                         <td><%= repair.datefinished %></td>
                         <td><%= repair.driver.lastname %> <%= repair.driver.firstname %></td>
+                          <td>
 
-                            <% repair.jobs.each do |job| %> 
+                            <% repair.jobs.each do |job| %>
+                             <%= button_to job_start_repair_path(job), 
+                             class: "btn btn-default",
+                             'aria-label'=> "Left Align", 
+                             remote: true do %>
+                              <p id = 'job-<%=job.id %>'>Start</p>
+                              <% end %> </td>
+
                             <td><%= job.jobparticular %> </td>
-                            <td><%= job.timestarted %> </td>
+                            <td><p id = 'timestart-<%=job.id %>'>
+                              <%= job.timestarted %></p> </td>
                             <td><%= job.timefinished %> </td>
                             <td><%= job.duration %> </td>
                             <td><%= job.mechanic.lastname%> <%= job.mechanic.firstname%> </td>

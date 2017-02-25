@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get 'home/index'
+  get 'home/index' 
+
   
   resources :parts do
    collection { post :import }
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       post 'odometer_subtract'
     end
    end
+
   resources :bus_lines do
    collection { post :import }
    end
@@ -22,9 +24,16 @@ Rails.application.routes.draw do
   resources :mechanics do
    collection { post :import }
    end
+
   resources :repairs do
    collection { post :import }
+    
+      member do
+      post'job_start'
+      end
+    
    end
+
   resources :drivers do
    collection { post :import }
    end

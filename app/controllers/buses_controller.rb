@@ -24,21 +24,21 @@ class BusesController < ApplicationController
   def odometer_subtract
     @bus= Bus.find(params[:id])
     @bus.update(odometer: @bus.odometer - @bus.bus_line.distance)
-    
+
     respond_to do |format|
       format.js
     end
   end
 
   def import
-    #begin
+    begin
       @bus_models = BusModel.all
       @bus_lines = BusLine.all
       Bus.import(params[:file])
       redirect_to buses_url, notice: "Buses imported."
-    #rescue
-    #    redirect_to buses_url, notice: "Invalid CSV file format."
-    #  end
+    rescue
+        redirect_to buses_url, notice: "Invalid CSV file format."
+      end
   end
 
   # GET /buses/new
