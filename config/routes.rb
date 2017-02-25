@@ -8,6 +8,10 @@ Rails.application.routes.draw do
    end
   resources :buses do
    collection { post :import }
+    member do
+      post 'odometer_add'
+      post 'odometer_subtract'
+    end
    end
   resources :bus_lines do
    collection { post :import }
