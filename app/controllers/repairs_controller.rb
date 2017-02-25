@@ -26,6 +26,14 @@ class RepairsController < ApplicationController
   def show
   end
 
+  def job_start
+    @job= Job.find(params[:id])
+    @job.update(timestarted: Time.now)
+    respond_to do |format|
+        format.js
+      end
+  end
+
   # GET /repairs/new
   def new
     @repair = Repair.new
