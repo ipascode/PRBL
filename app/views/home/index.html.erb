@@ -26,14 +26,14 @@
 
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-              
                 <div class="table-responsive">
                   <table class="table">
+                     <% bus.repairs.to_finish.each do |repair| %> 
+              
                     <thead>
+                      <p>Date Started: <%= repair.datestarted %> | Date Finished: <%= repair.datefinished %>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %> </p>
                       <tr>
-                        <th>Date Started</th>
-                        <th>Date Finished</th>
-                        <th>Driver</th>
+                        <th></th>
                         <th>Repair</th>
                         <th>Time Started</th>
                         <th>Time Finished</th>
@@ -48,15 +48,10 @@
                       </tr>
                     </thead>
                     <tbody class="table-hover">
-                      <tr>
-
-                        <% bus.repairs.to_finish.each do |repair| %> 
-                        <td><%= repair.datestarted %></td>  
-                        <td><%= repair.datefinished %></td>
-                        <td><%= repair.driver.lastname %> <%= repair.driver.firstname %></td>
-                          <td>
-
+                      
                             <% repair.jobs.each do |job| %>
+                            <tr>
+                            <td>
                              <%= button_to job_start_repair_path(job), 
                              class: "btn btn-default",
                              'aria-label'=> "Left Align", 
@@ -78,12 +73,10 @@
                                 <td><%= job_part.quantity %> </td>
                                 <td><%= job_part.cost %> </td>
                                 <% end %>
+
                              <% end %>
+                             </tr>
                         <% end %>
-
-                        
-                       
-
                         </tr>
                     </tbody>
                   </table>
