@@ -27,9 +27,9 @@
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 <div class="table-responsive">
+                  <% bus.repairs.to_finish.each do |repair| %> 
                   <table class="table">
-                     <% bus.repairs.to_finish.each do |repair| %> 
-              
+                     
                     <thead>
                       <p>Date Started: <%= repair.datestarted %> | Date Finished: <%= repair.datefinished %>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %> </p>
                       <tr>
@@ -68,7 +68,7 @@
                             <td><%= job.mechanic.lastname%> <%= job.mechanic.firstname%> </td>
                                                       
                                 <% job.job_parts.each do |job_part| %> 
-                                <td><%= job_part.part_id %> </td>
+                                <td><%= job_part.part.partname %> </td>
                                 <td></td>
                                 <td><%= job_part.quantity %> </td>
                                 <td><%= job_part.cost %> </td>
