@@ -6,6 +6,7 @@ class Repair < ApplicationRecord
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true 
 
   	scope :to_finish, lambda { where(:done => false)}
+    scope :done, lambda { where(:done => true)}
   	#scope :bus_repairs, lambda { |b| where(:bus_id => b) }
 
   	require 'csv'
@@ -65,9 +66,9 @@ class Repair < ApplicationRecord
         		done: repair_hash['Done'],
         		datestarted: repair_hash['Date and Time Started'],
         		datefinished: repair_hash['Date and Time Finished'],
-        		jobs_attributes: [mechanic_id: repair_hash["Assigned Mechanic"], 
+        		jobs_attributes: [{mechanic_id: repair_hash["Assigned Mechanic"], 
         		jobparticular: repair_hash['Repairs Done'], done: repair_hash['Done'],  
-        		job_parts_attributes: [part_id: pr.id, quantity: repair_hash['Quantity']]])
+        		job_parts_attributes: [{part_id: pr.id, quantity: repair_hash['Quantity']}]}])
         		
     end
 

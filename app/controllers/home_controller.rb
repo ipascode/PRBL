@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-      @buses = Bus.remain_active
+      @buses = Bus.in_repair
   end
  
 end

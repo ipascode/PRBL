@@ -31,6 +31,16 @@ class RepairsController < ApplicationController
 
     if @job.status == "Repairing"
       @job.update(timefinished: Time.now, status: "Done")
+      @repair = Repair.find(@job.repair_id)
+        if @repair.jobs.count == @repair.jobs.done.count
+          @repair.update(done: true)
+        end
+
+        @bus= Bus.find(@repair.bus_id)
+        if @bus.repairs.count == @bus.repairs.done.count
+          @bus.update(status: nil )
+        end
+
     else
       @job.update(timestarted: Time.now, status: "Repairing")
     end
