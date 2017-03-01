@@ -68,9 +68,10 @@ class RepairsController < ApplicationController
 
         #buses status updates to to be repaired    
         @repair.bus.update(status: "In repair")
-        
+        @bus= Bus.find(@repair.bus_id)
+        bus_update(@bus)
         update_parts(@repair)
-      
+        
       else
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -85,20 +86,13 @@ class RepairsController < ApplicationController
       if @repair.update(repair_params)
         format.html { redirect_to @repair, notice: 'Repair was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair }
-
-        if @repair.jobs.count == @repair.jobs.done.count
+        
+         if @repair.jobs.count == @repair.jobs.done.count
           @repair.update(done: true)
         end
-
+        update_parts(@repair)
         @bus= Bus.find(@repair.bus_id)
-        if @bus.repairs.to_finish.count > 0
-            @bus.update(status: "In Repair" )
-        end 
-
-        if @bus.repairs.count == @bus.repairs.done.count  
-          @bus.update(status: nil )
-
-        end
+        bus_update(@bus)
 
       else
         format.html { render :edit }
@@ -110,9 +104,11 @@ class RepairsController < ApplicationController
   # DELETE /repairs/1
   # DELETE /repairs/1.json
   def destroy
+    @bus= Bus.find(@repair.bus_id)
     @repair.destroy
+    bus_update(@bus)
     respond_to do |format|
-      format.html { redirect_to repairs_url, notice: 'Repair was successfully destroyed.' }
+      format.html { redirect_to home_url, notice: 'Repair was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -139,5 +135,17 @@ class RepairsController < ApplicationController
             end
         end
     end
-    
+
+
+    def bus_update(b)        
+        if b.repairs.to_finish.count > 0
+            b.update(status: "In Repair" )
+        end 
+
+        if b.repairs.count == b.repairs.done.count  
+          b.update(status: nil )
+
+        end
+    end
+
 end
