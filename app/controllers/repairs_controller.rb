@@ -68,14 +68,8 @@ class RepairsController < ApplicationController
 
         #buses status updates to to be repaired    
         @repair.bus.update(status: "In repair")
-        @repair.jobs.each do |job|
-            job.job_parts.each do |job_part|
-              
-              job_part.update(total: job_part.quantity * job_part.cost)
-              job_part.part.update(last_used: Time.now, price: job_part.cost)
-            end
-        end
-
+        
+        update_parts(@repair)
       
       else
         format.html { render :new }
@@ -135,4 +129,15 @@ class RepairsController < ApplicationController
         jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :status, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
+
+    def update_parts(r)
+      r.jobs.each do |job|
+            job.job_parts.each do |job_part|
+
+              job_part.update(total: job_part.quantity * job_part.cost)
+              job_part.part.update(last_used: Time.now, price: job_part.cost)
+            end
+        end
+    end
+    
 end

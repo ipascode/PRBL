@@ -7,7 +7,7 @@ class Repair < ApplicationRecord
 
   	scope :to_finish, lambda { where(:done => false)}
     scope :done, lambda { where(:done => true)}
-    scope :part_history, lambda { |b| joins(:jobs =>:job_parts).where('job_parts.id'=> b) }
+    scope :part_history, lambda { |b| joins(:jobs =>:job_parts).where('job_parts.part_id'=> b) }
   require 'csv'
 
 
