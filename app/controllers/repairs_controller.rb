@@ -70,7 +70,9 @@ class RepairsController < ApplicationController
         @repair.bus.update(status: "In repair")
         @repair.jobs.each do |job|
             job.job_parts.each do |job_part|
-              job_part.part.update(last_used: Time.now)
+              
+              job_part.update(total: job_part.quantity * job_part.cost)
+              job_part.part.update(last_used: Time.now, price: job_part.cost)
             end
         end
 
