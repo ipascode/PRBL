@@ -74,6 +74,12 @@ class RepairsController < ApplicationController
 
         #buses status updates to to be repaired    
         @repair.bus.update(status: "In repair")
+        @repair.jobs.each do |job|
+            job.job_parts.each do |job_part|
+              job_part.part.update(last_used: Time.now)
+            end
+        end
+
       
       else
         format.html { render :new }
