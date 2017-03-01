@@ -7,10 +7,10 @@ class Repair < ApplicationRecord
 
   	scope :to_finish, lambda { where(:done => false)}
     scope :done, lambda { where(:done => true)}
-    scope :part_history, lambda { |b| where() }
-  	#scope :bus_repairs, lambda { |b| where(:bus_id => b) }
+    scope :part_history, lambda { |b| joins(:jobs =>:job_parts).where('job_parts.id'=> b) }
+  require 'csv'
 
-  	require 'csv'
+
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

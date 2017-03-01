@@ -20,6 +20,7 @@ class PartsController < ApplicationController
   # GET /parts/1
   # GET /parts/1.json
   def show
+    @repairs = Repair.part_history(params[:id])
   end
 
   # GET /parts/new
@@ -89,10 +90,4 @@ class PartsController < ApplicationController
       params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan, :last_used)
     end
 
-    def get_csv
-    require 'csv'    
-    CSV.foreach(filename, :headers => true) do |row|
-      Moulding.create!(row.to_hash)
-    end
-  end
 end

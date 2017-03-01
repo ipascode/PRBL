@@ -5,12 +5,6 @@ class RepairsController < ApplicationController
   # GET /repairs.json
   def index
     @repairs = Repair.all
-    @drivers = Driver.all
-    @mechanics = Mechanic.all
-    @buses = Bus.all
-    @bus_lines = BusLine.all
-    @parts = Part.all
-
   end
 
   def import
