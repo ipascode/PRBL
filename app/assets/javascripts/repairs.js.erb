@@ -1,0 +1,18 @@
+
+$(document).ready(function(){
+
+	$('#driver-selectize').selectize({
+	    create: true,
+	    sortField: 'text'
+	});
+
+	$('#bus-selectize').selectize({
+	    sortField: 'text'
+	    options: <% @bus %>
+	});
+
+	$('.type-selectize').selectize({
+		console.log('yeahh it works');
+	});
+
+});

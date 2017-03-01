@@ -1,3 +1,8 @@
+ <head>
+ <%= javascript_include_tag 'repairs', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
 <%= simple_form_for(@repair) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
  <% repair.errors.full_messages.each do |message| %>
@@ -7,7 +12,7 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <%= f.association :bus, label_method: :bus_no, value_method: :id, input_html: {class: 'bus-selectize'} %>
+        <%= f.association :bus, label_method: :bus_no, value_method: :id, :id => 'bus-selectize' %>
         
       </div>
       
@@ -28,7 +33,7 @@
         <%= f.input :driver_id, label: "Driver",
         collection: @drivers,
         label_method: :lastname,
-        input_html: {class: 'driver-selectize'} %>
+        class: 'driver-selectize' %>
 
 
       </div>
@@ -40,8 +45,7 @@
       <div class="col-xs-12 col-md-12">
         <%= f.input :repairtype, label: "Repair Type", 
         collection: ['Emergency', 'Preventive', 'Overhaul'],
-        input_html: {
-          class: 'type-selectize' } %>
+        class: 'type-selectize'  %>
       </div>
     </div>
 
@@ -72,3 +76,4 @@
   </div>
 
 <% end %>
+</body>
