@@ -7,6 +7,7 @@ class Repair < ApplicationRecord
 
   	scope :to_finish, lambda { where(:done => false)}
     scope :done, lambda { where(:done => true)}
+    scope :part_history, lambda { |b| where() }
   	#scope :bus_repairs, lambda { |b| where(:bus_id => b) }
 
   	require 'csv'
