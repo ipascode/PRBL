@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301033707) do
+ActiveRecord::Schema.define(version: 20170301045250) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename",              null: false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170301033707) do
     t.integer  "job_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.float    "total",      limit: 24
     t.index ["job_id"], name: "index_job_parts_on_job_id", using: :btree
     t.index ["part_id"], name: "index_job_parts_on_part_id", using: :btree
   end
