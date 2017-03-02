@@ -6,6 +6,10 @@ class Mechanic < ApplicationRecord
   validates :lastname, :presence => true
   	require 'csv'
 
+  def name
+    "#{firstname[0,1]}. #{lastname}"
+  end
+
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
      mechanic_hash = row.to_hash
