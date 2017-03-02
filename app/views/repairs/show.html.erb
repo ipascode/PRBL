@@ -17,12 +17,12 @@
 
 <p>
   <strong>Driver:</strong>
-  <%= @repair.driver_id %>
+  <%= @repair.driver.lastname %>
 </p>
 
 <p>
   <strong>Bus:</strong>
-  <%= @repair.bus_id %>
+  <%= @repair.bus.bus_no %>
 </p>
 
 <p>
@@ -47,7 +47,6 @@
       <th>Duration</th>
       <th>Mechanic</th>
       <th>Part</th>
-      <th>Unit</th>
       <th>Quantity</th>
       <th>Price</th>
       <th>Total Cost</th>
@@ -66,6 +65,9 @@
         <td><%= job.mechanic.lastname %></td> 
           <% job.job_parts.each do |jobpart| %>
           <td><%= jobpart.part.partname %></td>
+          <td><%= jobpart.quantity %><%= jobpart.part.unit %></td>
+          <td><%= jobpart.cost %></td>
+          <td><%= jobpart.total %></td>
           <% end %>
       </tr>
     <% end %>
