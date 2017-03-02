@@ -66,8 +66,10 @@ class RepairsController < ApplicationController
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
 
+        @repair.update(datefinished: nil)
         #buses status updates to to be repaired    
         @repair.bus.update(status: "In repair")
+
         @bus= Bus.find(@repair.bus_id)
         bus_update(@bus)
         update_parts(@repair)

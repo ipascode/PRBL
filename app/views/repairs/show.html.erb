@@ -63,9 +63,9 @@
         <td><%= job.timestarted %></td>
         <td><%= job.timefinished %></td>
         <td><%= job.duration %></td>
-        <td><%= job.mechanic_id %></td> 
-          <% job.job_parts.each do |part| %>
-          <td><%= part.part_id %></td>
+        <td><%= job.mechanic.lastname %></td> 
+          <% job.job_parts.each do |jobpart| %>
+          <td><%= jobpart.part.partname %></td>
           <% end %>
       </tr>
     <% end %>
@@ -75,4 +75,6 @@
 
 
 <%= link_to 'Edit', edit_repair_path(@repair), :class => "btn btn-default", label: "Wiew"%>
-<%= link_to 'Back', repairs_path, :class => "btn btn-default" %>
+<%= link_to 'Back to Home', home_index_path, :class => "btn btn-default" %>
+<%= link_to 'Back to Repairs', repairs_path, :class => "btn btn-default" %>
+
