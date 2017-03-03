@@ -34,7 +34,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Linename</th>
+      <th>Line</th>
       <th>Distance</th>
       <th colspan="3">Actions</th>
     </tr>
@@ -44,7 +44,7 @@
     <% @bus_lines.each do |bus_line| %>
       <tr>
         <td><%= bus_line.linename %></td>
-        <td><%= bus_line.distance %></td>
+        <td><%=number_with_precision( bus_line.distance , :precision => 0)%></td>
         <td><%= link_to 'View', bus_line, label: "View", :class => "btn btn-default" %></td>
         <td><%= link_to 'Edit', edit_bus_line_path(bus_line), :class => "btn btn-default" %></td>
         <td><%= link_to 'Delete', bus_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>

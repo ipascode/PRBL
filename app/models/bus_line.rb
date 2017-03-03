@@ -1,7 +1,15 @@
 class BusLine < ApplicationRecord
-	validates :linename, presence: true
 	has_many :buses
+  validates :linename, presence: true
+  validates_uniqueness_of :linename
+
+  before_validation :uppercase_linename
+
 	require 'csv'
+
+  def uppercase_linename
+    linename.upcase!
+  end
 
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
