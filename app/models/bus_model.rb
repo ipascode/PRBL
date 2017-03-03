@@ -2,7 +2,10 @@ class BusModel < ApplicationRecord
 	has_many :buses, dependent: :destroy
   has_many :parts
   accepts_nested_attributes_for :buses
-    require 'csv'
+  validates_presence_of :brand
+  validates_uniqueness_of :brand, :case_sensitive => false
+
+  require 'csv'
 
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
@@ -16,5 +19,14 @@ class BusModel < ApplicationRecord
       end # end if !busmodel.nil?
     end # end CSV.foreach
   end # end self.import(file)
+
+   def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
 
 end

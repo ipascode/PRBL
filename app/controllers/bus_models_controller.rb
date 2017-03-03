@@ -5,6 +5,12 @@ class BusModelsController < ApplicationController
   # GET /bus_models.json
   def index
     @bus_models = BusModel.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @bus_models.to_csv, filename: "bus_models-#{Date.today}.csv" }
+    end
+
   end
 
   # GET /bus_models/1
