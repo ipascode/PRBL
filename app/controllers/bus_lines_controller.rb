@@ -5,6 +5,11 @@ class BusLinesController < ApplicationController
   # GET /bus_lines.json
   def index
     @bus_lines = BusLine.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @bus_lines.to_csv, filename: "bus_lines-#{Date.today}.csv" }
+    end
   end
 
  def import
@@ -15,6 +20,8 @@ class BusLinesController < ApplicationController
       redirect_to bus_lines_url, notice: "Invalid CSV file format."
     end
   end
+
+
 
   # GET /bus_lines/1
   # GET /bus_lines/1.json

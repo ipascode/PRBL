@@ -5,7 +5,11 @@ class Driver < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates :lastname, :presence => true
 
-    require 'csv'
+  require 'csv'
+
+  def name
+    "#{firstname[0,1]}. #{lastname}"
+  end
 
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
