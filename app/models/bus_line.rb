@@ -1,7 +1,7 @@
 class BusLine < ApplicationRecord
 	has_many :buses
   validates :linename, presence: true
-  validates_uniqueness_of :linename
+  validates :linename, uniqueness: { case_sensitive: false }
 
   before_validation :uppercase_linename
 

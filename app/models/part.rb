@@ -1,6 +1,8 @@
 class Part < ApplicationRecord
   belongs_to :bus_model, optional: true
   require 'csv'
+  validates :partname, :presence => true
+  validates :part_number, uniqueness: { case_sensitive: false }
 
 
   def self.import(file)

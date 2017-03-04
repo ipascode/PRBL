@@ -3,7 +3,7 @@ class BusModel < ApplicationRecord
   has_many :parts
   accepts_nested_attributes_for :buses
   validates :brand, :presence => true
-  validates_uniqueness_of :brand, :case_sensitive => false
+  validates :brand, uniqueness: { case_sensitive: false }
 
   require 'csv'
 
