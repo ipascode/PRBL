@@ -5,6 +5,12 @@ class MechanicsController < ApplicationController
   # GET /mechanics.json
   def index
     @mechanics = Mechanic.all.order(:lastname)
+    
+    respond_to do |format|
+      format.html
+      format.csv { send_data @mechanics.to_csv, filename: "mechanics-#{Date.today}.csv" }
+    end
+
   end
 
   def import

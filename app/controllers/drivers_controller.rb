@@ -5,6 +5,11 @@ class DriversController < ApplicationController
   # GET /drivers.json
   def index
     @drivers = Driver.all.order(:lastname)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @drivers.to_csv, filename: "drivers-#{Date.today}.csv" }
+    end
   end
 
   # GET /drivers/1
