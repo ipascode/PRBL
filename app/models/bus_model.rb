@@ -2,7 +2,7 @@ class BusModel < ApplicationRecord
 	has_many :buses, dependent: :destroy
   has_many :parts
   accepts_nested_attributes_for :buses
-  validates_presence_of :brand
+  validates :brand, :presence => true
   validates_uniqueness_of :brand, :case_sensitive => false
 
   require 'csv'

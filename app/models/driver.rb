@@ -5,6 +5,7 @@ class Driver < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates :lastname, :presence => true
 
+
   require 'csv'
 
   def name
