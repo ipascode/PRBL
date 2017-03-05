@@ -109,6 +109,7 @@ class RepairsController < ApplicationController
     @bus= Bus.find(@repair.bus_id)
     @repair.destroy
     bus_update(@bus)
+
     respond_to do |format|
       format.html { redirect_to repairs_url, notice: 'Repair was successfully destroyed.' }
       format.json { head :no_content }
