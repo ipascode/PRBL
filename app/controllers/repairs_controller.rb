@@ -5,12 +5,6 @@ class RepairsController < ApplicationController
   # GET /repairs.json
   def index
     @repairs = Repair.all
-    @drivers = Driver.all
-    @mechanics = Mechanic.all
-    @buses = Bus.all
-    @bus_lines = BusLine.all
-    @parts = Part.all
-
   end
 
   def import
@@ -26,9 +20,35 @@ class RepairsController < ApplicationController
   def show
   end
 
+  def job_start
+    @job= Job.find(params[:id])
+
+    if @job.status == "Repairing"
+      @job.update(timefinished: Time.now, status: "Done")
+      @repair = Repair.find(@job.repair_id)
+        if @repair.jobs.count == @repair.jobs.done.count
+          @repair.update(done: true)
+        end
+
+        @bus= Bus.find(@repair.bus_id)
+        if @bus.repairs.count == @bus.repairs.done.count 
+          @bus.update(status: nil )
+        end
+
+    else
+      @job.update(timestarted: Time.now, status: "Repairing")
+    end
+
+    respond_to do |format|
+        format.js
+      end
+  end
+
   # GET /repairs/new
   def new
     @repair = Repair.new
+    @drivers = Driver.all
+
   end
 
   # GET /repairs/1/edit
@@ -46,8 +66,14 @@ class RepairsController < ApplicationController
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
 
-        #buses status updates to to be repaired
-        @repair.bus.update(status: "repair")
+        @repair.update(datefinished: nil)
+        #buses status updates to to be repaired    
+        @repair.bus.update(status: "In repair")
+
+        @bus= Bus.find(@repair.bus_id)
+        bus_update(@bus)
+        update_parts(@repair)
+        
       else
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -62,8 +88,14 @@ class RepairsController < ApplicationController
       if @repair.update(repair_params)
         format.html { redirect_to @repair, notice: 'Repair was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair }
-        #buses status updates to to be repaired
-        @repair.bus.update(status: "repair")
+        
+         if @repair.jobs.count == @repair.jobs.done.count
+          @repair.update(done: true)
+        end
+        update_parts(@repair)
+        @bus= Bus.find(@repair.bus_id)
+        bus_update(@bus)
+
       else
         format.html { render :edit }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
@@ -74,11 +106,10 @@ class RepairsController < ApplicationController
   # DELETE /repairs/1
   # DELETE /repairs/1.json
   def destroy
-    if @repair.destroy then
-       redirect_to repairs_url
-    else
-      render :action => :edit
-    end
+    @bus= Bus.find(@repair.bus_id)
+    @repair.destroy
+    bus_update(@bus)
+
     respond_to do |format|
       format.html { redirect_to repairs_url, notice: 'Repair was successfully destroyed.' }
       format.json { head :no_content }
@@ -94,7 +125,30 @@ class RepairsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
       params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :location, :jobcard_num, :done,
-        jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :done, :_destroy, 
+        jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :status, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
+
+    def update_parts(r)
+      r.jobs.each do |job|
+            job.job_parts.each do |job_part|
+
+              job_part.update(total: job_part.quantity * job_part.cost)
+              job_part.part.update(last_used: Time.now, price: job_part.cost)
+            end
+        end
+    end
+
+
+    def bus_update(b)        
+        if b.repairs.to_finish.count > 0
+            b.update(status: "In Repair" )
+        end 
+
+        if b.repairs.count == b.repairs.done.count  
+          b.update(status: nil )
+
+        end
+    end
+
 end

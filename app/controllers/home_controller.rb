@@ -5,8 +5,7 @@ class HomeController < ApplicationController
       @buses = Bus.all
       @drivers = Driver.all
       @jobs = Job.all
-      @buses = Bus.remain_active
-
+      @buses = Bus.in_repair
   end
 
   def create

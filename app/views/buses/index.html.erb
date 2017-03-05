@@ -113,7 +113,19 @@
         <td><%= bus.bus_model.brand %></td>
         <td><%= bus.bus_line.linename %></td>
         <td><%= bus.date_purchased %></td>
-        <td><%= bus.odometer %></td>
+        <td>
+        <%= button_to odometer_add_bus_path(bus), class: "btn btn-default", 
+        'aria-label'=> "Left Align", remote: true do %>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <% end %>
+        
+         <p id = "odometer-<%= bus.id %>"><%= bus.odometer %></p>
+
+        <%= button_to odometer_subtract_bus_path(bus), class: "btn btn-default", 
+        'aria-label'=> "Left Align", remote: true do %>
+          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+          <% end %>
+        </td>
         <td><%= bus.cpk %></td>
         <td><%= bus.status %></td>
         <!-- <td><%= link_to 'View', bus, :class => "btn btn-default" %></td> -->

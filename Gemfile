@@ -24,7 +24,7 @@ gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.5' #for json
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -36,7 +36,6 @@ gem 'cocoon' #for nested models
 gem 'devise' #for users
 gem "paperclip" #for photos
 gem "activerecord-import", ">= 0.2.0" #so activerecord won't have to insert data one by one
-gem 'materialize-sass' 
 gem 'selectize-rails' 
 gem 'better_errors'
 gem 'sprockets-rails', '~> 2.3.3'

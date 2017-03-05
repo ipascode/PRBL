@@ -18,7 +18,7 @@
   </div>
 
   <div class="field">
-    <%= f.input :done, :as => :boolean %>
+    <%= f.input :status, label: "Status", collection: ["Not Started", "Repairing", "Done"], allow_blank: false %>
   </div>
 
     <div id='job-parts'>

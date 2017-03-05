@@ -10,43 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223203257) do
+ActiveRecord::Schema.define(version: 20170303022336) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "linename"
-    t.float    "distance",   limit: 24
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "linename",                            null: false
+    t.float    "distance",   limit: 24, default: 0.0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "bus_models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "brand"
+    t.string   "brand",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "buses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer  "bus_no"
+    t.string   "bus_no",                                       null: false
     t.integer  "bus_model_id"
     t.string   "plate_no"
     t.datetime "date_purchased"
-    t.float    "odometer",            limit: 24
+    t.float    "odometer",            limit: 24, default: 0.0
     t.integer  "bus_line_id"
     t.float    "cpk",                 limit: 24
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "status"
-    t.boolean  "active",                         default: true
     t.index ["bus_line_id"], name: "index_buses_on_bus_line_id", using: :btree
     t.index ["bus_model_id"], name: "index_buses_on_bus_model_id", using: :btree
   end
 
   create_table "drivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "lastname"
+    t.string   "lastname",            null: false
     t.string   "firstname"
     t.string   "middlename"
     t.datetime "created_at",          null: false
@@ -64,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170223203257) do
     t.integer  "job_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.float    "total",      limit: 24
     t.index ["job_id"], name: "index_job_parts_on_job_id", using: :btree
     t.index ["part_id"], name: "index_job_parts_on_part_id", using: :btree
   end
@@ -72,18 +72,18 @@ ActiveRecord::Schema.define(version: 20170223203257) do
     t.datetime "timestarted"
     t.datetime "timefinished"
     t.float    "duration",      limit: 24
-    t.string   "jobparticular"
+    t.string   "jobparticular",            null: false
     t.integer  "mechanic_id"
-    t.boolean  "done"
     t.integer  "repair_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "status"
     t.index ["mechanic_id"], name: "index_jobs_on_mechanic_id", using: :btree
     t.index ["repair_id"], name: "index_jobs_on_repair_id", using: :btree
   end
 
   create_table "mechanics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "lastname"
+    t.string   "lastname",            null: false
     t.string   "firstname"
     t.string   "middlename"
     t.string   "position"
@@ -98,15 +98,15 @@ ActiveRecord::Schema.define(version: 20170223203257) do
   end
 
   create_table "parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "partname"
+    t.string   "partname",                   null: false
     t.string   "part_number"
     t.string   "unit"
     t.integer  "bus_model_id"
     t.integer  "index_number"
-    t.float    "price",        limit: 24
+    t.string   "price",        default: "0"
     t.integer  "lifespan"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.datetime "last_used"
     t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
   end

@@ -1,26 +1,31 @@
-
+<head>
+ <%= javascript_include_tag 'home', 'data-turbolinks-track': 'reload' %>
+ </head> 
+<body>
 <p id="notice"><%= notice %></p>
 <% javascript_include_tag "homeindex.js" %>
 
 
+
 <h1>Maintenance Home</h1>
-<h4><%= pluralize((@buses.in_repair.count + @buses.to_repair.count), 'bus') %> (<%= @buses.in_repair.count%> in repair, <%= @buses.to_repair.count%> to repair)</h4> 
+<h4><%= pluralize(@buses.in_repair.count, 'bus') %> in repair</h4> 
 
 <div class="btn-group" role="group" aria-label="...">
   <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-default" %>
-  <button type="button" class="btn btn-default">Expand All</button>
+  <button type="button" class="btn btn-default openall" id = "openall">Expand All</button>
+  <button type="button" class="btn btn-default openall" id = "closeall">Close All</button>
 </div>
 
 <div class="row">
   <div class = "col-xs-12 col-md-12">
-    <h2>Buses to be Repaired</h2>
+    <br>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <% @buses.to_repair.each do |bus| %>
+      <% @buses.each do |bus| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
-                <%= bus.bus_no %>
+                Bus <%= bus.bus_no %>
                 <%= link_to 'View', bus %>
               </a>
             </h4>
@@ -29,14 +34,20 @@
 
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-              
                 <div class="table-responsive">
+                  <% bus.repairs.to_finish.each do |repair| %> 
                   <table class="table">
+                     
                     <thead>
+                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? -%><%= repair.datefinished.strftime("%x") %> <%end%>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %>
+
+                      <div class="btn-group pull-right" role="group" aria-label="...">
+                        <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%>
+                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%>
+                      </div>
+                      </span>
                       <tr>
-                        <th>Date Started</th>
-                        <th>Date Finished</th>
-                        <th>Driver</th>
+                        <th></th>
                         <th>Repair</th>
                         <th>Time Started</th>
                         <th>Time Finished</th>
@@ -51,32 +62,38 @@
                       </tr>
                     </thead>
                     <tbody class="table-hover">
-                      <tr>
+                      
+                            <% repair.jobs.each do |job| %>
+                            <tr>
+                            <td>
+                             <%= button_to job_start_repair_path(job), 
+                             class: "btn btn-default",
+                             'aria-label'=> "Left Align", 
+                             remote: true do %>
+                              <p id = 'job-<%=job.id %>'><%= job.status %></p>
+                              <% end %> </td>
 
-                        <% bus.repairs.to_finish.each do |repair| %> 
-                        <td><%= repair.datestarted %></td>  
-                        <td><%= repair.datefinished %></td>
-                        <td><%= repair.driver.lastname %> <%= repair.driver.firstname %></td>
-
-                            <% repair.jobs.each do |job| %> 
                             <td><%= job.jobparticular %> </td>
-                            <td><%= job.timestarted %> </td>
-                            <td><%= job.timefinished %> </td>
+                            <td><p id = 'timestart-<%=job.id %>'>
+                              <%= job.timestarted.strftime("%X %p") %></p> </td>
+                            <td><p id = 'timefinish-<%=job.id %>'>
+                            <%= job.timefinished.strftime("%X %p") %></p> </td>
                             <td><%= job.duration %> </td>
-                            <td><%= job.mechanic.lastname%> <%= job.mechanic.firstname%> </td>
-                                                      
+                            <td><%= job.mechanic.name%></td>
+                                
+                                             
                                 <% job.job_parts.each do |job_part| %> 
-                                <td><%= job_part.part_id %> </td>
+                                <td><%= job_part.part.partname %> </td>
                                 <td></td>
                                 <td><%= job_part.quantity %> </td>
                                 <td><%= job_part.cost %> </td>
+                                <td><%= job_part.total %> </td></td>
                                 <% end %>
+
+
                              <% end %>
+                             </tr>
                         <% end %>
-
-                        
-                       
-
                         </tr>
                     </tbody>
                   </table>
@@ -89,6 +106,7 @@
   </div>
 
 
+<<<<<<< HEAD
     <h3>Visits By Day</h3>
   <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
   </div>
@@ -207,4 +225,5 @@
     </div>
   </div>
 </div> <!-- row -->
+
 

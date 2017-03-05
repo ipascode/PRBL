@@ -2,13 +2,15 @@ class Repair < ApplicationRecord
 	
 	belongs_to :driver
 	belongs_to :bus
-	has_many :jobs,  inverse_of: :repair #prevents error: jobs repair does not exist 
-  	accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true 
+	has_many :jobs,  inverse_of: :repair, dependent: :destroy #prevents error: jobs repair does not exist 
+  accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true 
 
   	scope :to_finish, lambda { where(:done => false)}
-  	#scope :bus_repairs, lambda { |b| where(:bus_id => b) }
+    scope :done, lambda { where(:done => true)}
+    scope :part_history, lambda { |b| joins(:jobs =>:job_parts).where('job_parts.part_id'=> b) }
+  require 'csv'
 
-  	require 'csv'
+
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
@@ -44,8 +46,7 @@ class Repair < ApplicationRecord
      #look for parts
      pr = Part.where(partname: repair_hash["Parts and Materials Used"]).first
          if pr == nil
-          pr = Part.create(partname: repair_hash["Parts and Materials Used"], 
-          	unit: repair_hash['Unit'])
+          pr = Part.create(partname: repair_hash["Parts and Materials Used"], unit: repair_hash['Unit'])
          end
       
        
@@ -66,9 +67,9 @@ class Repair < ApplicationRecord
         		done: repair_hash['Done'],
         		datestarted: repair_hash['Date and Time Started'],
         		datefinished: repair_hash['Date and Time Finished'],
-        		jobs_attributes: [mechanic_id: repair_hash["Assigned Mechanic"], 
+        		jobs_attributes: [{mechanic_id: repair_hash["Assigned Mechanic"], 
         		jobparticular: repair_hash['Repairs Done'], done: repair_hash['Done'],  
-        		job_parts_attributes: [part_id: pr.id, quantity: repair_hash['Quantity']]])
+        		job_parts_attributes: [{part_id: pr.id, quantity: repair_hash['Quantity']}]}])
         		
     end
 

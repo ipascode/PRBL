@@ -21,3 +21,4 @@
 //= require chart.bundle
 //= require chartkick
 //= require ./home/homeindex
+

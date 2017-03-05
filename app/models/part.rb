@@ -1,6 +1,8 @@
 class Part < ApplicationRecord
   belongs_to :bus_model, optional: true
   require 'csv'
+  validates :partname, :presence => true
+  validates :part_number, uniqueness: { case_sensitive: false }
 
 
   def self.import(file)
@@ -28,5 +30,14 @@ class Part < ApplicationRecord
 
     end # end CSV.foreach
   end # end self.import(file)
+
+    def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
 
 end
