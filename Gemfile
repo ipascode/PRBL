@@ -39,8 +39,15 @@ gem "activerecord-import", ">= 0.2.0" #so activerecord won't have to insert data
 gem 'materialize-sass' 
 gem 'selectize-rails' 
 gem 'better_errors'
+gem 'sprockets-rails', '~> 2.3.3'
+gem 'chart-js-rails'
+gem 'chartkick', '~> 1.2.5'
+gem 'groupdate', '~> 2.1.1'
+gem 'active_median'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

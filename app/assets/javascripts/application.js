@@ -18,3 +18,6 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require selectize
+//= require chart.bundle
+//= require chartkick
+//= require ./home/homeindex

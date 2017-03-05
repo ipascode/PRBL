@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
 
   def index
-<<<<<<< HEAD
       @repairs = Repair.all
       @buses = Bus.all
       @drivers = Driver.all
@@ -9,5 +8,14 @@ class HomeController < ApplicationController
       @buses = Bus.remain_active
 
   end
+
+  def create
+  @review = Review.create!(params[:review])
+  flash[:notice] = "Thank you for reviewing this product"
+  respond_to do |format|
+    format.html { redirect_to @review.product }
+    format.js
+  end
+end
   
 end
