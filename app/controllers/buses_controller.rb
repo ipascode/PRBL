@@ -1,6 +1,7 @@
 class BusesController < ApplicationController
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
 
+
   # GET /buses
   # GET /buses.json
   def index
@@ -83,6 +84,7 @@ class BusesController < ApplicationController
   # DELETE /buses/1
   # DELETE /buses/1.json
   def destroy
+
     begin
         @bus.destroy
       respond_to do |format|

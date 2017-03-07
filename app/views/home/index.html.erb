@@ -3,6 +3,8 @@
  </head> 
 <body>
 <p id="notice"><%= notice %></p>
+<% javascript_include_tag "homeindex.js" %>
+
 
 
 <h1>Maintenance Home</h1>
@@ -104,5 +106,129 @@
   </div>
 
 
+    <h3>Visits By Day</h3>
+  <div>
+    <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
+  </div>
+
+  <h3> Duration per Repair </h3>
+<div>
+    <% column_chart Repair.group_by_day(:created_at, reverse: true).sum('datestarted-datefinished') %>
+  </div>
+
+
+
+ <% @buses.each do |bus| %>
+<div class="modal fade" id="modal-<%= bus.bus_no %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <%= bus.bus_no %>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h3>Bus History</h3>
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+            <tr>
+              <th>Date Started</th>
+              <th>Date Finished</th>
+              <th>Driver</th>
+              <th>Repair</th>
+              <th>Time Started</th>
+              <th>Time Finished</th>
+              <th>Duration</th>
+              <th>Mechanic</th>
+              <th>Part</th>
+              <th>Unit</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th colspan="5"></th>
+            </tr>
+        </thead>
+
+        <tbody class = "table">
+          <% bus.repairs.each do |repair| %> 
+                  <td><%= repair.datestarted %></td>  
+                  <td><%= repair.datefinished %></td>
+                  <td><%= repair.driver_id %></td>
+
+              <% repair.jobs.each do |job| %> 
+                        <td><%= job.jobparticular %> </td>
+                        <td><%= job.timestarted %> </td>
+                        <td><%= job.timefinished %> </td>
+                        <td><%= job.duration %> </td>
+                        <td><%= job.mechanic_id%> </td>
+                      
+
+                          <% job.job_parts.each do |job_part| %> 
+                            <td><%= job_part.part_id %> </td>
+                            <td><%= job_part.quantity %> </td>
+                            <td><%= job_part.cost %> </td>
+                          <% end %>
+            <% end %>
+            <% end %>
+              
+
+           <!-- </tbody> -->
+      </table>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+       
+      </div>
+    
+    </div>
+
+  </div>
+
+</div>
+
+<% end %>
+
+
+
+
+
+  <% form_tag repairs_path, method: :post do %>
+  <%= submit_tag 'Start Repair' %>
+  <% end %>
+
+
+
+  <% form_tag repairs_path, method: :post do %>
+  <% submit_tag 'End Repair' %>
+  <% end %>
+
+  <div class = "col-xs-12 col-md-12">
+    <h2>Buses in Repair</h2>
+    <div class ="table-responsive">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>Bus</th>
+            <th>Bus Number</th>
+            <th>Bus Model</th>
+            <th>Date Purchased</th>
+            <th>Odometer</th>
+            <th>Busline</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
 </div> <!-- row -->
-</body>
+
+
