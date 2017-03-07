@@ -107,7 +107,13 @@
 
 
     <h3>Visits By Day</h3>
-  <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
+  <div>
+    <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
+  </div>
+
+  <h3> Duration per Repair </h3>
+<div>
+    <% column_chart Repair.group_by_day(:created_at, reverse: true).sum('datestarted-datefinished') %>
   </div>
 
 
