@@ -2,22 +2,21 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  #database: maintainapp_development
+  database: maintainapp_development
   pool: 5
   host: localhost
   username: root
-  password: admin123
-  database: prbl
+  password: jammin64
   #socket: /tmp/mysql.sock
   socket: /Applications/rubystack-2.3.1-4/mysql/tmp/mysql.sock
 test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: prbl
+  #database: maintainapp_testing
   pool: 5
   username: root
-  password: admin123
+  password: jammin64
   #socket: /tmp/mysql.sock
   socket: /Applications/rubystack-2.3.1-4/mysql/tmp/mysql.sock
 
@@ -25,11 +24,10 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  #database: maintainapp_production
-  database: prbl
+  database: maintainapp_production
   pool: 5
   username: root
-  password: admin123
+  password: jammin64
   #socket: /tmp/mysql.sock
   socket: /Applications/rubystack-2.3.1-4/mysql/tmp/mysql.sock
 
