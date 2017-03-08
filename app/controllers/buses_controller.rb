@@ -6,6 +6,12 @@ class BusesController < ApplicationController
   # GET /buses.json
   def index
     @buses = Bus.order(:bus_no)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @buses.to_csv, filename: "buses-#{Date.today}.csv" }
+    end
+
   end
 
   # GET /buses/1
