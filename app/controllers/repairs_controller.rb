@@ -4,11 +4,11 @@ class RepairsController < ApplicationController
   # GET /repairs
   # GET /repairs.json
   def index
-    @repairs = Repair.all
+    @repairs = Repair.all.includes(:driver, :bus)
+
     respond_to do |format|
       format.html
       format.csv { send_data @repairs.to_csv, filename: "jobcards-#{Date.today}.csv" }
-      
     end
   end
 
@@ -54,6 +54,9 @@ class RepairsController < ApplicationController
     @repair = Repair.new
     @drivers = Driver.all
 
+    respond_to do |format|
+        format.js
+      end
   end
 
   # GET /repairs/1/edit
@@ -65,6 +68,7 @@ class RepairsController < ApplicationController
   def create
     @bus = Bus.all
     @repair = Repair.new(repair_params)
+
 
     respond_to do |format|
       if @repair.save
