@@ -72,9 +72,9 @@
 
                             <td><%= job.jobparticular %> </td>
                             <td><p id = 'timestart-<%=job.id %>'>
-                              <%= job.timestarted.strftime("%X %p") %></p> </td>
+                              <%= job.timestarted.strftime("%X %p").in_time_zone('Asia/Manila') %></p> </td>
                             <td><p id = 'timefinish-<%=job.id %>'>
-                            <%= job.timefinished.strftime("%X %p") %></p> </td>
+                            <%= job.timefinished.strftime("%X %p").in_time_zone('Asia/Manila') %></p> </td>
                             <td><%= job.duration %> </td>
                             <td><%= job.mechanic.name%></td>
                                 

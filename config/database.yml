@@ -6,7 +6,7 @@ development:
   pool: 5
   host: localhost
   username: root
-  password: jammin64
+  password: admin123
   #socket: /tmp/mysql.sock
   socket: /Applications/rubystack-2.3.1-4/mysql/tmp/mysql.sock
 test:
@@ -16,7 +16,7 @@ test:
   #database: maintainapp_test
   pool: 5
   username: root
-  password: jammin64
+  password: admin123
   #socket: /tmp/mysql.sock
   socket: /Applications/rubystack-2.3.1-4/mysql/tmp/mysql.sock
 
@@ -27,7 +27,7 @@ production:
   database: maintainapp_production
   pool: 5
   username: root
-  password: jammin64
+  password: admin123
   #socket: /tmp/mysql.sock
   socket: /Applications/rubystack-2.3.1-4/mysql/tmp/mysql.sock
 

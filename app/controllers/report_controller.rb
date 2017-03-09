@@ -5,4 +5,5 @@ class ReportController < ApplicationController
 		@repairs = Repair.all
 	end
 
+
 end
