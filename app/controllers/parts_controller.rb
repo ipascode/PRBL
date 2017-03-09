@@ -4,7 +4,7 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.json
   def index
-    @parts = Part.all
+    @parts = Part.all.includes(:bus_model)
     respond_to do |format|
       format.html
       format.csv { send_data @parts.to_csv, filename: "parts-#{Date.today}.csv" }
