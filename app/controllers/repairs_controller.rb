@@ -8,6 +8,7 @@ class RepairsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @repairs.to_csv, filename: "jobcards-#{Date.today}.csv" }
+      
     end
   end
 

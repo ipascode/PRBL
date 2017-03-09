@@ -10,7 +10,7 @@ class Repair < ApplicationRecord
     scope :part_history, lambda { |b| joins(:jobs =>:job_parts).where('job_parts.part_id'=> b) }
   require 'csv'
 
-  def self.to_csv(options = {})
+   def self.to_csv(options = {})
   CSV.generate(options) do |csv|
     csv << column_names
     all.each do |product|
