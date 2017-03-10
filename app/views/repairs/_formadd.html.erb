@@ -1,6 +1,6 @@
 
 <body>
-<%= simple_form_for(@repair, remote: true) do |f| %>
+<%= simple_form_for(@repair) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
  <% repair.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -32,9 +32,7 @@
 
 
       </div>
-      <div class="col-xs-12 col-md-6">
-        <%= f.input :location, collection: ["Tarlac"],  allow_blank: false %>
-      </div>
+    
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-12">

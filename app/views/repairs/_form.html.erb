@@ -1,8 +1,5 @@
-<head>
- <%= javascript_include_tag 'repairform', 'data-turbolinks-track': 'reload' %>
- </head> 
-<body>
-<%= simple_form_for(@repair, remote: true) do |f| %>
+ <body>
+<%= simple_form_for(@repair) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
  <% repair.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -34,7 +31,6 @@
         label_method: :lastname,
         input_html: {class: 'driver-selectize'} %>
 
-
       </div>
      
     </div>
@@ -42,7 +38,14 @@
       <div class="col-xs-12 col-md-12">
         <%= f.input :repairtype, label: "Repair Type", 
         collection: ['Emergency', 'Preventive', 'Overhaul'],
-        class: 'type-selectize', as: :check_boxes  %>
+        as: :check_boxes  %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        
+    <%= f.input :done, :as => :boolean, label: "Done" %>
       </div>
     </div>
 
@@ -61,12 +64,6 @@
 
     </div>
 
- <div class="row">
-      <div class="col-xs-12 col-md-12">
-        
-    <%= f.input :done, :as => :boolean %>
-      </div>
-    </div>
 
   <div class="actions">
     <%= f.submit :Submit, class: "btn btn-default" %>
