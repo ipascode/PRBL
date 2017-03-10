@@ -1,0 +1,83 @@
+
+<body>
+<%= simple_form_for(@repair, remote: true) do |f| %>
+ <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
+ <% repair.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <br>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= f.association :bus, label_method: :bus_no, value_method: :id, input_html: {class: "bus-selectize"} %>
+        
+      </div>
+      
+      <div class="col-xs-12 col-md-6">
+        <%= f.input :jobcard_num, label: "Job Card Number" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <%= f.input :datestarted,  label: "Date Started" %>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= f.input :driver_id, label: "Driver",
+        collection: @drivers,
+        label_method: :lastname,
+        input_html: {class: 'driver-selectize'} %>
+
+
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <%= f.input :location, collection: ["Tarlac"],  allow_blank: false %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <%= f.input :repairtype, label: "Repair Type", 
+        collection: ['Emergency', 'Preventive', 'Overhaul'],
+        class: 'type-selectize', as: :check_boxes  %>
+      </div>
+    </div>
+
+ <div class="row">
+      <div class="col-xs-12 col-md-12">
+        
+    <%= f.input :done, :as => :boolean %>
+      </div>
+    </div>
+    <h3>Repairs</h3>
+
+
+    <div class='links' style="padding-bottom:10px;">
+       <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fieldsadd', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
+    </div>
+
+    </div>
+
+
+
+  <div class="actions">
+    <%= f.submit :Submit, class: "btn btn-default" %>
+  </div>
+
+<% end %>
+</body>
+
+<script>
+$('document').ready(function() {
+  $('.bus-selectize').selectize({
+  
+  });
+
+   $('.driver-selectize').selectize({
+  
+  });
+
+
+});
+</script>

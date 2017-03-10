@@ -63,19 +63,13 @@ class RepairsController < ApplicationController
   # POST /repairs
   # POST /repairs.json
   def create
-    @bus = Bus.all
     @repair = Repair.new(repair_params)
 
-
-    respond_to do |format|
-      format.html
-      format.js
     
       if @repair.save
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
 
-        @repair.update(datefinished: nil)
         #buses status updates to to be repaired    
         @repair.bus.update(status: "In repair")
 
@@ -87,7 +81,7 @@ class RepairsController < ApplicationController
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
       end
-    end
+    
   end
 
   # PATCH/PUT /repairs/1
