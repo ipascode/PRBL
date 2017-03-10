@@ -1,9 +1,8 @@
- <!--<head>
- <%= javascript_include_tag 'repairs', 'data-turbolinks-track': 'reload' %>
-</head> -->
-
+<head>
+ <%= javascript_include_tag 'repairform', 'data-turbolinks-track': 'reload' %>
+ </head> 
 <body>
-<%= simple_form_for(@repair) do |f| %>
+<%= simple_form_for(@repair, remote: true) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
  <% repair.errors.full_messages.each do |message| %>
         <li><%= message %></li>

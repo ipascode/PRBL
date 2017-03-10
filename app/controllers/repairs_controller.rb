@@ -54,9 +54,6 @@ class RepairsController < ApplicationController
     @repair = Repair.new
     @drivers = Driver.all
 
-    respond_to do |format|
-        format.js
-      end
   end
 
   # GET /repairs/1/edit
@@ -71,6 +68,9 @@ class RepairsController < ApplicationController
 
 
     respond_to do |format|
+      format.html
+      format.js
+    
       if @repair.save
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
