@@ -9,11 +9,12 @@
      
     <div class="col-xs-12 col-md-6">
 
-      <%= f.input :mechanic_id, label: "Mechanic",
+      <%= f.input :mechanic_ids, label: "Mechanic",
         collection: @mechanics,
-        label_method: :lastname,
-        input_html: {class: 'mechanic-selectize'} %>
+        label_method: :lastname, 
+        input_html: {class: 'mechanic-selectize', multiple: true} %>
     </div>
+
   </div>
 
     <div id='job-parts'>

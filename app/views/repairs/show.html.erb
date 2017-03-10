@@ -57,7 +57,10 @@
         <td><%= job.timestarted %></td>
         <td><%= job.timefinished %></td>
         <td><%= job.duration %></td>
-        <td><%= job.mechanic.lastname %></td> 
+        <td><% job.mechanics.each do |mechanic| %>
+          <%= mechanic.name%>
+          <%end%>
+        </td> 
           <% job.job_parts.each do |jobpart| %>
           <td><%= jobpart.part.partname %></td>
           <td><%= jobpart.quantity %><%= jobpart.part.unit %></td>

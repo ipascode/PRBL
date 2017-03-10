@@ -76,8 +76,7 @@
                             <td><p id = 'timefinish-<%=job.id %>'>
                             <% if !job.timefinished.nil? %> <%= job.timefinished.strftime("%X %p") %></p><% end %> </td>
                             <td><%= job.duration %> </td>
-                            <td><% if !job.mechanic.nil? %>
-                              <%= job.mechanic.lastname%><% end %></td>
+                            <td><%= job.mechanics %></td>
                                 
                                              
                                 <% job.job_parts.each do |job_part| %> 

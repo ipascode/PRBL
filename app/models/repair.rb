@@ -10,7 +10,6 @@ class Repair < ApplicationRecord
     scope :part_history, lambda { |b| joins(:jobs =>:job_parts).where('job_parts.part_id'=> b) }
   
     validates :bus_id, presence: true
-    validates :jobcard_num, uniqueness: true
 
   require 'csv'
 

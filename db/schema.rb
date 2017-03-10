@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310041836) do
+ActiveRecord::Schema.define(version: 20170310142331) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename",                            null: false
@@ -73,13 +73,18 @@ ActiveRecord::Schema.define(version: 20170310041836) do
     t.datetime "timefinished"
     t.float    "duration",      limit: 24
     t.string   "jobparticular",            null: false
-    t.integer  "mechanic_id"
     t.integer  "repair_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "status"
-    t.index ["mechanic_id"], name: "index_jobs_on_mechanic_id", using: :btree
     t.index ["repair_id"], name: "index_jobs_on_repair_id", using: :btree
+  end
+
+  create_table "jobs_mechanics", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "mechanic_id"
+    t.integer "job_id"
+    t.index ["job_id"], name: "index_jobs_mechanics_on_job_id", using: :btree
+    t.index ["mechanic_id"], name: "index_jobs_mechanics_on_mechanic_id", using: :btree
   end
 
   create_table "mechanics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -159,7 +164,6 @@ ActiveRecord::Schema.define(version: 20170310041836) do
   add_foreign_key "buses", "bus_models"
   add_foreign_key "job_parts", "jobs"
   add_foreign_key "job_parts", "parts"
-  add_foreign_key "jobs", "mechanics"
   add_foreign_key "jobs", "repairs"
   add_foreign_key "parts", "bus_models"
   add_foreign_key "repairs", "buses"
