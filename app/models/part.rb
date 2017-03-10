@@ -4,6 +4,9 @@ class Part < ApplicationRecord
   validates :partname, :presence => true
   validates :part_number, uniqueness: { case_sensitive: false }
 
+  def to_name
+    "#{partname}: #{part_number}"   
+  end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

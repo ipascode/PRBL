@@ -55,6 +55,7 @@ class RepairsController < ApplicationController
     @drivers = Driver.all
     @buses = Bus.all
     @mechanics = Mechanic.all
+    @parts = Part.all
   end
 
   # GET /repairs/1/edit
