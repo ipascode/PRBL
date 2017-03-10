@@ -58,6 +58,8 @@ class RepairsController < ApplicationController
 
   # GET /repairs/1/edit
   def edit
+    @drivers = Driver.all
+    @bus = Bus.all
   end
 
   # POST /repairs
