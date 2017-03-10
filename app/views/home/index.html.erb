@@ -36,7 +36,7 @@
                   <table class="table">
                      
                     <thead>
-                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? -%><%= repair.datefinished.strftime("%x") %> <%end%>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %>
+                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %>
 
                       <div class="btn-group pull-right" role="group" aria-label="...">
                         <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%>
