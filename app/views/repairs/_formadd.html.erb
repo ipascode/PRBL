@@ -42,12 +42,7 @@
       </div>
     </div>
 
- <div class="row">
-      <div class="col-xs-12 col-md-12">
-        
-    <%= f.input :done, :as => :boolean %>
-      </div>
-    </div>
+
     <h3>Repairs</h3>
 
 
@@ -78,7 +73,7 @@ $('document').ready(function() {
 
    $('form').on('cocoon:after-insert', function(e, addedItem) {
   $(addedItem).find('.mechanic-selectize').selectize({
-    sortField: 'text'
+    
   })
 });
 

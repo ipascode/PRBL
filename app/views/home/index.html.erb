@@ -72,11 +72,12 @@
 
                             <td><%= job.jobparticular %> </td>
                             <td><p id = 'timestart-<%=job.id %>'>
-                              <%= job.timestarted.strftime("%X %p") %></p> </td>
+                               <% if !job.timestarted.nil? %> <%= job.timestarted.strftime("%X %p") %></p> <% end %></td>
                             <td><p id = 'timefinish-<%=job.id %>'>
-                            <%= job.timefinished.strftime("%X %p") %></p> </td>
+                            <% if !job.timefinished.nil? %> <%= job.timefinished.strftime("%X %p") %></p><% end %> </td>
                             <td><%= job.duration %> </td>
-                            <td><%= job.mechanic.name%></td>
+                            <td><% if !job.mechanic.nil? %>
+                              <%= job.mechanic.lastname%><% end %></td>
                                 
                                              
                                 <% job.job_parts.each do |job_part| %> 

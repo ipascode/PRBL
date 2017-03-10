@@ -8,7 +8,11 @@
     <section id="result"></section> 
      
     <div class="col-xs-12 col-md-6">
-      <%= f.association :mechanic, label_method: :lastname, value_method: :id, include_blank: false, label: "Mechanic", input_html: {class: 'mechanic-selectize'} %>
+
+      <%= f.input :mechanic_id, label: "Mechanic",
+        collection: @mechanics,
+        label_method: :lastname,
+        input_html: {class: 'mechanic-selectize'} %>
     </div>
   </div>
 
