@@ -53,7 +53,7 @@ class RepairsController < ApplicationController
   def new
     @repair = Repair.new
     @drivers = Driver.all
-    @bus = Bus.all
+    @buses = Bus.all
   end
 
   # GET /repairs/1/edit
@@ -67,15 +67,13 @@ class RepairsController < ApplicationController
   def create
     @repair = Repair.new(repair_params)
 
-    
+    respond_to do |format|
       if @repair.save
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
 
-        #buses status updates to to be repaired    
-        @repair.bus.update(status: "In repair")
-
         @bus= Bus.find(@repair.bus_id)
+        #buses status updates to to be repaired    \
         bus_update(@bus)
         update_parts(@repair)
         
@@ -83,6 +81,7 @@ class RepairsController < ApplicationController
         format.html { render :new }
         format.json { render json: @repair.errors, status: :unprocessable_entity }
       end
+    end
     
   end
 
