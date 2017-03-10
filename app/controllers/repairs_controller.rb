@@ -53,7 +53,7 @@ class RepairsController < ApplicationController
   def new
     @repair = Repair.new
     @drivers = Driver.all
-
+    @bus = Bus.all
   end
 
   # GET /repairs/1/edit

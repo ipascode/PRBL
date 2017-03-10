@@ -32,7 +32,7 @@
         <%= f.input :driver_id, label: "Driver",
         collection: @drivers,
         label_method: :lastname,
-        class: 'driver-selectize' %>
+        input_html: {class: 'driver-selectize'} %>
 
 
       </div>
@@ -76,3 +76,17 @@
 
 <% end %>
 </body>
+
+<script>
+$('document').ready(function() {
+  $('.bus-selectize').selectize({
+  
+  });
+
+   $('.driver-selectize').selectize({
+  
+  });
+
+
+});
+</script>
