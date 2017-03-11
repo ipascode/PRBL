@@ -4,7 +4,8 @@ class RepairsController < ApplicationController
   # GET /repairs
   # GET /repairs.json
   def index
-    @repairs = Repair.all
+    @repairs = Repair.all.includes(:driver, :bus)
+
     respond_to do |format|
       format.html
       format.csv { send_data @repairs.to_csv, filename: "jobcards-#{Date.today}.csv" }
@@ -52,17 +53,20 @@ class RepairsController < ApplicationController
   def new
     @repair = Repair.new
     @drivers = Driver.all
-
+    @buses = Bus.all
+    @mechanics = Mechanic.all
+    @parts = Part.all
   end
 
   # GET /repairs/1/edit
   def edit
+    @drivers = Driver.all
+    @bus = Bus.all
   end
 
   # POST /repairs
   # POST /repairs.json
   def create
-    @bus = Bus.all
     @repair = Repair.new(repair_params)
 
     respond_to do |format|
@@ -70,11 +74,8 @@ class RepairsController < ApplicationController
         format.html { redirect_to @repair, notice: 'Repair was successfully created.' }
         format.json { render :show, status: :created, location: @repair }
 
-        @repair.update(datefinished: nil)
-        #buses status updates to to be repaired    
-        @repair.bus.update(status: "In repair")
-
         @bus= Bus.find(@repair.bus_id)
+        #buses status updates to to be repaired    \
         bus_update(@bus)
         update_parts(@repair)
         
@@ -83,6 +84,7 @@ class RepairsController < ApplicationController
         format.json { render json: @repair.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # PATCH/PUT /repairs/1
@@ -128,8 +130,8 @@ class RepairsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
-      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :location, :jobcard_num, :done,
-        jobs_attributes: [:id, :repair_id, :mechanic_id, :timestarted, :timefinished, :jobparticular, :status, :_destroy, 
+      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :jobcard_num, :done,
+        jobs_attributes: [:id, :repair_id, :timestarted, :timefinished, :jobparticular,  :mechanic_ids, :status, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
 

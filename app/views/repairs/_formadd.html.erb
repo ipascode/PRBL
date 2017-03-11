@@ -1,4 +1,5 @@
- <body>
+
+<body>
 <%= simple_form_for(@repair) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
  <% repair.errors.full_messages.each do |message| %>
@@ -20,9 +21,7 @@
       <div class="col-xs-6 col-md-6">
         <%= f.input :datestarted,  label: "Date Started", as: :date %>
       </div>
-      <div class="col-xs-6 col-md-6">
-        <%= f.input :datefinished, label: "Date Finished", as: :date %>
-      </div>
+
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
@@ -31,21 +30,15 @@
         label_method: :lastname,
         input_html: {class: 'driver-selectize'} %>
 
+
       </div>
-     
+    
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <%= f.input :repairtype, label: "Repair Type", 
         collection: ['Emergency', 'Preventive', 'Overhaul'],
-        as: :check_boxes  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        
-    <%= f.input :done, :as => :boolean, label: "Done" %>
+        class: 'type-selectize', as: :check_boxes  %>
       </div>
     </div>
 
@@ -53,16 +46,12 @@
     <h3>Repairs</h3>
 
 
-    <div id='jobs'>
-        <%= f.fields_for :jobs do |job| %>
-          <%= render 'repairs/jobs_fields', :f => job %>
-        <% end %>
-
     <div class='links' style="padding-bottom:10px;">
-       <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
+       <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fieldsadd', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
     </div>
 
     </div>
+
 
 
   <div class="actions">
@@ -82,7 +71,11 @@ $('document').ready(function() {
   
   });
 
-
+   $('form').on('cocoon:after-insert', function(e, addedItem) {
+  $(addedItem).find('.mechanic-selectize').selectize({
+     delimiter: ','
+  })
+});
 
 });
 </script>

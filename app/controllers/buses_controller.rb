@@ -5,7 +5,7 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    @buses = Bus.order(:bus_no)
+    @buses = Bus.order(:bus_no).includes(:bus_model, :bus_line)
 
     respond_to do |format|
       format.html

@@ -4,7 +4,7 @@
         Import
       </button>
        <%= link_to "Export", repairs_path(format: "csv"), :class => "btn btn-default" %> 
-      
+    
     </div>
 
 
@@ -34,7 +34,6 @@
       <th>Repair Type</th>
       <th>Driver</th>
       <th>Bus</th>
-      <th>Location</th>
       <th colspan="3">Actions</th>
     </tr>
   </thead>
@@ -46,9 +45,12 @@
         <td><%= repair.datestarted %></td>
         <td><%= repair.datefinished %></td>
         <td><%= repair.repairtype %></td>
-        <td><%= repair.driver.lastname %></td>
-        <td><%= repair.bus.bus_no %></td>
-        <td><%= repair.location %></td>
+        <td> <% if !repair.driver.nil? %>
+        <%= repair.driver.lastname %>
+        <%end%></td>
+        <td><% if !repair.bus.nil? %>
+        <%= repair.bus.bus_no %>
+        <%end%></td>
         <td><%= link_to 'View', repair, :class => "btn btn-default"%></td>
         <td><%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%></td>
         <td><%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%></td>

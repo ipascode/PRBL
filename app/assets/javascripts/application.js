@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require cocoon
 //= require_tree .
 //= require jquery
@@ -20,4 +19,5 @@
 //= require selectize
 //= require chart.bundle
 //= require chartkick
+//= require turbolinks
 
