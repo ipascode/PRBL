@@ -43,7 +43,8 @@ gem 'chartkick', '~> 1.2.5'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median'
 gem 'bullet', group: 'development'
-
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
