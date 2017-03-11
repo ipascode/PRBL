@@ -19,10 +19,13 @@
     </div>
     <div class="row">
       <div class="col-xs-6 col-md-6">
-        <%= f.input :datestarted,  label: "Date Started", as: :date %>
+        <%= f.input :datestarted,  
+        label: "Date Started",
+        :as => :date_picker %>
+        </div>
       </div>
 
-    </div>
+      
     <div class="row">
       <div class="col-xs-12 col-md-6">
         <%= f.input :driver_id, label: "Driver",
@@ -63,6 +66,7 @@
 
 <script>
 $('document').ready(function() {
+
   $('.bus-selectize').selectize({
   
   });
@@ -74,6 +78,9 @@ $('document').ready(function() {
    $('form').on('cocoon:after-insert', function(e, addedItem) {
   $(addedItem).find('.mechanic-selectize').selectize({
      delimiter: ','
+  })
+  $(addedItem).find('.job-selectize').selectize({
+     create: true
   })
 });
 

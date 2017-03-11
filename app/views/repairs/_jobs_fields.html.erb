@@ -8,15 +8,18 @@
      <section id="result"></section> 
      
     <div class="col-xs-12 col-md-6">
-      <%= f.association :mechanic, label_method: :lastname, value_method: :id, include_blank: false, label: "Mechanic", input_html: {class: 'mechanic-selectize'} %>
+      <%= f.input :mechanic_ids, label: "Mechanic",
+        collection: @mechanics,
+        label_method: :lastname, 
+        input_html: {class: 'mechanic-selectize', multiple: true} %>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-6 col-md-6">
-      <%= f.input :timestarted, label: "Time Started" %>
+      <%= f.input :timestarted, label: "Time Started", :as => :datetime_picker  %>
     </div>
     <div class="col-xs-6 col-md-6">
-      <%= f.input :timefinished, label: "Time Finished" %>
+      <%= f.input :timefinished, label: "Time Finished", :as => :datetime_picker  %>
     </div>
   </div>
 

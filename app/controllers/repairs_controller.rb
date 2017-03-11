@@ -56,12 +56,15 @@ class RepairsController < ApplicationController
     @buses = Bus.all
     @mechanics = Mechanic.all
     @parts = Part.all
+    @jobs = Job.all
   end
 
   # GET /repairs/1/edit
   def edit
     @drivers = Driver.all
-    @bus = Bus.all
+    @buses = Bus.all
+    @mechanics = Mechanic.all
+    @parts = Part.all
   end
 
   # POST /repairs
@@ -77,6 +80,7 @@ class RepairsController < ApplicationController
         @bus= Bus.find(@repair.bus_id)
         #buses status updates to to be repaired    \
         bus_update(@bus)
+
         update_parts(@repair)
         
       else
@@ -131,16 +135,17 @@ class RepairsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
       params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :jobcard_num, :done,
-        jobs_attributes: [:id, :repair_id, :timestarted, :timefinished, :jobparticular,  :mechanic_ids, :status, :_destroy, 
+        jobs_attributes: [:id, :repair_id, :timestarted, :timefinished, :jobparticular, {:mechanic_ids => []}, :status, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
 
     def update_parts(r)
       r.jobs.each do |job|
             job.job_parts.each do |job_part|
-
-              job_part.update(total: job_part.quantity * job_part.cost)
-              job_part.part.update(last_used: Time.now, price: job_part.cost)
+              if job_part.quantity != nil && job_part.cost != nil
+                job_part.update(total: job_part.quantity * job_part.cost)
+                job_part.part.update(last_used: Time.now, price: job_part.cost)
+              end
             end
         end
     end

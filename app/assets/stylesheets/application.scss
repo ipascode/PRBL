@@ -12,12 +12,14 @@
  *
  *= require selectize
  *= require selectize.default
+  *= require bootstrap-datetimepicker
  */
 
  
 
 @import "bootstrap";
 @import "bootstrap-sprockets";
+@import 'bootstrap-datetimepicker';
 
 body { 
 		padding-top: 70px; 

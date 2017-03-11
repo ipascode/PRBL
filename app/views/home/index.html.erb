@@ -36,7 +36,7 @@
                   <table class="table">
                      
                     <thead>
-                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%>| Driver: <%= repair.driver.lastname %> <%= repair.driver.firstname %>
+                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%>| Driver: <%= repair.driver.lastname %> 
 
                       <div class="btn-group pull-right" role="group" aria-label="...">
                         <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%>
@@ -76,9 +76,10 @@
                             <td><p id = 'timefinish-<%=job.id %>'>
                             <% if !job.timefinished.nil? %> <%= job.timefinished.strftime("%X %p") %></p><% end %> </td>
                             <td><%= job.duration %> </td>
-                            <td><%= job.mechanics %></td>
-                                
-                                             
+                            <td><% job.mechanics.each do |mechanic| %>
+                            <%= mechanic.lastname%>
+                            <%end%></td>
+                                                                         
                                 <% job.job_parts.each do |job_part| %> 
                                 <td><%= job_part.part.partname %> </td>
                                 <td></td>

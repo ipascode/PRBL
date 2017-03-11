@@ -8,14 +8,11 @@ class Driver < ApplicationRecord
 
   require 'csv'
 
-  def name
-    "#{firstname[0,1]}. #{lastname}"
-  end
 
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
      driver_hash = row.to_hash
-      driver = Driver.where(lastname: driver_hash["lastname"], firstname: driver_hash["firstname"], middlename: driver_hash["middlename"])
+      driver = Driver.where(lastname: driver_hash["lastname"])
 
       if driver.count == 1
         driver.first.update_attributes(driver_hash)

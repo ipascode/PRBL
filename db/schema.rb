@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310142331) do
+ActiveRecord::Schema.define(version: 20170311034347) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "linename",                            null: false
@@ -46,8 +46,6 @@ ActiveRecord::Schema.define(version: 20170310142331) do
 
   create_table "drivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "lastname",            null: false
-    t.string   "firstname"
-    t.string   "middlename"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "avatar_file_name"
@@ -89,8 +87,6 @@ ActiveRecord::Schema.define(version: 20170310142331) do
 
   create_table "mechanics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "lastname",            null: false
-    t.string   "firstname"
-    t.string   "middlename"
     t.string   "position"
     t.string   "skills"
     t.integer  "shift"

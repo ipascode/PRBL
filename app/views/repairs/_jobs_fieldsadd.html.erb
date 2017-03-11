@@ -1,9 +1,17 @@
 <div class='nested-fields'>
   <div class="well" style="padding: 10px;">
+  
   <div class="row">
     <div class="col-xs-12 col-md-6">
-      <%= f.input :jobparticular, label: "Job Particulars" %>
+      <%= f.input :jobparticular, 
+      label: "Job Particular",
+      collection: @jobs,
+      label_method: :jobparticular,
+      value_method: :jobparticular,
+      input_html: {class: 'job-selectize'}  %>
     </div>
+
+    <%= f.input :status, :as => :hidden, input_html: { value: "Not Started"} %>
 
     <section id="result"></section> 
      
@@ -25,6 +33,7 @@
     <div class='links' style="padding-bottom:10px;">
       <%= link_to_add_association 'Add Part', f, :job_parts, :partial => 'job_parts_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
     </div>
+
 
   </div>
 

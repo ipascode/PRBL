@@ -18,10 +18,10 @@
     </div>
     <div class="row">
       <div class="col-xs-6 col-md-6">
-        <%= f.input :datestarted,  label: "Date Started", as: :date %>
+        <%= f.input :datestarted,  label: "Date Started", as: :date_picker %>
       </div>
       <div class="col-xs-6 col-md-6">
-        <%= f.input :datefinished, label: "Date Finished", as: :date %>
+        <%= f.input :datefinished, label: "Date Finished", as: :date_picker %>
       </div>
     </div>
     <div class="row">
@@ -82,7 +82,11 @@ $('document').ready(function() {
   
   });
 
-
+   $('form').on('cocoon:after-insert', function(e, addedItem) {
+  $(addedItem).find('.mechanic-selectize').selectize({
+     delimiter: ','
+  })
+});
 
 });
 </script>

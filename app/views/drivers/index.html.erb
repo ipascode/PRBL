@@ -33,9 +33,7 @@
   <thead>
     <tr>
       <th>Image</th>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>Middlename</th>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -45,8 +43,6 @@
       <tr>
         <td><%= image_tag driver.avatar.url(:thumb) %></td>
         <td><%= driver.lastname %></td>
-        <td><%= driver.firstname %></td>
-        <td><%= driver.middlename %></td>
         <td><%= link_to 'View', driver, :class => 'btn btn-default'  %></td>
         <td><%= link_to 'Edit', edit_driver_path(driver), :class => 'btn btn-default'  %></td>
         <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'  %></td>

@@ -20,4 +20,7 @@
 //= require chart.bundle
 //= require chartkick
 //= require turbolinks
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
 

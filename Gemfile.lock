@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -105,6 +114,8 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     mysql2 (0.3.21)
     mysql2 (0.3.21-x86-mingw32)
@@ -209,10 +220,12 @@ DEPENDENCIES
   chartkick (~> 1.2.5)
   cocoon
   coffee-rails (~> 4.2)
+  datetimepicker-rails!
   devise
   groupdate (~> 2.1.1)
   jbuilder (~> 2.5)
   jquery-rails
+  momentjs-rails (>= 2.9.0)
   mysql2
   paperclip
   puma (~> 3.0)
