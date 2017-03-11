@@ -30,6 +30,7 @@ class RepairsController < ApplicationController
 
     if @job.status == "Repairing"
       @job.update(timefinished: Time.now, status: "Done")
+      @job.update(duration: TimeDifference.between(@job.timestarted, @job.timefinished).in_seconds)
       @repair = Repair.find(@job.repair_id)
         if @repair.jobs.count == @repair.jobs.done.count
           @repair.update(done: true)

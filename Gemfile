@@ -45,7 +45,7 @@ gem 'active_median'
 gem 'bullet', group: 'development'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
-
+gem 'time_difference'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

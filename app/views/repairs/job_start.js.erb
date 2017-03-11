@@ -1,3 +1,4 @@
 $("#job-<%=@job.id%>").text('<%=@job.status%>')
 $("#timestart-<%=@job.id%>").text('<%= @job.timestarted%>')
 $("#timefinish-<%=@job.id%>").text('<%= @job.timefinished%>')
+$("#duration-<%=@job.id%>").text('<%= TimeDifference.between(@job.timestarted, @job.timefinished).humanize%>')
