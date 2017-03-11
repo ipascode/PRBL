@@ -61,7 +61,9 @@ class RepairsController < ApplicationController
   # GET /repairs/1/edit
   def edit
     @drivers = Driver.all
-    @bus = Bus.all
+    @buses = Bus.all
+    @mechanics = Mechanic.all
+    @parts = Part.all
   end
 
   # POST /repairs
