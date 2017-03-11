@@ -1,5 +1,5 @@
 class Repair < ApplicationRecord
-	
+
 	belongs_to :driver
 	belongs_to :bus
 	has_many :jobs,  inverse_of: :repair, dependent: :destroy #prevents error: jobs repair does not exist 

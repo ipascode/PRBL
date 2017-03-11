@@ -5,5 +5,43 @@
 
   <h3> Duration per Repair </h3>
 <div>
-    <% column_chart Repair.group_by_day(:created_at, reverse: true).sum('datestarted-datefinished') %>
+
+
+  
+    <canvas id="myChart"></canvas>
+<!--     <canvas id="myChart"></canvas> -->
+
+    <!-- Need to make duration work -->
+  <!--   pwede ruby in javacript -->
+  <!-- learn to put in an array. Once in n array then put inside javascript -->
+  <!-- you can loop javscript -->
   </div>
+
+  <script>
+  <% duration = 0 %>
+  <%@buses.each do |bus|%>
+	  <% bus.repairs.each do |repair| %>
+	  	<%= repair.datefinished.to_i - repair.datestarted.to_i %>
+	  <% end %>
+  <% end %>
+
+
+  var js_array2 = <%= raw Bus.pluck(:bus_no).to_json %>;
+  var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	  type: 'bar',
+	  data: {
+	    labels: js_array2,
+	    datasets: [{
+	      label: 'Duration',
+	    }, {
+	      data: [  <%@buses.each do |bus|%>
+	  <% bus.repairs.each do |repair| %>
+	  	<%= (repair.datefinished.to_i - repair.datestarted.to_i).minutes %>,
+	  <% end %>
+  <% end %>0]
+	    }]
+	  }
+	});
+
+  </script>
