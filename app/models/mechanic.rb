@@ -6,14 +6,11 @@ class Mechanic < ApplicationRecord
   validates :lastname, :presence => true
   	require 'csv'
 
-  def name
-    "#{firstname[0,1]}. #{lastname}"
-  end
 
 	def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
      mechanic_hash = row.to_hash
-      mechanic = Mechanic.where(lastname: mechanic_hash["lastname"], firstname: mechanic_hash["firstname"], middlename: mechanic_hash["middlename"])
+      mechanic = Mechanic.where(lastname: mechanic_hash["lastname"])
 
       if mechanic.count == 1
        mechanic.first.update_attributes(mechanic_hash)

@@ -1,19 +1,11 @@
 <p id="notice"><%= notice %></p>
 <%= image_tag @driver.avatar.url(:medium) %>
 <p>
-  <strong>Lastname:</strong>
+  <strong>Name:</strong>
   <%= @driver.lastname %>
 </p>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @driver.firstname %>
-</p>
 
-<p>
-  <strong>Middlename:</strong>
-  <%= @driver.middlename %>
-</p>
 
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
