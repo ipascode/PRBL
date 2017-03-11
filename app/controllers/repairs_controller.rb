@@ -80,6 +80,7 @@ class RepairsController < ApplicationController
         @bus= Bus.find(@repair.bus_id)
         #buses status updates to to be repaired    \
         bus_update(@bus)
+
         update_parts(@repair)
         
       else
@@ -141,9 +142,10 @@ class RepairsController < ApplicationController
     def update_parts(r)
       r.jobs.each do |job|
             job.job_parts.each do |job_part|
-
-              job_part.update(total: job_part.quantity * job_part.cost)
-              job_part.part.update(last_used: Time.now, price: job_part.cost)
+              if job_part.quantity != nil && job_part.cost != nil
+                job_part.update(total: job_part.quantity * job_part.cost)
+                job_part.part.update(last_used: Time.now, price: job_part.cost)
+              end
             end
         end
     end
