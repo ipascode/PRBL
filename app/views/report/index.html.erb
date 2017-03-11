@@ -37,7 +37,7 @@
 	    }, {
 	      data: [  <%@buses.each do |bus|%>
 	  <% bus.repairs.each do |repair| %>
-	  	<%= repair.datefinished.to_i - repair.datestarted.to_i %>,
+	  	<%= (repair.datefinished.to_i - repair.datestarted.to_i).minutes %>,
 	  <% end %>
   <% end %>0]
 	    }]
