@@ -2,7 +2,7 @@ class Part < ApplicationRecord
   belongs_to :bus_model, optional: true
   require 'csv'
   validates :partname, :presence => true
-  validates :part_number, uniqueness: { case_sensitive: false }
+  validates :part_number, uniqueness: { case_sensitive: false, allow_nil: true}
 
   def to_name
     "#{partname}: #{part_number}"   

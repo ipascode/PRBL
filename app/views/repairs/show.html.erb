@@ -62,10 +62,16 @@
           <%end%>
         </td> 
           <% job.job_parts.each do |jobpart| %>
-          <td><%= jobpart.part.partname %></td>
-          <td><%= jobpart.quantity %><%= jobpart.part.unit %></td>
-          <td><%= jobpart.cost %></td>
-          <td><%= jobpart.total %></td>
+          <td>
+            <% if !jobpart.part.nil? %>
+              <%= jobpart.part.partname %>
+            <% else %>
+              N/A
+            <% end %>
+          </td>
+            <td><%= jobpart.quantity %><% if !jobpart.part.nil? %><%= jobpart.part.unit %><% end %></td>
+            <td><%= jobpart.cost %></td>
+            <td><%= jobpart.total %></td>
           <% end %>
       </tr>
     <% end %>
