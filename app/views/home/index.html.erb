@@ -75,14 +75,14 @@
                                <% if !job.timestarted.nil? %> <%= job.timestarted.strftime("%X %p") %></p> <% end %></td>
                             <td><p id = 'timefinish-<%=job.id %>'>
                             <% if !job.timefinished.nil? %> <%= job.timefinished.strftime("%X %p") %></p><% end %> </td>
-                            <td><p id = 'duration-<%=job.id %>'><%= job.duration %></p> </td>
+                            <td><p id = 'duration-<%=job.id %>'><%= job.duration %> </td>
                             <td><% job.mechanics.each do |mechanic| %>
                             <%= mechanic.lastname%>
                             <%end%></td>
                                                                          
                                 <% job.job_parts.each do |job_part| %> 
                                 <td><%= job_part.part.partname %> </td>
-                                <td><%= TimeDifference.between(start_time, end_time).humanize %></td>
+                                <td></td>
                                 <td><%= job_part.quantity %> </td>
                                 <td><%= job_part.cost %> </td>
                                 <td><%= job_part.total %> </td></td>
