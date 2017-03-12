@@ -52,6 +52,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  #comment this out from here
   config.after_initialize do
   Bullet.enable = true
   Bullet.alert = false
@@ -62,5 +63,5 @@ Rails.application.configure do
   Bullet.add_footer = true
 
 end
-  
+#to here before going to production
 end

@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require cocoon
 //= require_tree .
-//= require jquery
 //= require bootstrap-sprockets
 //= require selectize
 //= require chart.bundle
