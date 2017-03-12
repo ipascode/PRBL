@@ -42,7 +42,6 @@ gem 'chart-js-rails'
 gem 'chartkick', '~> 1.2.5'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median'
-gem 'bullet', group: 'development'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'time_difference'
@@ -58,6 +57,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
