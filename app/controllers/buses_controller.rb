@@ -22,7 +22,68 @@ class BusesController < ApplicationController
   def odometer_add
     @bus= Bus.find(params[:id])
     @bus.update(odometer: @bus.odometer + @bus.bus_line.distance)
-    
+    @ceo = "Change Engine Oil"
+    @cff = "Change Fuel Filter"
+    @cof = "Change Oil Filter"
+    @ns = "Not Started"
+    @cab = "Check/Adjust Brake (Front & Rear)"
+    @cac = "Check/Adjust Clutch"
+    @cav = "Check/Adjust V-Belt"
+    @cae = "Check/Clean Air Cleaner Element"
+    if @bus.odometer >= 5000 && @bus.odometer < 15000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now)  
+
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns)
+      r.jobs.create(jobparticular: "Change Differential Gear Oil - SAE 140", status: @ns)
+      r.jobs.create(jobparticular: "Change Transmission Gear Oil - SAE 90", status: @ns)
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: "Greasing All Fittings", status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav status: @ns)
+      r.jobs.create(jobparticular: "Check/Clean Air Cleaner Element", status: @ns)
+      r.jobs.create(jobparticular: "Change ATF Oil", status: @ns)
+      r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
+      r.jobs.create(jobparticular: "Change Battery Fluid", status: @ns)
+
+    elsif @bus.odometer >=15000 && @bus.odometer < 25000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now)  
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns)
+      r.jobs.create(jobparticular: "Repacked All Wheel Hub Bearing (Front & Rear)", status: @ns)
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: "Greasing All Fittings", status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Valve Clearance", status: @ns)
+      r.jobs.create(jobparticular: "Check Retorque Front & Rear Suspension Bolt & Nut", status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System", status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Draglink & Tie Rod End", status: @ns)
+      r.jobs.create(jobparticular: "Check Battery Fluid", status: @ns)
+      r.jobs.create(jobparticular: "Tune up", status: @ns)
+    elsif @bus.odometer >= 25000 && @bus.odometer < 35000
+    elsif @bus.odometer >= 35000 && @bus.odometer < 45000
+
+    elsif @bus.odometer >=45000 && @bus.odometer <55000
+
+    elsif @bus.odometer >=55000 && @bus.odometer <65000
+
+    elsif @bus.odometer >=65000 && @bus.odometer <75000
+
+    elsif @bus.odometer >=85000 && @bus.odometer <95000
+
+    elsif @bus.odometer >= 95000 && @bus.odometer <105000
+
+    elsif @bus.odometer >=105000
+
+
+    end
+
     respond_to do |format|
       format.js
     end
