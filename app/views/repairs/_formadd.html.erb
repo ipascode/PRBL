@@ -1,5 +1,6 @@
-
 <body>
+<div class="col-xs-12 col-md-6">
+
 <%= simple_form_for(@repair) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
  <% repair.errors.full_messages.each do |message| %>
@@ -8,60 +9,62 @@
       <br>
 
     <div class="row">
-      <div class="col-xs-12 col-md-6">
         <%= f.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize"} %>
-        
-      </div>
-      
-      <div class="col-xs-12 col-md-6">
-        <%= f.input :jobcard_num, label: "Job Card Number" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6 col-md-6">
-        <%= f.input :datestarted,  
-        label: "Date Started",
-        :as => :date_picker %>
-        </div>
-      </div>
-
+    </div>  
       
     <div class="row">
-      <div class="col-xs-12 col-md-6">
         <%= f.input :driver_id, label: "Driver",
         collection: @drivers,
         label_method: :lastname,
         input_html: {class: 'driver-selectize'} %>
 
-
-      </div>
     
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <%= f.input :repairtype, label: "Repair Type", 
-        collection: ['Emergency', 'Preventive', 'Overhaul'],
-        class: 'type-selectize', as: :check_boxes  %>
-      </div>
-    </div>
-
 
     <h3>Repairs</h3>
-
 
     <div class='links' style="padding-bottom:10px;">
        <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fieldsadd', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
     </div>
 
-    </div>
-
-
+   
 
   <div class="actions">
     <%= f.submit :Submit, class: "btn btn-default" %>
   </div>
 
 <% end %>
+</div>
+
+<div class="col-xs-12 col-md-6">
+  <h3>Bus History</h3>
+  <div class="panel panel-default" style="padding: 10px;">
+  <div class="table-responsive">
+<table class="table">
+  <thead>
+    <span>Date Started: | Date Finished: 
+    </span>
+    <tr>
+      <th>Repair</th>
+      <th>Duration</th>
+      <th>Part Name</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+ <tbody class="table-hover">
+  <tr></tr>
+  <td>Repair</td>
+  <td>Duration</td>
+  <td>Part Name</td>
+  <td>Quantity + Unit</td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
 </body>
 
 <script>
