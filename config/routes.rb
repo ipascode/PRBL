@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   get 'home/index' 
   get 'report/index' 
+  get 'admin/manage_users' 
 
   resources :parts do
    collection { post :import }
@@ -37,8 +38,7 @@ Rails.application.routes.draw do
   resources :drivers do
    collection { post :import }
    end
-
-
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root :to => "home#index"
