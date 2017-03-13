@@ -9,6 +9,16 @@
   <%= @part.part_number %>
 </p>
 
+<p>
+  <strong>Serial Number:</strong>
+  <%= @part.serial_no %>
+</p>
+
+<p>
+  <strong>Cost Per Kilometer:</strong>
+  <%= @part.cpk %>
+</p>
+
 <% if !@part.bus_model.nil? -%>
  <p>
   <strong>Bus Model:</strong>

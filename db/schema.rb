@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313142543) do
+ActiveRecord::Schema.define(version: 20170313192357) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename",                            null: false
@@ -98,16 +98,19 @@ ActiveRecord::Schema.define(version: 20170313142543) do
   end
 
   create_table "parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "partname",                   null: false
+    t.string   "partname",                              null: false
     t.string   "part_number"
     t.string   "unit"
     t.integer  "bus_model_id"
     t.integer  "index_number"
-    t.string   "price",        default: "0"
+    t.string   "price",                   default: "0"
     t.integer  "lifespan"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.datetime "last_used"
+    t.float    "cpk",          limit: 24
+    t.string   "serial_no"
+    t.string   "group"
     t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
   end
 

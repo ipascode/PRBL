@@ -30,13 +30,14 @@ class RepairsController < ApplicationController
 
 
   def import
-    #begin
+    begin
       Repair.import(params[:file])
       redirect_to repairs_url, notice: "Repairs imported."
-    #rescue
-    #    redirect_to repairs_url, notice: "Invalid CSV file format."
-    #  end
+    rescue
+        redirect_to repairs_url, notice: "Invalid CSV file format."
+      end
   end
+
   # GET /repairs/1
   # GET /repairs/1.json
   def show
@@ -83,6 +84,7 @@ class RepairsController < ApplicationController
     @buses = Bus.all
     @mechanics = Mechanic.all
     @parts = Part.all
+    @jobs = Job.all
   end
 
   # POST /repairs
@@ -96,7 +98,7 @@ class RepairsController < ApplicationController
         format.json { render :show, status: :created, location: @repair }
 
         @bus= Bus.find(@repair.bus_id)
-        #buses status updates to to be repaired    \
+        #buses status updates to to be repaired    
         bus_update(@bus)
 
         update_parts(@repair)
