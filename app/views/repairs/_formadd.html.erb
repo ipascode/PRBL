@@ -36,9 +36,11 @@
 <% end %>
 </div>
 
-<div class="col-xs-12 col-md-6" id="bhis">
+<div class="col-xs-12 col-md-6" >
   <h3>Bus History</h3>
+  <div id="bhis">
 
+  </div>
 </div>
 
 
@@ -59,12 +61,15 @@ $('document').ready(function() {
         data: {bn:s},
         dataType: "json",
         success: function(s) {
-            s != null ? 
+            s != null ? ($("#bhis").empty(),
+               $("#norepair").empty(),
             $.each(s, function (i, v) {
-              var stuff = '<div class="panel panel-default" style="padding: 10px;"><div class="table-responsive "><table class="table"><thead><span>Date Started: ' //stuff + s.timestarted
+
+              var stuff = '<div class="panel panel-default" id="removemepls" style="padding: 10px;"><div class="table-responsive "><table class="table"><thead><span>Date Started: ' //stuff + s.timestarted
               var stuff2 = ' | Date Finished: ' //+ s.timefinished +
               var stuff3 = ' </span><tr><th>Repair</th><th>Duration</th><th>Part Name</th><th>Quantity</th></tr></thead><tbody class="table-hover">'
               var stuff4 = ''
+             
               $.each(s[i].jobs, function (index, value){ 
                 console.log("why is nothing happening");
                 stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].jobs[index].duration + '</td>'
@@ -75,10 +80,13 @@ $('document').ready(function() {
               })
                 var stuff5 = '</tbody></table></div></div>'
                $("#bhis").append(stuff + s.timestarted + stuff2 + stuff3 +stuff4 +stuff5);
-            })
+            }
+            ))
 
 
- : $("#bhis").append('<p>No Repairs</p>')
+ : ($("#bhis").empty(),
+               $("#norepairs").empty(),
+                $("#bhis").append('<p id="norepairs">No Repairs</p>'))
         }
     }) : null
 });
