@@ -10,6 +10,17 @@
   </div>
 </div>
 
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= f.input :group, collection: ['Tires'], :as => :check_boxes %>
+    <%= f.input :serial_no %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= f.input :cpk, input_html: {value: f.object.cpk || '0'} %>
+  </div>
+</div>
+
 <div class="row"> 
   <div class="col-xs-6 col-md-6">
     <%= f.label :bus_model_id %>
