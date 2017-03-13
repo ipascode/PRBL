@@ -12,6 +12,23 @@ class RepairsController < ApplicationController
     end
   end
 
+  def bushistory
+    @repair = Repair.includes(jobs: :job_parts).where(bus_id: params[:bn]).limit(10)
+    respond_to do |format|
+      if @repair.present?
+        format.json { render json: @repair, 
+                             :include => { :jobs => {
+                             :include => { :job_parts => {
+                              :include => :part
+                             }
+                             }}}}
+      else
+        format.json { render json: 'null'}
+      end
+    end
+  end
+
+
   def import
     #begin
       Repair.import(params[:file])

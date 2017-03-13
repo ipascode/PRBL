@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   get 'home/index' 
   get 'report/index' 
+
   get 'admin/manage_users' 
+
+get '/bushistory/' => 'repairs#bushistory', :defaults => { :format => 'json' }
 
   resources :parts do
    collection { post :import }

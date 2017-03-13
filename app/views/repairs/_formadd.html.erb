@@ -9,7 +9,7 @@
       <br>
 
     <div class="row">
-        <%= f.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize"} %>
+        <%= f.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize selectabuzz"} %>
     </div>  
       
     <div class="row">
@@ -36,32 +36,11 @@
 <% end %>
 </div>
 
-<div class="col-xs-12 col-md-6">
+<div class="col-xs-12 col-md-6" >
   <h3>Bus History</h3>
-  <div class="panel panel-default" style="padding: 10px;">
-  <div class="table-responsive">
-<table class="table">
-  <thead>
-    <span>Date Started: | Date Finished: 
-    </span>
-    <tr>
-      <th>Repair</th>
-      <th>Duration</th>
-      <th>Part Name</th>
-      <th>Quantity</th>
-    </tr>
-  </thead>
- <tbody class="table-hover">
-  <tr></tr>
-  <td>Repair</td>
-  <td>Duration</td>
-  <td>Part Name</td>
-  <td>Quantity + Unit</td>
-  </tr>
-</tbody>
-</table>
-</div>
-</div>
+  <div id="bhis">
+
+  </div>
 </div>
 
 
@@ -72,7 +51,45 @@ $('document').ready(function() {
 
   $('.bus-selectize').selectize({
   
-  });
+  }).on('change', function(){
+    var s = $(this).val()
+    e = s.toString().length;
+    console.log("ur mom");
+    e > 0 ? $.ajax({
+        method: "GET",
+        url: "/bushistory/",
+        data: {bn:s},
+        dataType: "json",
+        success: function(s) {
+            s != null ? ($("#bhis").empty(),
+               $("#norepair").empty(),
+            $.each(s, function (i, v) {
+
+              var stuff = '<div class="panel panel-default" id="removemepls" style="padding: 10px;"><div class="table-responsive "><table class="table"><thead><span>Date Started: ' //stuff + s.timestarted
+              var stuff2 = ' | Date Finished: ' //+ s.timefinished +
+              var stuff3 = ' </span><tr><th>Repair</th><th>Duration</th><th>Part Name</th><th>Quantity</th></tr></thead><tbody class="table-hover">'
+              var stuff4 = ''
+             
+              $.each(s[i].jobs, function (index, value){ 
+                console.log("why is nothing happening");
+                stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].jobs[index].duration + '</td>'
+                $.each(s[i].jobs[index].job_parts, function(h, c){
+                  stuff4 += '<td>' + s[i].jobs[index].job_parts[h].part.partname + '</td><td>' + s[i].jobs[index].job_parts[h].quantity + s[i].jobs[index].job_parts[h].part.unit
+                })
+                stuff4+= '</td></tr>'
+              })
+                var stuff5 = '</tbody></table></div></div>'
+               $("#bhis").append(stuff + s.timestarted + stuff2 + stuff3 +stuff4 +stuff5);
+            }
+            ))
+
+
+ : ($("#bhis").empty(),
+               $("#norepairs").empty(),
+                $("#bhis").append('<p id="norepairs">No Repairs</p>'))
+        }
+    }) : null
+});
 
    $('.driver-selectize').selectize({
   
@@ -88,4 +105,9 @@ $('document').ready(function() {
 });
 
 });
+</script>
+
+<script>
+
+
 </script>
