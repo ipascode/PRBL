@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'home/index' 
   get 'report/index' 
-
+get '/bushistory/' => 'repairs#bushistory', :defaults => { :format => 'json' }
   resources :parts do
    collection { post :import }
    end
