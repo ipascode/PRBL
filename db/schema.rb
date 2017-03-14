@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313192357) do
+ActiveRecord::Schema.define(version: 20170314143347) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename",                            null: false
@@ -119,11 +119,12 @@ ActiveRecord::Schema.define(version: 20170313192357) do
     t.datetime "datefinished"
     t.string   "repairtype"
     t.integer  "jobcard_num"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "driver_id"
     t.integer  "bus_id"
-    t.boolean  "done",         default: false
+    t.boolean  "done",                    default: false
+    t.float    "odometer",     limit: 24
     t.index ["bus_id"], name: "index_repairs_on_bus_id", using: :btree
     t.index ["driver_id"], name: "index_repairs_on_driver_id", using: :btree
   end

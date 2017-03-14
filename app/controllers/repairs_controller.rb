@@ -47,7 +47,7 @@ class RepairsController < ApplicationController
     @job= Job.find(params[:id])
 
     if @job.status == "Repairing"
-      @job.update(timefinished: Time.now, status: "Done")
+      @job.update(timefinished: Time.zone.now, status: "Done")
       @job.update(duration: TimeDifference.between(@job.timestarted, @job.timefinished).in_seconds)
       @repair = Repair.find(@job.repair_id)
         if @repair.jobs.count == @repair.jobs.done.count
@@ -60,7 +60,7 @@ class RepairsController < ApplicationController
         end
 
     else
-      @job.update(timestarted: Time.now, status: "Repairing")
+      @job.update(timestarted: Time.zone.now, status: "Repairing")
     end
 
     respond_to do |format|
@@ -98,6 +98,7 @@ class RepairsController < ApplicationController
         format.json { render :show, status: :created, location: @repair }
 
         @bus= Bus.find(@repair.bus_id)
+        @repair.update(odometer: @bus.odometer, datestarted: Time.zone.now)
         #buses status updates to to be repaired    
         bus_update(@bus)
 
@@ -154,7 +155,7 @@ class RepairsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_params
-      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :jobcard_num, :done,
+      params.require(:repair).permit(:datestarted, :datefinished, :repairtype, :driver_id, :bus_id, :jobcard_num, :odometer, :done,
         jobs_attributes: [:id, :repair_id, :timestarted, :timefinished, :jobparticular, {:mechanic_ids => []}, :status, :_destroy, 
         job_parts_attributes: [:id, :part_id, :quantity, :cost, :job_id, :_destroy]])
     end
@@ -164,7 +165,7 @@ class RepairsController < ApplicationController
             job.job_parts.each do |job_part|
               if job_part.quantity != nil && job_part.cost != nil
                 job_part.update(total: job_part.quantity * job_part.cost)
-                job_part.part.update(last_used: Time.now, price: job_part.cost)
+                job_part.part.update(last_used: Time.zone.now, price: job_part.cost)
               end
             end
         end

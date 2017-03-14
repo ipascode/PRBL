@@ -32,10 +32,11 @@ class BusesController < ApplicationController
     @cae = "Check/Clean Air Cleaner Element"
     @gaf = "Greasing All Fittings"
     @cbf = "Check Battery Fluid"
-    if @bus.odometer >= 5000 && @bus.odometer < 15000 
+
+    if @bus.odometer >= 5000 && @bus.odometer < 15000 && bus.repairs.where(repairtype: "Preventive", done: true, odometer: 5000...14999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive")  
-
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns)
@@ -50,9 +51,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
       r.jobs.create(jobparticular: @cbf, status: @ns)
 
-    elsif @bus.odometer >=15000 && @bus.odometer < 25000
+    elsif @bus.odometer >=15000 && @bus.odometer < 25000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 15000...24999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive")   
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns)
@@ -69,9 +72,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: @cbf, status: @ns)
       r.jobs.create(jobparticular: "Tune up", status: @ns)
 
-    elsif @bus.odometer >= 25000 && @bus.odometer < 35000
+    elsif @bus.odometer >= 25000 && @bus.odometer < 35000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 25000...34999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns)
@@ -83,9 +88,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: @cbf, status: @ns)
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
 
-    elsif @bus.odometer >= 35000 && @bus.odometer < 45000
+    elsif @bus.odometer >= 35000 && @bus.odometer < 45000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 35000...44999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -98,9 +105,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check/Replace Fuel Water Separator Filter", status: @ns)
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
 
-    elsif @bus.odometer >=45000 && @bus.odometer <55000
+    elsif @bus.odometer >=45000 && @bus.odometer <55000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 45000...54999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive")
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -119,9 +128,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
  
 
-    elsif @bus.odometer >=55000 && @bus.odometer <65000
+    elsif @bus.odometer >=55000 && @bus.odometer <65000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 55000...64999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -135,9 +146,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
 
 
-    elsif @bus.odometer >=65000 && @bus.odometer <75000
+    elsif @bus.odometer >=65000 && @bus.odometer <75000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 65000...74999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive")
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -148,9 +161,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning 1000", status: @ns)
       r.jobs.create(jobparticular: "Check/Replace Fuel Water Separator Filter", status: @ns)
  
-    elsif @bus.odometer >=75000 && @bus.odometer <85000
+    elsif @bus.odometer >=75000 && @bus.odometer <85000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 75000...84999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive")
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -169,9 +184,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
       r.jobs.create(jobparticular: "Check/Adjust Draglink & Tie Rod End", status: @ns)
 
-    elsif @bus.odometer >=85000 && @bus.odometer <95000
+    elsif @bus.odometer >=85000 && @bus.odometer <95000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 85000...94999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -184,9 +201,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
 
 
-    elsif @bus.odometer >= 95000 && @bus.odometer <105000
+    elsif @bus.odometer >= 95000 && @bus.odometer <105000 &&
+      bus.repairs.where(repairtype: "Preventive", done: true, odometer: 95000...104999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns) 
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -198,9 +217,11 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
 
 
-    elsif @bus.odometer >=105000
+    elsif @bus.odometer >=105000 &&
+      bus.repairs.where(["repairtype =? and done = ? and odometer >= ?","Preventive",true, 105000]).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
+      bus_update(@bus)
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns) 
@@ -317,5 +338,16 @@ class BusesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bus_params
       params.require(:bus).permit(:avatar, :bus_model_id, :plate_no, :date_purchased, :repair_id, :odometer, :bus_line_id, :cpk, :bus_no, :status, :active)
+    end
+
+    def bus_update(b)        
+        if b.repairs.to_finish.count > 0
+            b.update(status: "In Repair" )
+        end 
+
+        if b.repairs.count == b.repairs.done.count  
+          b.update(status: nil )
+
+        end
     end
 end
