@@ -30,9 +30,11 @@ class BusesController < ApplicationController
     @cac = "Check/Adjust Clutch"
     @cav = "Check/Adjust V-Belt"
     @cae = "Check/Clean Air Cleaner Element"
-    if @bus.odometer >= 5000 && @bus.odometer < 15000
+    @gaf = "Greasing All Fittings"
+    @cbf = "Check Battery Fluid"
+    if @bus.odometer >= 5000 && @bus.odometer < 15000 
       r = Repair.create(bus_id: @bus.id, 
-              datestarted: Time.zone.now)  
+              datestarted: Time.zone.now, repairtype: "Preventive")  
 
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
@@ -40,23 +42,23 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Change Differential Gear Oil - SAE 140", status: @ns)
       r.jobs.create(jobparticular: "Change Transmission Gear Oil - SAE 90", status: @ns)
       r.jobs.create(jobparticular: @cab, status: @ns)
-      r.jobs.create(jobparticular: "Greasing All Fittings", status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
       r.jobs.create(jobparticular: @cac, status: @ns)
       r.jobs.create(jobparticular: @cav status: @ns)
-      r.jobs.create(jobparticular: "Check/Clean Air Cleaner Element", status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
       r.jobs.create(jobparticular: "Change ATF Oil", status: @ns)
       r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
-      r.jobs.create(jobparticular: "Change Battery Fluid", status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
 
     elsif @bus.odometer >=15000 && @bus.odometer < 25000
       r = Repair.create(bus_id: @bus.id, 
-              datestarted: Time.zone.now)  
+              datestarted: Time.zone.now, repairtype: "Preventive")   
       r.jobs.create(jobparticular: @ceo, status: @ns)
       r.jobs.create(jobparticular: @cff, status: @ns)
       r.jobs.create(jobparticular: @cof, status: @ns)
       r.jobs.create(jobparticular: "Repacked All Wheel Hub Bearing (Front & Rear)", status: @ns)
       r.jobs.create(jobparticular: @cab, status: @ns)
-      r.jobs.create(jobparticular: "Greasing All Fittings", status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
       r.jobs.create(jobparticular: @cac, status: @ns)
       r.jobs.create(jobparticular: @cav, status: @ns)
       r.jobs.create(jobparticular: @cae, status: @ns)
@@ -64,23 +66,164 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: "Check Retorque Front & Rear Suspension Bolt & Nut", status: @ns)
       r.jobs.create(jobparticular: "Check Up Aircon System", status: @ns)
       r.jobs.create(jobparticular: "Check/Adjust Draglink & Tie Rod End", status: @ns)
-      r.jobs.create(jobparticular: "Check Battery Fluid", status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
       r.jobs.create(jobparticular: "Tune up", status: @ns)
+
     elsif @bus.odometer >= 25000 && @bus.odometer < 35000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive") 
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns)
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+
     elsif @bus.odometer >= 35000 && @bus.odometer < 45000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive") 
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Check/Replace Fuel Water Separator Filter", status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
 
     elsif @bus.odometer >=45000 && @bus.odometer <55000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive")
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Change Differential Gear Oil - SAE 140", status: @ns)
+      r.jobs.create(jobparticular: "Change Transmission Gear Oil - SAE 90", status: @ns)
+      r.jobs.create(jobparticular: "Repacked All Wheel Hub Bearing (Front & Rear)", status: @ns) 
+      r.jobs.create(jobparticular: "Change ATF Oil", status: @ns)
+      r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Draglink & Tie Rod End", status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+ 
 
     elsif @bus.odometer >=55000 && @bus.odometer <65000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive") 
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Valve Clearance", status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+
 
     elsif @bus.odometer >=65000 && @bus.odometer <75000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive")
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning 1000", status: @ns)
+      r.jobs.create(jobparticular: "Check/Replace Fuel Water Separator Filter", status: @ns)
+ 
+    elsif @bus.odometer >=75000 && @bus.odometer <85000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive")
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Check/Replace Brake Lining (Front & Rear)", status: @ns)
+      r.jobs.create(jobparticular: "Change Differential Gear Oil - SAE 140", status: @ns)
+      r.jobs.create(jobparticular: "Change Transmission Gear Oil - SAE 90", status: @ns)      
+      r.jobs.create(jobparticular: "Repacked All Wheel Hub Bearing (Front & Rear)", status: @ns)      
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+      r.jobs.create(jobparticular: "Change ATF Oil", status: @ns)
+      r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Draglink & Tie Rod End", status: @ns)
 
     elsif @bus.odometer >=85000 && @bus.odometer <95000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive") 
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)           
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+
 
     elsif @bus.odometer >= 95000 && @bus.odometer <105000
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive") 
+      r.jobs.create(jobparticular: @ceo, status: @ns) 
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)      
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+
 
     elsif @bus.odometer >=105000
-
+      r = Repair.create(bus_id: @bus.id, 
+              datestarted: Time.zone.now, repairtype: "Preventive") 
+      r.jobs.create(jobparticular: @ceo, status: @ns)
+      r.jobs.create(jobparticular: @cff, status: @ns)
+      r.jobs.create(jobparticular: @cof, status: @ns) 
+      r.jobs.create(jobparticular: @cab, status: @ns)
+      r.jobs.create(jobparticular: @gaf, status: @ns)
+      r.jobs.create(jobparticular: @cac, status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
+      r.jobs.create(jobparticular: "Check/Replace Clutch Lining", status: @ns)
+      r.jobs.create(jobparticular: "Check/Replace Release Bearing", status: @ns)
+      r.jobs.create(jobparticular: @cae, status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Valve Clearance", status: @ns)
+      r.jobs.create(jobparticular: "Repacked Wheel Hub Bearing (Front & Rear) 5kgs. Grease", status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Valve Clearance", status: @ns)
+      r.jobs.create(jobparticular: @cbf, status: @ns)
+      r.jobs.create(jobparticular: "Change Differential Gear Oil - SAE 140", status: @ns)
+      r.jobs.create(jobparticular: "Change Transmission Gear Oil - SAE 90", status: @ns)
+      r.jobs.create(jobparticular: "Repacked All Wheel Hub Bearing (Front & Rear)", status: @ns) 
+      r.jobs.create(jobparticular: "Change ATF Oil", status: @ns)
+      r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
+      r.jobs.create(jobparticular: "Check/Adjust Draglink & Tie Rod End", status: @ns)
+      r.jobs.create(jobparticular: "Check Up Aircon System & General Cleaning", status: @ns)
+      r.jobs.create(jobparticular: "Check/Replace Air Filter Dyer", status: @ns)
+      r.jobs.create(jobparticular: "Change Oil Aircon Compressor", status: @ns)
 
     end
 
