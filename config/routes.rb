@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  
+  devise_for :users, controllers: { sessions: 'users/sessions' } do
+      collection { post :import }
+  end    
 
   get 'home/index' 
   get 'report/index' 
