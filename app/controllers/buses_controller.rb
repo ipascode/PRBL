@@ -44,7 +44,7 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: @cab, status: @ns)
       r.jobs.create(jobparticular: @gaf, status: @ns)
       r.jobs.create(jobparticular: @cac, status: @ns)
-      r.jobs.create(jobparticular: @cav status: @ns)
+      r.jobs.create(jobparticular: @cav, status: @ns)
       r.jobs.create(jobparticular: @cae, status: @ns)
       r.jobs.create(jobparticular: "Change ATF Oil", status: @ns)
       r.jobs.create(jobparticular: "Change ATF Filter",  status: @ns)
