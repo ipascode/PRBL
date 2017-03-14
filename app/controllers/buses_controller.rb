@@ -71,7 +71,7 @@ class BusesController < ApplicationController
       r.jobs.create(jobparticular: @cbf, status: @ns)
       r.jobs.create(jobparticular: "Tune up", status: @ns)
 
-    elsif @bus.odometer >= 25000 && @bus.odometer < 35000 && @bus.repairs.where(repairtype: "Preventive" odometer: 25000...34999).first.nil?
+    elsif @bus.odometer >= 25000 && @bus.odometer < 35000 && @bus.repairs.where(repairtype: "Preventive", odometer: 25000...34999).first.nil?
       r = Repair.create(bus_id: @bus.id, 
               datestarted: Time.zone.now, repairtype: "Preventive") 
       bus_update(@bus)
