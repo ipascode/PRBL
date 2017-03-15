@@ -1,4 +1,26 @@
-   <h3>Visits By Day</h3>
+ <html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_javascript_include_tag "chartkick" %>
+  </head>
+
+<body onload='report'>
+<div class="document">
+
+
+<!--
+<div class="row">
+  <div class="col-md-6 col-xs-9">
+
+      <%= button_to "Print as pdf", report_index_path(format: "pdf"), :class => "btn btn-primary button pull-right",:method => :get,target: '_blank'  %>
+
+  </div>
+   </div>
+<br> -->
+
+
+
+  <h3>Visits By Day</h3>
   <div>
     <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
   </div>
@@ -16,6 +38,9 @@
   <!-- learn to put in an array. Once in n array then put inside javascript -->
   <!-- you can loop javscript -->
   </div>
+</div>
+</body>
+</html>
 
   <script>
   <% duration = 0 %>

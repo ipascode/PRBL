@@ -53,15 +53,15 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   #comment this out from here
-  config.after_initialize do
-  Bullet.enable = true
-  Bullet.alert = false
-  Bullet.bullet_logger = true
-  Bullet.console = true
+  #config.after_initialize do
+  #ullet.enable = true
+  #Bullet.alert = false
+  #Bullet.bullet_logger = true
+  #Bullet.console = true
   #Bullet.growl = true
-  Bullet.rails_logger = true
-  Bullet.add_footer = true
+  #Bullet.rails_logger = true
+  #Bullet.add_footer = true
 
-end
+#end
 #to here before going to production
 end
