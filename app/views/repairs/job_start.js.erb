@@ -1,6 +1,5 @@
 
 	if ( $("#job-<%=@job.id%>").text() == "Not Started") {	
-		console.log(job_status);
 	$("#job-<%=@job.id%>").text('<%= @job.status%>')
 	$("#timestart-<%=@job.id%>").text('<%= @job.timestarted.strftime("%X %p")%>')
 	}
