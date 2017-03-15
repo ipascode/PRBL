@@ -58,7 +58,7 @@ class Repair < ApplicationRecord
               datestarted: Time.zone.strptime(repair_hash['Date and Time Started'], '%m/%d/%Y %H:%M%p'),
               datefinished: Time.zone.strptime(repair_hash['Date and Time Finished'], '%m/%d/%Y %H:%M%p'))
             end
-              rj = repair.first.jobs.create(jobparticular: repair_hash['Repairs Done'])
+              rj = repair.first.jobs.create(jobparticular: repair_hash['Repairs Done'], status: repair_hash['Status'])
               rj.job_parts.create(part_id: pr.id, quantity: repair_hash['Quantity'])
               mecha = repair_hash["Assigned Mechanic"].split("-")
               mecha.each do |m|

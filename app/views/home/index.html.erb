@@ -66,6 +66,7 @@
                              <%= button_to job_start_repair_path(job), 
                              class: "btn btn-default",
                              'aria-label'=> "Left Align", 
+
                              remote: true do %>
                               <p id = 'job-<%=job.id %>'><%= job.status %></p>
                               <% end %> </td>

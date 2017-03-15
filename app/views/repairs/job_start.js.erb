@@ -1,4 +1,13 @@
-$("#job-<%=@job.id%>").text('<%=@job.status%>')
-$("#timestart-<%=@job.id%>").text('<%= @job.timestarted%>')
-$("#timefinish-<%=@job.id%>").text('<%= @job.timefinished%>')
-$("#duration-<%=@job.id%>").text('<%= TimeDifference.between(@job.timestarted, @job.timefinished).humanize%>')
+
+	if ( $("#job-<%=@job.id%>").text() == "Not Started") {	
+		console.log(job_status);
+	$("#job-<%=@job.id%>").text('<%= @job.status%>')
+	$("#timestart-<%=@job.id%>").text('<%= @job.timestarted.strftime("%X %p")%>')
+	}
+
+	else{
+	$("#job-<%=@job.id%>").text('<%=@job.status%>')
+	$("#timestart-<%=@job.id%>").text('<%= @job.timestarted.strftime("%X %p")%>')
+	$("#timefinish-<%=@job.id%>").text('<%= @job.timefinished.strftime("%X %p")%>')
+	$("#duration-<%=@job.id%>").text('<%= @job.duration%>')
+	}};

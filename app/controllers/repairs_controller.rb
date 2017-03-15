@@ -13,7 +13,7 @@ class RepairsController < ApplicationController
   end
 
   def bushistory
-    @repair = Repair.includes(jobs: :job_parts).where(bus_id: params[:bn]).limit(10)
+    @repair = Repair.includes(jobs: :job_parts).where(bus_id: params[:bn], done: true).limit(10)
     respond_to do |format|
       if @repair.present?
         format.json { render json: @repair, 
@@ -48,10 +48,10 @@ class RepairsController < ApplicationController
 
     if @job.status == "Repairing"
       @job.update(timefinished: Time.zone.now, status: "Done")
-      @job.update(duration: TimeDifference.between(@job.timestarted, @job.timefinished).in_seconds)
+      @job.update(duration: TimeDifference.between(@job.timestarted, @job.timefinished).humanize)
       @repair = Repair.find(@job.repair_id)
         if @repair.jobs.count == @repair.jobs.done.count
-          @repair.update(done: true)
+          @repair.update(done: true, datefinished: Time.zone.now)
         end
 
         @bus= Bus.find(@repair.bus_id)
@@ -163,9 +163,11 @@ class RepairsController < ApplicationController
     def update_parts(r)
       r.jobs.each do |job|
             job.job_parts.each do |job_part|
-              if job_part.quantity != nil && job_part.cost != nil
-                job_part.update(total: job_part.quantity * job_part.cost)
-                job_part.part.update(last_used: Time.zone.now, price: job_part.cost)
+              if job_part != nil
+                if job_part.quantity != nil && job_part.cost != nil
+                  job_part.update(total: job_part.quantity * job_part.cost)
+                  job_part.part.update(last_used: Time.zone.now, price: job_part.cost)
+                end
               end
             end
         end
