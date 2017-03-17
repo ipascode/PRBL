@@ -12,20 +12,20 @@
 
 ActiveRecord::Schema.define(version: 20170316002734) do
 
-  create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "linename",                            null: false
     t.float    "distance",   limit: 24, default: 0.0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
 
-  create_table "bus_models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "bus_models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "brand",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "buses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "buses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "bus_no",                                       null: false
     t.integer  "bus_model_id"
     t.string   "plate_no"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.index ["bus_model_id"], name: "index_buses_on_bus_model_id", using: :btree
   end
 
-  create_table "drivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "drivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "lastname",            null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "job_parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "job_parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "part_id"
     t.integer  "quantity"
     t.float    "cost",       limit: 24
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.index ["part_id"], name: "index_job_parts_on_part_id", using: :btree
   end
 
-  create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.datetime "timestarted"
     t.datetime "timefinished"
     t.string   "duration"
@@ -77,14 +77,14 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.index ["repair_id"], name: "index_jobs_on_repair_id", using: :btree
   end
 
-  create_table "jobs_mechanics", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "jobs_mechanics", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "mechanic_id"
     t.integer "job_id"
     t.index ["job_id"], name: "index_jobs_mechanics_on_job_id", using: :btree
     t.index ["mechanic_id"], name: "index_jobs_mechanics_on_mechanic_id", using: :btree
   end
 
-  create_table "mechanics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mechanics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "lastname",            null: false
     t.string   "position"
     t.string   "skills"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "partname",                   null: false
     t.string   "part_number"
     t.string   "unit"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
   end
 
-  create_table "parts_tires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "parts_tires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "part_id"
     t.integer  "bus_id"
     t.string   "serial_no"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.index ["part_id"], name: "index_parts_tires_on_part_id", using: :btree
   end
 
-  create_table "repairs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "repairs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.datetime "datestarted"
     t.datetime "datefinished"
     t.string   "repairtype"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20170316002734) do
     t.index ["driver_id"], name: "index_repairs_on_driver_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "email",                  default: "",     null: false
     t.string   "encrypted_password",     default: "",     null: false
     t.string   "username"
