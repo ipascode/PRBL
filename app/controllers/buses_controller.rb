@@ -21,6 +21,8 @@ class BusesController < ApplicationController
 
   def odometer_add
     @bus= Bus.find(params[:id])
+    #@tire = Part.where(group: "Tires", bus_id: @bus.id).first
+    #@tire.update(odometer: @tire.odometer + @bus_busline.distance, cpk: @tire.cost/@tire.odometer)
     @bus.update(odometer: @bus.odometer + @bus.bus_line.distance)
     @ceo = "Change Engine Oil"
     @cff = "Change Fuel Filter"

@@ -10,17 +10,6 @@
   </div>
 </div>
 
-
-<div class="row">
-  <div class="col-xs-12 col-md-6">
-    <%= f.input :group, collection: ['Tires'], :as => :check_boxes %>
-    <%= f.input :serial_no %>
-  </div>
-  <div class="col-xs-12 col-md-6">
-    <%= f.input :cpk, input_html: {value: f.object.cpk || '0'} %>
-  </div>
-</div>
-
 <div class="row"> 
   <div class="col-xs-6 col-md-6">
     <%= f.label :bus_model_id %>
@@ -40,6 +29,26 @@
   </div>
 </div>
 
-<%= f.button :submit, :class => "btn btn-default" %>
 
+  <div class="col-xs-6 col-md-6">
+  <%= f.simple_fields_for :parts_tire do |p| %>
+
+    <%= p.input :serial_no %>
+    <%= p.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize"} %>
+    <%= p.input :odometer %>
+    <%= p.input :cpk %>
+
+
+  <% end %>
+
+
+
+<%= f.button :submit, :class => "btn btn-default" %>
+</div>
 <% end %>
+<script>
+$('.bus-selectize').selectize({
+
+  
+  });
+</script>

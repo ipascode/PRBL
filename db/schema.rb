@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315054832) do
+ActiveRecord::Schema.define(version: 20170316002734) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "linename",                            null: false
@@ -98,20 +98,30 @@ ActiveRecord::Schema.define(version: 20170315054832) do
   end
 
   create_table "parts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "partname",                              null: false
+    t.string   "partname",                   null: false
     t.string   "part_number"
     t.string   "unit"
     t.integer  "bus_model_id"
     t.integer  "index_number"
-    t.string   "price",                   default: "0"
+    t.string   "price",        default: "0"
     t.integer  "lifespan"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.datetime "last_used"
-    t.float    "cpk",          limit: 24
-    t.string   "serial_no"
     t.string   "group"
     t.index ["bus_model_id"], name: "index_parts_on_bus_model_id", using: :btree
+  end
+
+  create_table "parts_tires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "part_id"
+    t.integer  "bus_id"
+    t.string   "serial_no"
+    t.float    "cpk",        limit: 24
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.float    "odometer",   limit: 24, default: 0.0
+    t.index ["bus_id"], name: "index_parts_tires_on_bus_id", using: :btree
+    t.index ["part_id"], name: "index_parts_tires_on_part_id", using: :btree
   end
 
   create_table "repairs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -166,6 +176,8 @@ ActiveRecord::Schema.define(version: 20170315054832) do
   add_foreign_key "job_parts", "parts"
   add_foreign_key "jobs", "repairs"
   add_foreign_key "parts", "bus_models"
+  add_foreign_key "parts_tires", "buses"
+  add_foreign_key "parts_tires", "parts"
   add_foreign_key "repairs", "buses"
   add_foreign_key "repairs", "drivers"
 end

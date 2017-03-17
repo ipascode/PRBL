@@ -1,5 +1,8 @@
 class Part < ApplicationRecord
   belongs_to :bus_model, optional: true
+  has_one :parts_tire, inverse_of: :part
+  accepts_nested_attributes_for :parts_tire, reject_if: :all_blank, allow_destroy: true
+
   require 'csv'
   validates :partname, :presence => true
   validates :part_number, uniqueness: { case_sensitive: false, allow_nil: true}

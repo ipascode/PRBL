@@ -25,22 +25,26 @@ class PartsController < ApplicationController
   # GET /parts/1.json
   def show
     @repairs = Repair.part_history(params[:id])
+
   end
 
   # GET /parts/new
   def new
     @part = Part.new
+    @buses = Bus.all
+    @part.build_parts_tire
   end
 
   # GET /parts/1/edit
   def edit
+    @buses = Bus.all
   end
 
   # POST /parts
   # POST /parts.json
   def create
     @part = Part.new(part_params)
-
+  
     respond_to do |format|
       if @part.save
         format.html { redirect_to @part, notice: 'Part was successfully created.' }
@@ -91,7 +95,8 @@ class PartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def part_params
-      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan, :group, :serial_no, :cpk, :last_used)
+      params.require(:part).permit(:partname, :part_number, :bus_model_id, :index_number, :price, :lifespan, :group, :last_used,
+         parts_tire_attributes: [:id, :part_id, :bus_id, :serial_no, :odometer, :cpk, :_destroy])
     end
 
 end

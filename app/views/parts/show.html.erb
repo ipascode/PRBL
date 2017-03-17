@@ -9,17 +9,8 @@
   <%= @part.part_number %>
 </p>
 
-<p>
-  <strong>Serial Number:</strong>
-  <%= @part.serial_no %>
-</p>
 
-<p>
-  <strong>Cost Per Kilometer:</strong>
-  <%= @part.cpk %>
-</p>
-
-<% if !@part.bus_model.nil? -%>
+<% if !@part.bus_model.nil? %>
  <p>
   <strong>Bus Model:</strong>
   <%= @part.bus_model.brand %>
@@ -46,6 +37,23 @@
   <strong>Last Used:</strong>
   <%= @part.last_used %>
 </p>
+
+<% if !@part.parts_tire.nil? %>
+
+    <p>
+      <strong>Serial Number</strong>
+      <%= @part.parts_tire.serial_no %>
+    </p>
+    <p>
+      <strong>Bus Number:</strong>
+      <%= @part.parts_tire.bus.bus_no %>
+    </p>
+    <p>
+      <strong>CPK:</strong>
+      <%= @part.parts_tire.cpk %>
+    </p>
+  <% end %>
+
 
 <h3>History</h3>
 

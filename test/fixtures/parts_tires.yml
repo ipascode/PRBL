@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  part: one
+  bus: one
+  serial_no: MyString
+  cpk: 1.5
+
+two:
+  part: two
+  bus: two
+  serial_no: MyString
+  cpk: 1.5

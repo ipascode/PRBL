@@ -1,0 +1,5 @@
+
+    <%= f.input :serial_no %>
+    <%= f.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize"} %>
+    <%= f.input :odometer %>
+    <%= f.input :cpk %>
