@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <%= f.input :partname %>
+    <%= f.input :partname, label: "Part name" %>
   </div>
   <div class="col-xs-12 col-md-6">
     <%= f.input :part_number %>
@@ -28,26 +28,29 @@
     <%= f.input :lifespan %>
   </div>
 </div>
+
+<div class="row">
   <div class="col-xs-6 col-md-6" id='tires'>
     <%= f.input :group, collection: ["Tires"], as: :check_boxes, input_html: {class: "tires"} %>
   </div>
-
-  <div class="col-xs-6 col-md-6">
-  <%= f.simple_fields_for :parts_tire do |p| %>
-
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-12 col-lg-6">
+    <%= f.simple_fields_for :parts_tire do |p| %>
     <%= p.input :serial_no, input_html: {class: "tire-field"} %>
     <%= p.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize tire-field"} %>
+  </div>
+  <div class="col-xs-12 col-md-6">
     <%= p.input :odometer, input_html: {class: "tire-field"} %>
     <%= p.input :cpk, input_html: {class: "tire-field"} %>
-
-
-  <% end %>
-
+    <% end %>
+  </div>
+</div>
 
 
 <%= f.button :submit, :class => "btn btn-default" %>
-</div>
 <% end %>
+
 <script>
 $('.bus-selectize').selectize({
   

@@ -1,59 +1,54 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Edit', edit_part_path(@part), :class => "btn btn-default" %>
-<%= link_to 'Back', parts_path, :class => "btn btn-default" %>
 
-<h4>  <%= @part.partname %></h4>
-
-<p>
-  <strong>Number:</strong>
-  <%= @part.part_number %>
-</p>
-
-
-<% if !@part.bus_model.nil? %>
- <p>
-  <strong>Bus Model:</strong>
-  <%= @part.bus_model.brand %>
-</p>
-<% end %>
-
-
-<p>
-  <strong>Index number:</strong>
-  <%= @part.index_number %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @part.price %>
-</p>
-
-<p>
-  <strong>Lifespan:</strong>
-  <%= @part.lifespan %>
-</p>
-
-<p>
-  <strong>Last Used:</strong>
-  <%= @part.last_used %>
-</p>
-
-<% if !@part.parts_tire.nil? %>
-
-    <p>
-      <strong>Serial Number</strong>
-      <%= @part.parts_tire.serial_no %>
-    </p>
-    <p>
-      <strong>Bus Number:</strong>
-      <%= @part.parts_tire.bus.bus_no %>
-    </p>
-    <p>
-      <strong>CPK:</strong>
-      <%= @part.parts_tire.cpk %>
-    </p>
-  <% end %>
-
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h1><strong><%= @part.partname %></strong></h1>
+    <table>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Bus Model</strong></td>
+        <td style="padding-right: 10px;">
+          <% if !@part.bus_model.nil? %>
+            <strong>Bus Model:</strong>
+            <%= @part.bus_model.brand %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Index Number</strong></td>
+        <td style="padding-right: 10px;"><%= @part.index_number %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Price</strong></td>
+        <td style="padding-right: 10px;"><%= @part.price %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Lifespan</strong></td>
+        <td style="padding-right: 10px;"><%= @part.lifespan %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Last Used</strong></td>
+        <td style="padding-right: 10px;"><%= @part.last_used %></td>
+      </tr>
+      <% if !@part.parts_tire.nil? %>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Serial Number</strong></td>
+        <td style="padding-right: 10px;"><%= @part.parts_tire.serial_no %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Bus Number</strong></td>
+        <td style="padding-right: 10px;"><%= @part.parts_tire.bus.bus_no %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>CPK</strong></td>
+        <td style="padding-right: 10px;"><%= @part.parts_tire.cpk %></td>
+      </tr>
+      <% end %>
+    </table>
+    <br>
+    <%= link_to 'Edit', edit_part_path(@part), :class => "btn btn-default" %>
+    <%= link_to 'Back', parts_path, :class => "btn btn-default" %>
+  </div>
+</div>
 
 <h3>History</h3>
 

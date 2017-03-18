@@ -31,36 +31,40 @@
 <br>
 
 <div class="row">
-
+<!--
 <div class="col-md-2 col-xs-4">
 <div class="input-group">
   <span class="input-group-btn">
     <button class="btn btn-default" type="button">Go</button>
   </span>
   <input type="text" class="form-control" placeholder="Search">
-</div><!-- /input-group -->
 </div>
-
+</div>
+-->
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
-      Model: All
+      Model
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
       <li><a href="#">All</a></li>
       <li role="separator" class="divider"></li>
-      <li><a href="#">Daewoo</a></li>
-      <li><a href="#">Higer</a></li>
-      <li><a href="#">King Long</a></li>
+      <% @parts.each do |part| %>
+      <li>
+        <% if !part.bus_model.nil? -%>
+            <%= part.bus_model.brand %>
+        <% end %>
+      </li>
+      <% end %>
     </ul>
   </div>
 </div>
-
+<!--
 <div class="col-md-2 col-xs-4">
   <a href="#">Advanced Filters</a>
 </div>
-
+-->
 </div>
 
 <div class="table-responsive">
