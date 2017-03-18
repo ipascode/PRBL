@@ -110,58 +110,6 @@ $('document').ready(function() {
         <h4 class="modal-title" id="myModalLabel">Bus History</h4>
       </div>
       <div class="modal-body">
-        <!-- <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Date Finished</th>
-                <th>Date Started</th>
-                <th>Repair Type</th>
-                <th>Driver</th>
-                <th>Repair</th>
-                <th>Status</th>
-                <th>Time Started</th>
-                <th>Time Finished</th>
-                <th>Duration</th>
-                <th>Mechanic</th>
-                <th>Part</th>
-                <th>Unit</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th colspan="5"></th>
-              </tr>
-            </thead>
-
-          <tbody class="table-hover">
-              <% @bus.repairs.each do |repair| %> 
-                <td><%= repair.datefinished %> </td>
-                <td><%= repair.datestarted %> </td>
-                <td><%= repair.repairtype %></td> 
-                <td><%= repair.driver.lastname %></td>
-
-                  <% repair.jobs.each do |job| %> 
-                    <td><%= job.jobparticular %> </td>
-                    <td><%= job.status %> </td>
-                    <td><%= job.timestarted %> </td>
-                    <td><%= job.timefinished %> </td>
-                    <td><%= job.duration %> </td>
-                    <td><%= job.mechanic_id%> </td>
-                  
-
-                      <% job.job_parts.each do |job_part| %> 
-                        <td><%= job_part.part_id %> </td>
-                        <td>  </td>
-                        <td><%= job_part.quantity %> </td>
-                        <td><%= job_part.cost %> </td>
-                        <td>   </td>
-                    <% end %>
-                    
-                  <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>-->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
