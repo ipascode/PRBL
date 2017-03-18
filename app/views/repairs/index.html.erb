@@ -51,7 +51,7 @@
         <td><% if !repair.bus.nil? %>
         <%= repair.bus.bus_no %>
         <%end%></td>
-        <td><%= link_to 'View', repair, :class => "btn btn-default"%></td>
+        <td><%= link_to 'Bus Info', repair, :class => "btn btn-default"%></td>
         <td><%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%></td>
         <td><%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%></td>
       </tr>

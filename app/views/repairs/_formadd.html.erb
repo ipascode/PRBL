@@ -1,5 +1,4 @@
 <body>
-<div class="col-xs-12 col-md-6">
 
 <%= simple_form_for(@repair) do |f| %>
  <%= f.error_notification id: 'user_error_message', class: 'form_error'%>
@@ -7,19 +6,20 @@
         <li><%= message %></li>
       <% end %>
       <br>
-
     <div class="row">
-        <%= f.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize selectabuzz"} %>
-    </div>  
+      <div class="col xs-6 md-6 lg-6">
+          <%= f.input :bus_id, label: "Bus No.", 
+          label_method: :bus_no, 
+          collection: @buses, 
+          input_html: {class: "bus-selectize selectabuzz"} %>
+      </div>  
     
-      
-    <div class="row">
-        <%= f.input :driver_id, label: "Driver",
-        collection: @drivers,
-        label_method: :lastname,
-        input_html: {class: 'driver-selectize'} %>
-
-    
+      <div class="col xs-6 md-6 lg-6">
+          <%= f.input :driver_id, label: "Driver",
+          collection: @drivers,
+          label_method: :lastname,
+          input_html: {class: 'driver-selectize'} %>
+      </div>
     </div>
 
     <h3>Repairs</h3>
@@ -28,22 +28,10 @@
        <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fieldsadd', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
     </div>
 
-   
-
   <div class="actions">
     <%= f.submit :Submit, class: "btn btn-default" %>
   </div>
-
 <% end %>
-</div>
-
-<div class="col-xs-12 col-md-6" >
-  <h3>Bus History</h3>
-  <div id="bhis">
-
-  </div>
-</div>
-
 
 </body>
 
@@ -107,9 +95,4 @@ $('document').ready(function() {
 });
 
 });
-</script>
-
-<script>
-
-
 </script>

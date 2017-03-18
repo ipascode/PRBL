@@ -41,15 +41,15 @@
 
 <div class="row">
 
-<div class="col-md-2 col-xs-4">
+<!-- <div class="col-md-2 col-xs-3">
 <div class="input-group">
   <span class="input-group-btn">
-    <button class="btn btn-default" type="button">Go</button>
+    <input type="text" class="form-control" placeholder="Search">
+    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
   </span>
-  <input type="text" class="form-control" placeholder="Search">
-</div><!-- /input-group -->
 </div>
-
+</div> -->
+<!-- Filter for bus, dunno how to apply -->
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
@@ -59,13 +59,13 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
       <li><a href="#">All</a></li>
       <li role="separator" class="divider"></li>
-      <li><a href="#">Daewoo</a></li>
-      <li><a href="#">Higer</a></li>
-      <li><a href="#">King Long</a></li>
+      <% @buses.each do |bus| %>
+      <li><a href="#"><%= bus.bus_model.brand %></a></li>
+      <% end %>
     </ul>
   </div>
 </div>
-
+<!-- Filter for bus line, dunno how to apply -->
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
@@ -75,16 +75,18 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
       <li><a href="#">All</a></li>
       <li role="separator" class="divider"></li>
-      <li><a href="#">MNL - TAR</a></li>
-      <li><a href="#">MNL - ALA</a></li>
-      <li><a href="#">MNL - ANG</a></li>
+      <% @buses.each do |bus| %>
+      <li><a href="#"><%= bus.bus_line.linename %></a></li>
+      <% end %>
     </ul>
   </div>
 </div>
 
+<!--
 <div class="col-md-2 col-xs-4">
   <a href="#">Advanced Filters</a>
 </div>
+-->
 
 </div>
 
@@ -114,20 +116,12 @@
         <td><%= bus.bus_line.linename %></td>
         <td><%= bus.date_purchased %></td>
         <td>
-        <%= button_to odometer_add_bus_path(bus), class: "btn btn-default", 
-        'aria-label'=> "Left Align", remote: true do %>
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          <% end %>
-        
-         <p id = "odometer-<%= bus.id %>"><%= bus.odometer %></p>
-
-        <%= button_to odometer_subtract_bus_path(bus), class: "btn btn-default", 
-        'aria-label'=> "Left Align", remote: true do %>
-          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-          <% end %>
+          <!-- <%= button_to odometer_add_bus_path(bus), class: "btn btn-default", remote: true do %>+<% end %> -->
+          <div id = "odometer-<%= bus.id %>"><%= bus.odometer %></div>
+          <!-- <%= button_to odometer_subtract_bus_path(bus), class: "btn btn-default", remote: true do %>-<% end %> -->
         </td>
         <td><%= bus.status %></td>
-        <!-- <td><%= link_to 'View', bus, :class => "btn btn-default" %></td> -->
+        <!-- <td><%= link_to 'Bus Info', bus, :class => "btn btn-default" %></td> -->
         <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-default"  %></td>
         <td><%= link_to 'Delete', bus, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %></td>
       </tr>
@@ -137,5 +131,3 @@
 </div>
 
 <br>
-
-

@@ -45,16 +45,20 @@
     </tr>
   </thead>
   <tbody class="table-hover">
-    <tr>
-      <td>1</td>
-      <td>Turbo</td>
-      <td>25000</td>
-    </tr>
+    <% @bus.repairs.each do |repair| %> 
+      <% repair.jobs.each do |job| %> 
+        <% job.job_parts.each do |job_part| %>
+          <td><%= job_part.quantity %> </td>
+          <td><%= job_part.part_id %> </td>
+          <td><%= job_part.cost %> </td>
+        <% end %>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 
 <h1>History</h1>
-
+<!--
 <div class="row">
 
 <div class="col-md-2 col-xs-4">
@@ -63,7 +67,7 @@
     <button class="btn btn-default" type="button">Go</button>
   </span>
   <input type="text" class="form-control" placeholder="Search">
-</div><!-- /input-group -->
+</div>
 </div>
 
 <div class="col-md-2 col-xs-4">
@@ -99,7 +103,7 @@
 </div>
 
 </div>
-
+-->
 <div class="table-responsive">
 <table class="table">
   <thead>
