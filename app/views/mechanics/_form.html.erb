@@ -10,14 +10,26 @@
       </ul>
     </div>
   <% end %>
-
-    <%= f.input :lastname %>
-    <%= f.input :position %>
-    <%= f.input :skills %>
-    <%= f.input :shift %>
-    <%= f.input :avatar, as: :file %>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+      <%= f.input :lastname, label: "Last Name" %>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-6">
+      <%= f.input :position %>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+      <%= f.input :skills %>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-6">
+      <%= f.input :shift %>
+    </div>
+    <div class="col-xs-6 col-md-6 col-lg-4">
+      <%= f.input :avatar, as: :file %>
+    </div>
+  </div>
+    <div class="actions">
+      <%= f.submit :Submit, class: "btn btn-default" %>
+    </div>
 <% end %>
