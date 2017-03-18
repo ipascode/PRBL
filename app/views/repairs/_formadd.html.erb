@@ -7,14 +7,14 @@
       <% end %>
       <br>
     <div class="row">
-      <div class="col xs-6 md-6 lg-6">
+      <div class="col-xs-6 col-md-6 col-lg-6">
           <%= f.input :bus_id, label: "Bus No.", 
           label_method: :bus_no, 
           collection: @buses, 
           input_html: {class: "bus-selectize selectabuzz"} %>
       </div>  
     
-      <div class="col xs-6 md-6 lg-6">
+      <div class="col-xs-6 col-md-6 col-lg-6">
           <%= f.input :driver_id, label: "Driver",
           collection: @drivers,
           label_method: :lastname,
