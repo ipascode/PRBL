@@ -4,12 +4,11 @@
 <body>
 <p id="notice"><%= notice %></p>
 
-<h1>Maintenance Home</h1>
-<h4><%= pluralize(@buses.in_repair.count, 'bus') %> in repair</h4> 
+<h1>Dashboard</h1>
+<h4><span class="badge"><%= pluralize(@buses.in_repair.count, 'bus') %> in repair</span></h4>
 
 <div class="btn-group" role="group" aria-label="...">
   <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-default" %>
-  <%= link_to 'All Repairs', repairs_path, :class => "btn btn-default" %>
   <button type="button" class="btn btn-default openall" id = "openall">Expand All</button>
   <button type="button" class="btn btn-default openall" id = "closeall">Close All</button>
 </div>
@@ -22,10 +21,10 @@
       <% @buses.each do |bus| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
+            <h4 class="panel-title" style="margin-bottom: 15px;">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
-                Bus <%= bus.bus_no %>
-                <%= link_to 'Bus Info', bus, :class => "btn btn-default" %>
+                <%= bus.bus_no %>
+                <%= link_to 'Bus Info', bus, :class => "btn btn-default pull-right" %>
               </a>
             </h4>
           </div>
@@ -34,11 +33,8 @@
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 <div class="table-responsive">
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <% bus.repairs.to_finish.each do |repair| %>
-
-                  <ul class="nav nav-pills">
-                    <li role="presentation"><a href="#">Job card #</a></li>
-                  </ul>
 
                   <table class="table">
                      

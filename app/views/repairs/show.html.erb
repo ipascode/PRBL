@@ -1,34 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Datestarted:</strong>
-  <%= @repair.datestarted %>
-</p>
-
-<p>
-  <strong>Datefinished:</strong>
-  <%= @repair.datefinished %>
-</p>
-
-<p>
-  <strong>Repairtype:</strong>
-  <%= @repair.repairtype %>
-</p>
-
-<p>
-  <strong>Driver:</strong>
-  <%= @repair.driver.lastname %>
-</p>
-
-<p>
-  <strong>Bus:</strong>
-  <%= @repair.bus.bus_no %>
-</p>
-
-<p>
-  <strong>Job Card Number:</strong>
-  <%= @repair.jobcard_num %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h1><strong><%= @repair.jobcard_num %></strong></h1>
+    <table>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Date started</strong></td>
+        <td style="padding-right: 10px;"><%= @repair.datestarted %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Date finished</strong></td>
+        <td style="padding-right: 10px;"><%= @repair.datefinished %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Repair type</strong></td>
+        <td style="padding-right: 10px;"><%= @repair.repairtype %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Driver</strong></td>
+        <td style="padding-right: 10px;"><%= @repair.driver.lastname %></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 10px;"><strong>Bus</strong></td>
+        <td style="padding-right: 10px;"><%= @repair.bus.bus_no %></td>
+      </tr>
+    </table>
+  </div>
+</div>
 
 <h3>Repairs</h3>
 <div class="table-responsive">
