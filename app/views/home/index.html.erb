@@ -15,6 +15,7 @@
 </div>
 
 <div class="row">
+
   <div class = "col-xs-12 col-md-12">
     <br>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -33,7 +34,12 @@
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 <div class="table-responsive">
-                  <% bus.repairs.to_finish.each do |repair| %> 
+                  <% bus.repairs.to_finish.each do |repair| %>
+
+                  <ul class="nav nav-pills">
+                    <li role="presentation"><a href="#">Job card #</a></li>
+                  </ul>
+
                   <table class="table">
                      
                     <thead>
@@ -66,7 +72,7 @@
                             <td>
                              <%= button_to job_start_repair_path(job), 
                              class: "btn btn-default",
-                             'aria-label'=> "Left Align", 
+                             'aria-label'=> "Center Align", 
 
                              remote: true do %>
                               <p id = 'job-<%=job.id %>'><%= job.status %></p>
