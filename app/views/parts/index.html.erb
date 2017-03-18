@@ -96,7 +96,7 @@
         <td><%= part.last_used %></td>
         <td><%= part.price %></td>
         <!-- <td><%= part.lifespan %></td> -->
-        <td><%= link_to 'View', part, :class => "btn btn-default" %></td>
+        <td><%= link_to 'Part Info', part, :class => "btn btn-default" %></td>
         <td><%= link_to 'Edit', edit_part_path(part), :class => "btn btn-default" %></td>
         <td><%= link_to 'Delete', part, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
       </tr>
