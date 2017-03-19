@@ -31,16 +31,14 @@
 <br>
 
 <div class="row">
+
+<div class="col-md-2 col-xs-6">
+  <input type="text" id="partsindexsearch" onkeyup="partsindexfxn0()" class="form-control" placeholder="Search Part Name">
+</div>
+<div class="col-md-2 col-xs-6">
+  <input type="text" id="partsindexsearch2" class="form-control" onkeyup="partsindexfxn2()" placeholder="Search Model">
+</div>
 <!--
-<div class="col-md-2 col-xs-4">
-<div class="input-group">
-  <span class="input-group-btn">
-    <button class="btn btn-default" type="button">Go</button>
-  </span>
-  <input type="text" class="form-control" placeholder="Search">
-</div>
-</div>
--->
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
@@ -60,6 +58,7 @@
     </ul>
   </div>
 </div>
+-->
 <!--
 <div class="col-md-2 col-xs-4">
   <a href="#">Advanced Filters</a>
@@ -68,7 +67,7 @@
 </div>
 
 <div class="table-responsive">
-<table class="table">
+<table id="partsindextable" class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -107,4 +106,46 @@
 
 <br>
 
+<script>
+function partsindexfxn0() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("partsindexsearch");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("partsindextable");
+  tr = table.getElementsByTagName("tr");
 
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function partsindexfxn2() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("partsindexsearch2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("partsindextable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

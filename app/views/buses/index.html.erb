@@ -44,15 +44,19 @@
 <div class="col-md-2 col-xs-3">
   <input type="text" id="busindexsearch" onkeyup="busindexfxn0()" class="form-control" placeholder="Search Bus No.">
 </div>
+<!--
 <div class="col-md-2 col-xs-3">
   <input type="text" id="busindexsearch1" onkeyup="busindexfxn1()" class="form-control" placeholder="Search Plate No.">
 </div>
+-->
 <div class="col-md-2 col-xs-3">
   <input type="text" id="busindexsearch2" onkeyup="busindexfxn2()" class="form-control" placeholder="Search Model">
 </div>
+<!--
 <div class="col-md-2 col-xs-3">
   <input type="text" id="busindexsearch3" onkeyup="busindexfxn3()" class="form-control" placeholder="Search Line">
 </div>
+-->
 <!-- 
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
@@ -145,7 +149,7 @@ function busindexfxn0() {
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td");
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
@@ -155,7 +159,7 @@ function busindexfxn0() {
     }
   }
 }
-
+/*
 function busindexfxn1() {
   // Declare variables
   var input, filter, table, tr, td, i;
@@ -176,7 +180,7 @@ function busindexfxn1() {
     }
   }
 }
-
+*/
 function busindexfxn2() {
   // Declare variables
   var input, filter, table, tr, td, i;
@@ -197,11 +201,11 @@ function busindexfxn2() {
     }
   }
 }
-
+/*
 function busindexfxn3() {
   // Declare variables
   var input, filter, table, tr, td, i;
-  input = document.getElementById("busindexsearch3");
+  input = document.getElementById("busindexsearch");
   filter = input.value.toUpperCase();
   table = document.getElementById("busindextable");
   tr = table.getElementsByTagName("tr");
@@ -218,6 +222,7 @@ function busindexfxn3() {
     }
   }
 }
+*/
 </script>
 
 <br>
