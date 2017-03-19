@@ -23,3 +23,7 @@
 //= require bootstrap-datetimepicker
 //= require pickers
 
+
+$(document).on("page:change", function(){
+    $("input.datepicker").datepicker();
+});

@@ -108,7 +108,7 @@
       <th>Model</th>
       <th>Line</th>
       <th>Date Purchased</th>
-      <th>Odometer</th>
+      <th colspan="3">Odometer</th>
       <th>Status</th>
       <th colspan="2">Actions</th>
     </tr>
@@ -123,11 +123,9 @@
         <td><%= bus.bus_model.brand %></td>
         <td><%= bus.bus_line.linename %></td>
         <td><%= bus.date_purchased %></td>
-        <td>
-          <!-- <%= button_to odometer_add_bus_path(bus), class: "btn btn-default", remote: true do %>+<% end %> -->
-          <div id = "odometer-<%= bus.id %>"><%= bus.odometer %></div>
-          <!-- <%= button_to odometer_subtract_bus_path(bus), class: "btn btn-default", remote: true do %>-<% end %> -->
-        </td>
+        <td><%= button_to odometer_add_bus_path(bus), class: "btn btn-default", remote: true do %>+<% end %></td>
+        <td><div id = "odometer-<%= bus.id %>"><%= bus.odometer %></div></td>
+        <td><%= button_to odometer_subtract_bus_path(bus), class: "btn btn-default", remote: true do %>-<% end %></td>
         <td><%= bus.status %></td>
         <!-- <td><%= link_to 'Bus Info', bus, :class => "btn btn-default" %></td> -->
         <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-default"  %></td>
