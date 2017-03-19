@@ -41,15 +41,19 @@
 
 <div class="row">
 
-<!-- <div class="col-md-2 col-xs-3">
-<div class="input-group">
-  <span class="input-group-btn">
-    <input type="text" class="form-control" placeholder="Search">
-    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-  </span>
+<div class="col-md-2 col-xs-3">
+  <input type="text" id="busindexsearch" onkeyup="busindexfxn0()" class="form-control" placeholder="Search Bus No.">
 </div>
-</div> -->
-<!-- Filter for bus, dunno how to apply -->
+<div class="col-md-2 col-xs-3">
+  <input type="text" id="busindexsearch1" onkeyup="busindexfxn1()" class="form-control" placeholder="Search Plate No.">
+</div>
+<div class="col-md-2 col-xs-3">
+  <input type="text" id="busindexsearch2" onkeyup="busindexfxn2()" class="form-control" placeholder="Search Model">
+</div>
+<div class="col-md-2 col-xs-3">
+  <input type="text" id="busindexsearch3" onkeyup="busindexfxn3()" class="form-control" placeholder="Search Line">
+</div>
+<!-- 
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
@@ -65,7 +69,7 @@
     </ul>
   </div>
 </div>
-<!-- Filter for bus line, dunno how to apply -->
+
 <div class="col-md-2 col-xs-4">
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;">
@@ -82,7 +86,7 @@
   </div>
 </div>
 
-<!--
+
 <div class="col-md-2 col-xs-4">
   <a href="#">Advanced Filters</a>
 </div>
@@ -91,7 +95,7 @@
 </div>
 
 <div class="table-responsive">
-<table class="table">
+<table class="table" id="busindextable">
   <thead>
     <tr>
       <!-- <th>Image</th> -->
@@ -129,5 +133,91 @@
   </tbody>
 </table>
 </div>
+
+<script>
+function busindexfxn0() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("busindexsearch");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("busindextable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function busindexfxn1() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("busindexsearch1");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("busindextable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function busindexfxn2() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("busindexsearch2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("busindextable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function busindexfxn3() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("busindexsearch3");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("busindextable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
 <br>
