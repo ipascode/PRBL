@@ -16,10 +16,12 @@
   </div>
   <div class="row">
     <div class="col-xs-6 col-md-6">
-      <%= f.input :timestarted, label: "Time Started", :as => :datetime_picker  %>
+      <!-- <%= f.input :timestarted, label: "Time Started", :as => :datetime_picker  %> -->
+      <%= f.input :timestarted, :as => 'datetime' ,:label => 'Time Started', input_html: { class: 'datetime_picker' } %>
     </div>
     <div class="col-xs-6 col-md-6">
-      <%= f.input :timefinished, label: "Time Finished", :as => :datetime_picker  %>
+      <!-- <%= f.input :timefinished, label: "Time Finished", :as => :datetime_picker  %> -->
+      <%= f.input :timefinished, :as => 'datetime' ,:label => 'Time Finished', input_html: { class: 'datetime_picker' } %>
     </div>
   </div>
 
