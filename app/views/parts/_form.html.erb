@@ -30,19 +30,19 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-6 col-md-6" id='tires'>
-    <%= f.input :group, collection: ["Tires"], as: :check_boxes, input_html: {class: "tires"} %>
+  <div class="col-xs-6 col-md-6" >
+    <%= f.input :group, collection: ["Tires"], as: :check_boxes, input_html: {id: "tires"} %>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12 col-md-12 col-lg-6">
     <%= f.simple_fields_for :parts_tire do |p| %>
-    <%= p.input :serial_no, input_html: {class: "tire-field"} %>
-    <%= p.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "bus-selectize tire-field"} %>
+    <%= p.input :serial_no, disabled: true, input_html: {class: "tire-field"} %>
+    <%= p.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "tire-field", :disabled => "disabled"} %>
   </div>
   <div class="col-xs-12 col-md-6">
-    <%= p.input :odometer, input_html: {class: "tire-field"} %>
-    <%= p.input :cpk, input_html: {class: "tire-field"} %>
+    <%= p.input :odometer, disabled: true, input_html: {id: "odometer", class: "tire-field"} %>
+    <%= p.input :cpk, disabled: true, input_html: {class: "tire-field"} %>
     <% end %>
   </div>
 </div>
@@ -52,11 +52,20 @@
 <% end %>
 
 <script>
-$('.bus-selectize').selectize({
+
+$('#bus-selectize').selectize({
   
   });
+$("#bus").prop("disabled", true); 
 
-if document.getElementsByClassName("tires").checked == false{
-  document.getElementsByClassName("tire-field").disabled = true;
-};
+$(function () {
+        $("#tires").click(function () {
+            if ($(this).is(":checked")) {
+                $(".tire-field").removeAttr("disabled");
+                $("#bus").prop("disabled", false); 
+            } 
+        });
+    });
+
+
 </script>

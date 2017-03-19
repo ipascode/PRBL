@@ -3,6 +3,6 @@ class PartsTire < ApplicationRecord
   belongs_to :bus, optional: true
 
 
-    validates :serial_no, :odometer, :presence => true
-  	validates :serial_no, uniqueness: { case_sensitive: false}
+    #validates :serial_no, :odometer, :presence => true
+  	#validates :serial_no, uniqueness: { case_sensitive: false}
 end
