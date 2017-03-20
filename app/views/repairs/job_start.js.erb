@@ -1,9 +1,12 @@
 
-	$("#job-start-<%=@job.id%>").text('<%= @job.status%>')
+	if ( $("#job-<%=@job.id%>").text() == "Not Started") {	
+	$("#job-<%=@job.id%>").text('<%= @job.status%>')
 	$("#timestart-<%=@job.id%>").text('<%= @job.timestarted.strftime("%X %p")%>')
+	}
 
-
-	$("#job-end-<%=@job.id%>").text('<%=@job.status%>')
+	else{
+	$("#job-<%=@job.id%>").text('<%=@job.status%>')
 	$("#timestart-<%=@job.id%>").text('<%= @job.timestarted.strftime("%X %p")%>')
 	$("#timefinish-<%=@job.id%>").text('<%= @job.timefinished.strftime("%X %p")%>')
 	$("#duration-<%=@job.id%>").text('<%= @job.duration%>')
+	}};

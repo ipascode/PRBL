@@ -32,6 +32,7 @@ class PartsController < ApplicationController
   def new
     @part = Part.new
     @buses = Bus.all
+    @bus_models = BusModel.all
     @part.build_parts_tire
   end
 

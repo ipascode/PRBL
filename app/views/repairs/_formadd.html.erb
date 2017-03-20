@@ -1,3 +1,7 @@
+<head>
+<%= stylesheet_link_tag "BootSideMenu" %>
+<%= javascript_include_tag "BootSideMenu" %>
+</head>
 <body>
 
 <%= simple_form_for(@repair) do |f| %>
@@ -7,40 +11,45 @@
       <% end %>
       <br>
 
+<div id="test" class="sidenav">
+
+  <h3>Bus History</h3>
+   <div id="bhis">
+   </div>
+</div>
 
 
-    <div class="row">
+
+<div class = "row">
       <div class="col-xs-6 col-md-6 col-lg-6">
           <%= f.input :bus_id, label: "Bus No.", 
           label_method: :bus_no, 
           collection: @buses, 
           input_html: {class: "bus-selectize selectabuzz"} %>
 
-      </div>  
-    
-      <div class="col-xs-6 col-md-6 col-lg-6">
           <%= f.input :driver_id, label: "Driver",
           collection: @drivers,
           label_method: :lastname,
           input_html: {class: 'driver-selectize'} %>
       </div>
-    </div>
 
+      <div class="col-xs-12 col-md-6" >
+   
+</div>
+</div>
+ <div class="col-xs-6 col-md-6 col-lg-6">
     <h3>Repairs</h3>
 
     <div class='links' style="padding-bottom:10px;">
        <%= link_to_add_association 'Add Repair', f, :jobs, :partial => 'jobs_fieldsadd', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success" %>
     </div>
+ </div>
 
-  <!--  <div class="col-xs-12 col-md-6" >
-   <h3>Bus History</h3>
-   <div id="bhis">
-   </div> -->
-
+ <div class="col-xs-12 col-md-12 col-lg-12">
   <div class="actions">
     <%= f.submit :Submit, class: "btn btn-default" %>
   </div>
-
+</div>
 
 <% end %>
 
@@ -48,6 +57,12 @@
 
 <script>
 $('document').ready(function() {
+
+   $('#test').BootSideMenu({
+        side: "right",
+        pushBody: false,
+        remember: false
+    });
 
   $('.bus-selectize').selectize({
 
@@ -72,7 +87,7 @@ $('document').ready(function() {
              
               $.each(s[i].jobs, function (index, value){ 
                 console.log("why is nothing happening");
-                stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].jobs[index].duration + ' seconds' + '</td>'
+                stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].jobs[index].duration + '</td>'
                 $.each(s[i].jobs[index].job_parts, function(h, c){
                   stuff4 += '<td>' + s[i].jobs[index].job_parts[h].part.partname + '</td><td>' + s[i].jobs[index].job_parts[h].quantity + s[i].jobs[index].job_parts[h].part.unit
                 })
@@ -107,5 +122,8 @@ $('document').ready(function() {
 });
 
 });
+
+
+
 </script>
 

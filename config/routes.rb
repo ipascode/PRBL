@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end    
 
   get 'home/index' 
+  get 'home/exp'
   get 'report/index'
 
   get 'admin/manage_users' 

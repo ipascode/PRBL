@@ -5,5 +5,9 @@ class HomeController < ApplicationController
 
   end
 
+  def exp
+      @buses = Bus.in_repair
+
+  end
   
 end

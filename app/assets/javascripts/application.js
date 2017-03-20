@@ -35,3 +35,7 @@ $(document).on('ready page:load', function(){
     $.snackbar({content: value, style: key, timeout: 10000});
   });
 });
+
+$(document).ready(function() {
+// This command is used to initialize some elements and make them work properly
+$.material.init();
