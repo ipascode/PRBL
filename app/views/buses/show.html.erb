@@ -142,17 +142,17 @@
           <td><%= job.timestarted %> </td>
           <td><%= job.timefinished %> </td>
           <td><%= job.duration %> </td>
+
           <td><% job.mechanics.each do |mechanic| %>
                             <%= mechanic.lastname%>
                             <%end%> </td>
         
-
             <% job.job_parts.each do |job_part| %> 
               <td><%= job_part.part_id %> </td>
               <td>  </td>
               <td><%= job_part.quantity %> </td>
               <td><%= job_part.cost %> </td>
-              <td>   </td>
+              <!-- <td>   </td> -->
           <% end %>
           
         <% end %>
