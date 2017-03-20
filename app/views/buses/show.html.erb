@@ -48,14 +48,15 @@
     <% @bus.repairs.each do |repair| %> 
       <% repair.jobs.each do |job| %> 
         <% job.job_parts.each do |job_part| %>
-          <td><%= job_part.quantity %> </td>
-          <td><%= job_part.part_id %> </td>
+          <td><%= job_part.quantity %><%= job_part.part.unit %> </td>
+          <td><%= job_part.part.partname %> </td>
           <td><%= job_part.cost %> </td>
         <% end %>
       <% end %>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <h1>History</h1>
 
@@ -129,10 +130,11 @@
 
 <tbody class="table-hover">
     <% @bus.repairs.each do |repair| %> 
+    <tr>
       <td><%= repair.datefinished %> </td>
       <td><%= repair.datestarted %> </td>
       <td><%= repair.repairtype %></td> 
-      <td><%= repair.driver.lastname %></td>
+      <td><% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%></td>
 
         <% repair.jobs.each do |job| %> 
           <td><%= job.jobparticular %> </td>
@@ -140,7 +142,9 @@
           <td><%= job.timestarted %> </td>
           <td><%= job.timefinished %> </td>
           <td><%= job.duration %> </td>
-          <td><%= job.mechanic_id%> </td>
+          <td><% job.mechanics.each do |mechanic| %>
+                            <%= mechanic.lastname%>
+                            <%end%> </td>
         
 
             <% job.job_parts.each do |job_part| %> 
@@ -152,6 +156,7 @@
           <% end %>
           
         <% end %>
+        </tr>
     <% end %>
   </tbody>
 </table>

@@ -6,17 +6,21 @@
         <li><%= message %></li>
       <% end %>
       <br>
+
+<div data-role="page" id="pageone">
+    <div data-role="panel" id="overlayPanel" data-display="overlay"  data-position="right">
+    <h2>Panel Header..</h2>
+    <p>Some text in the panel..</p>
+    <a href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
+  </div> 
+
     <div class="row">
       <div class="col-xs-6 col-md-6 col-lg-6">
           <%= f.input :bus_id, label: "Bus No.", 
           label_method: :bus_no, 
           collection: @buses, 
           input_html: {class: "bus-selectize selectabuzz"} %>
-          <!--
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#bhismodal">
-            Bus History
-          </button>
-          -->
+
       </div>  
     
       <div class="col-xs-6 col-md-6 col-lg-6">
@@ -44,7 +48,7 @@
 
 
 <% end %>
-
+ </div>
 </body>
 
 <script>
