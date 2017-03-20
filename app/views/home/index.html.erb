@@ -46,8 +46,8 @@
                       <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%> | Driver: <% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%>
 
                       <div class="btn-group pull-right" role="group" aria-label="...">
-                        <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default btn-sm"%>
-                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm"%>
+                        <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default btn-sm btn-raised"%>
+                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm btn-raised"%>
                       </div>
                       </span>
                       <tr>
@@ -72,7 +72,7 @@
                             <td>
 
                              <%= button_to job_start_repair_path(job), 
-                             class: "btn btn-default",
+                             class: "btn btn-default btn-raised",
                              'aria-label'=> "Center Align", 
                              remote: true do %>
                               <p id = 'job-<%=job.id %>'><%= job.status %></p>

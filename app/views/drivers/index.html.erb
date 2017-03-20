@@ -43,9 +43,9 @@
       <tr>
         <td><%= image_tag driver.avatar.url(:thumb) %></td>
         <td><%= driver.lastname %></td>
-        <td><%= link_to 'View', driver, :class => 'btn btn-default'  %></td>
-        <td><%= link_to 'Edit', edit_driver_path(driver), :class => 'btn btn-default'  %></td>
-        <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'  %></td>
+        <td><%= link_to 'Info', driver, :class => 'btn btn-default btn-raised'  %></td>
+        <td><%= link_to 'Edit', edit_driver_path(driver), :class => 'btn btn-default btn-raised'  %></td>
+        <td><%= link_to 'Delete', driver, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-raised'  %></td>
       </tr>
     <% end %>
   </tbody>

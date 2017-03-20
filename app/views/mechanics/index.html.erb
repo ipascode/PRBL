@@ -49,9 +49,9 @@
         <td><%= mechanic.position %></td>
         <td><%= mechanic.skills %></td>
         <td><%= mechanic.shift %></td>
-        <td><%= link_to 'Info', mechanic, :class => 'btn btn-default' %></td>
-        <td><%= link_to 'Edit', edit_mechanic_path(mechanic), :class => 'btn btn-default' %></td>
-        <td><%= link_to 'Delete', mechanic, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        <td><%= link_to 'Info', mechanic, :class => 'btn btn-default btn-raised' %></td>
+        <td><%= link_to 'Edit', edit_mechanic_path(mechanic), :class => 'btn btn-default btn-raised' %></td>
+        <td><%= link_to 'Delete', mechanic, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-raised' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -127,9 +127,9 @@
         <td><div id = "odometer-<%= bus.id %>"><%= bus.odometer %></div></td>
         <td><%= button_to odometer_subtract_bus_path(bus), class: "btn btn-default", remote: true do %>-<% end %></td>
         <td><%= bus.status %></td>
-        <!-- <td><%= link_to 'Bus Info', bus, :class => "btn btn-default" %></td> -->
-        <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-default"  %></td>
-        <td><%= link_to 'Delete', bus, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+        <!-- <td><%= link_to 'Bus Info', bus, :class => "btn btn-default btn-raised" %></td> -->
+        <td><%= link_to 'Edit', edit_bus_path(bus), :class => "btn btn-default btn-raised"  %></td>
+        <td><%= link_to 'Delete', bus, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-raised" %></td>
       </tr>
     <% end %>
   </tbody>
