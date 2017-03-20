@@ -25,10 +25,10 @@
       <% @buses.each do |bus| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title" style="margin-bottom: 15px;">
+            <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
                 <%= bus.bus_no %>
-                <%= link_to 'Bus Info', bus, :class => "btn btn-default pull-right" %>
+                <%= link_to 'Bus Info', bus, :class => "pull-right"  %>
               </a>
             </h4>
           </div>
@@ -47,7 +47,7 @@
 
                       <div class="btn-group pull-right" role="group" aria-label="...">
                         <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%>
-                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default"%>
+                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger waves-effect waves-light"%>
                       </div>
                       </span>
                       <tr>
@@ -70,10 +70,10 @@
                             <% repair.jobs.each do |job| %>
                             <tr>
                             <td>
+                              
                              <%= button_to job_start_repair_path(job), 
                              class: "btn btn-default",
                              'aria-label'=> "Center Align", 
-
                              remote: true do %>
                               <p id = 'job-<%=job.id %>'><%= job.status %></p>
                               <% end %> </td>

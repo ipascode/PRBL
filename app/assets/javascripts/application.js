@@ -23,8 +23,15 @@
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require bootstrap-material-design
+//= require snackbar
 
 
 $(document).on("page:change", function(){
     $("input.datepicker").datepicker();
+});
+
+$(document).on('ready page:load', function(){
+  $.each( flashMessages, function(key, value){
+    $.snackbar({content: value, style: key, timeout: 10000});
+  });
 });

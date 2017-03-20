@@ -49,8 +49,9 @@ gem 'cancancan'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 source 'https://rails-assets.org' do
-gem 'rails-assets-bootstrap-material-design'
+	gem 'rails-assets-bootstrap-material-design'
 end
+gem 'snackbarjs-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

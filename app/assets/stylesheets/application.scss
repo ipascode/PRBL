@@ -14,6 +14,7 @@
  *= require bootstrap-datetimepicker
  *= require font-awesome
   *= require bootstrap-material-design
+
  */
 
  
@@ -21,13 +22,28 @@
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 @import "font-awesome";
+@import "snackbar";
+@import "snackbar-material";
 
+.snackbar.error {
+  background-color: red;
+}
+.snackbar.alert {
+  background-color: yellow;
+  color: black;
+}
+.snackbar.notice {
+  background-color: green;
+}
 
 body { 
 		padding-top: 70px; 
     font-size: 16px;
 	}
 
+ html {
+    font-family: Roboto, sans-serif;
+  }
 
 .navbar,
 .navbar.navbar-default {
@@ -108,6 +124,8 @@ body {
     background-color: #d5d5d5;
   }
 }
+
+
 
 /*
 .btn-file {
