@@ -4,7 +4,10 @@
 <body>
 <p id="notice"><%= notice %></p>
 
-<h1>Dashboard</h1>
+<center>
+  <%= image_tag("002-buses.png" , size: "170x60" )%>
+  <h1>Dashboard</h1>
+</center>
 <h4><span class="badge"><%= pluralize(@buses.in_repair.count, 'bus') %> in repair</span></h4>
 
 <div class="btn-group" role="group" aria-label="...">
