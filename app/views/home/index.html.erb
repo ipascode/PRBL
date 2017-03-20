@@ -4,6 +4,7 @@
 <body>
 <p id="notice"><%= notice %></p>
 
+
 <center>
   <%= image_tag("002-buses.png" , size: "170x60" )%>
   <h1>Dashboard</h1>
@@ -46,7 +47,7 @@
 
                       <div class="btn-group pull-right" role="group" aria-label="...">
                         <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default"%>
-                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"%>
+                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default"%>
                       </div>
                       </span>
                       <tr>
@@ -109,7 +110,6 @@
       <% end %>
     </div>
   </div>
-
 
 
 

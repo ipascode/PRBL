@@ -48,6 +48,10 @@ gem 'time_difference'
 gem 'cancancan'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+source 'https://rails-assets.org' do
+gem 'rails-assets-bootstrap-material-design'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

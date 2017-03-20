@@ -22,6 +22,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require pickers
+//= require bootstrap-material-design
 
 
 $(document).on("page:change", function(){
