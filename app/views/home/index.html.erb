@@ -17,18 +17,17 @@
   <button type="button" class="btn btn-default openall" id = "closeall">Close All</button>
 </div>
 
-<div class="row">
-
-  <div class = "col-xs-12 col-md-12">
-    <br>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<!-- <div class="row"> -->
       <% @buses.each do |bus| %>
+      <!-- <div class = "col-xs-12 col-md-12 col-lg-6"> -->
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
                 <%= bus.bus_no %>
-                <%= link_to 'Bus Info', bus, :class => "pull-right"  %>
+                
+                
+                <%= link_to 'Bus Info', bus, :class => "pull-right" %>
               </a>
             </h4>
           </div>
@@ -37,79 +36,50 @@
           <div id="collapse-<%= bus.bus_no %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 <div class="table-responsive">
-                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  <% bus.repairs.to_finish.each do |repair| %>
-
-                  <table class="table">
-                     
-                    <thead>
-                      <span>Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%> | Driver: <% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%>
-
-                      <div class="btn-group pull-right" role="group" aria-label="...">
-                        <%= link_to 'Edit', edit_repair_path(repair), :class => "btn btn-default btn-sm btn-raised"%>
-                        <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm btn-raised"%>
-                      </div>
-                      </span>
-                      <tr>
-                        <th></th>
-                        <th>Repair</th>
-                        <th>Time Started</th>
-                        <th>Time Finished</th>
-                        <th>Duration</th>
-                        <th>Mechanic</th>
-                        <th>Part</th>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th colspan="5"></th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-hover">
-                      
-                            <% repair.jobs.each do |job| %>
-                            <tr>
-                            <td>
-
-                             <%= button_to job_start_repair_path(job), 
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="style="overflow: auto"">
+                  <div class="row-fluid" style="white-space: nowrap;">
+                    <% bus.repairs.to_finish.each do |repair| %>
+                    <p>
+                    <br>
+                    <span>Driver: <% if !repair.driver.nil? %> <%= repair.driver.lastname %><%end%></span>
+                    <div class="btn-group" role="group" aria-label="...">
+                    <%= link_to 'Edit', edit_repair_path(repair), :class => 'btn btn-default btn-raised'%>
+                    <%= link_to 'Delete', repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-raised'%>
+                    </div>
+                    </p>
+                    
+                    <% repair.jobs.each do |job| %>
+                    
+                      <div class="panel panel-default" align="center" style="padding: 10px; height: 200px; width: 200px; display: inline-block;">
+                        <%= job.jobparticular %>
+                        <%= button_to job_start_repair_path(job), 
                              class: "btn btn-default btn-raised",
                              'aria-label'=> "Center Align", 
                              remote: true do %>
-                              <p id = 'job-<%=job.id %>'><%= job.status %></p>
-                              <% end %> </td>
+                              <span id = 'job-<%=job.id %>'><%= job.status %><% end %></span>
+                        <span id = 'timestart-<%=job.id %>' style="font-size: 10px;"><% if !job.timestarted.nil? %> <%= job.timestarted.strftime("%X %p") %><% end %></span>-<span id = 'timefinish-<%=job.id %>' style="font-size: 10px;">
+                            <% if !job.timefinished.nil? %> <%= job.timefinished.strftime("%X %p") %><% end %></span>
+                            <br>
+                            <% job.job_parts.each do |job_part| %>
+                              <span style="font-size: 12px;"><%= job_part.quantity %> <%= job_part.part.partname %>, <%= job_part.cost %></span>
+                            <% end %>
+                            <br>
+                            <% job.mechanics.each do |mechanic| %>
+                              <span style="font-size: 12px;"><%= mechanic.lastname%></span>
+                            <% end %>
 
-                            <td><%= job.jobparticular %> </td>
-                            <td><p id = 'timestart-<%=job.id %>'>
-                               <% if !job.timestarted.nil? %> <%= job.timestarted.strftime("%X %p") %></p> <% end %></td>
-                            <td><p id = 'timefinish-<%=job.id %>'>
-                            <% if !job.timefinished.nil? %> <%= job.timefinished.strftime("%X %p") %></p><% end %> </td>
-                            <td><p id = 'duration-<%=job.id %>'><%= job.duration %> </td>
-                            <td><% job.mechanics.each do |mechanic| %>
-                            <%= mechanic.lastname%>
-                            <%end%></td>
-                                                                         
-                                <% job.job_parts.each do |job_part| %> 
-                                <td><%= job_part.part.partname %> </td>
-                                <td></td>
-                                <td><%= job_part.quantity %> </td>
-                                <td><%= job_part.cost %> </td>
-                                <td><%= job_part.total %> </td></td>
-                                <% end %>
-
-
-                             <% end %>
-                             </tr>
-                        <% end %>
-                        </tr>
-                    </tbody>
-                  </table>
+                      </div>
+                    
+                    <% end %>
+                  
+                  <% end %>
+                  </div>
+                  </div>
                 </div>
             </div> <!-- panel body -->
           </div>
         </div>
+      
+      <!-- </div> -->
       <% end %>
-    </div>
-  </div>
-
-
-
+<!-- </div> -->
