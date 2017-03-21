@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   
-  devise_for :users, controllers: { sessions: 'users/sessions' } do
-      collection { post :import }
-  end    
+  devise_for :users, controllers: { sessions: 'users/sessions' }, :path_prefix => 'my'
+
+  resources :users do
+    collection { post :import }
+  end
 
   get 'home/index' 
   get 'home/exp'
   get 'report/index'
-
-  get 'admin/manage_users' 
-
-get '/bushistory/' => 'repairs#bushistory', :defaults => { :format => 'json' }
+  get '/bushistory/' => 'repairs#bushistory', :defaults => { :format => 'json' }
 
   resources :parts do
    collection { post :import }
