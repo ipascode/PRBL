@@ -1,0 +1,20 @@
+<table>
+	<thead>
+		<div class = "row">
+			<th>Username</th>
+			<th>Email</th>
+			<th>Name</th>
+			<th>Position</th>
+			<th>Role</th>
+			<th>Last Sign In</th>
+		</div>
+	</thead>
+	<tbody>
+		<td><%= @user.username %></td>
+		<td><%= @user.email %></td>
+		<td><%= @user.lastname %> <%= @user.fistname %></td>
+		<td><%= @user.position %></td>
+		<td><%= @user.role %></td>
+		<td><%= @user.last_sign_in_at %></td>
+	</tbody>
+</table>

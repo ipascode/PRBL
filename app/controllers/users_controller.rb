@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
 
   def index
 		@users = User.all
   end
-
 
   def import
   begin
@@ -35,6 +35,9 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show    
   end
 
   def update

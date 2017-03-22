@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :users, controllers: { sessions: 'users/sessions' }, :path_prefix => 'my'
-
+  
   resources :users do
     collection { post :import }
   end
