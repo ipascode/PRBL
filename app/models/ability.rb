@@ -40,9 +40,9 @@ class Ability
         can [:read, :update, :create, :destroy], [Repair, Part, PartsTire, Job, JobPart]
         can :read, [Bus, BusLine, BusModel] 
 
-    elsif user.role == 'odometer'
-        can [:read, :update, :create], [Bus, BusLine]
-        can [:read, :update, :create, :destroy], [Driver, Mechanic]
+    elsif user.role == 'accounting'
+        can [:read, :update, :create, :destroy], [Driver, Mechanic, Bus, BusLine]
+        can :read, [Repair, Part, PartsTire, Job, JobPart]
     end
 
   end
