@@ -49,6 +49,7 @@ class RepairsController < ApplicationController
     if @job.status == "Repairing"
       @job.update(timefinished: Time.zone.now, status: "Done")
       @job.update(duration: TimeDifference.between(@job.timestarted, @job.timefinished).humanize)
+      @job.update(duration_minutes: TimeDifference.between(@job.timestarted, @job.timefinished).in_minutes)
       @repair = Repair.find(@job.repair_id)
         if @repair.jobs.count == @repair.jobs.done.count
           @repair.update(done: true, datefinished: Time.zone.now)

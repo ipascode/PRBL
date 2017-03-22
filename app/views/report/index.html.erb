@@ -6,7 +6,12 @@
 
 <body onload='report'>
 <div class="document">
-
+<form method="get">
+<input type="text" class="daterange" id="datepickah"/>
+<input type="hidden" name="startDate" id="range_start">
+<input type="hidden" name="endDate" id="range_end">
+<input type="submit" value="Filter" />
+</form>
 
 <!--
 <div class="row">
@@ -17,11 +22,21 @@
   </div>
    </div>
 <br> -->
-<%  @topjobparticular = Job.group(:jobparticular).group_by_month(:timefinished, format:  "%b").order("count(jobparticular) desc").limit(10).count %>
+<h3> Repair Time </h3>
+<div>
+
+<%= line_chart  [
+  {name: "Cumulative Time Spent", data: @cumulative},
+  {name: "Average Time Spent", data: @avg}],
+  xtitle: "Month", ytitle: "Duration in Minutes" %>
+
+</div>
 
 
-<%= bar_chart @topjobparticular, stacked: true %> 
-
+<h3>Repair Frequency Chart</h3>
+<div>
+  <%= bar_chart @topjobparticular, stacked: true %> 
+</div>
   <h3>Visits By Day</h3>
   <div>
     <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
@@ -71,4 +86,26 @@
 	  }
 	});
 
+  </script>
+
+
+
+
+
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('input[class="daterange"]').daterangepicker({
+      format: "yyyy-mm-dd"
+  }, function(start, end, label) {
+    console.log("New date range selected:" + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD'));
+          document.getElementById("range_start").value = start.format('YYYY-MM-DD');
+         document.getElementById("range_end").value = end.format('YYYY-MM-DD');
+  })
+    .on('changeDate', function(ev){
+   var range = $("#datepickah").daterangepicker("getRange");
+
+  });
+    ;
+  });
   </script>
