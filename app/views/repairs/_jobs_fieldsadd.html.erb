@@ -21,6 +21,9 @@
         collection: @mechanics,
         label_method: :lastname, 
         input_html: {class: 'mechanic-selectize', multiple: true} %>
+
+        <div id = "mechanic-warning"></div>
+
     </div>
 
   </div>
@@ -43,9 +46,13 @@
 </div>
 
 <script>
+
 $('form').on('cocoon:after-insert', function(e, addedItem) {
   $(addedItem).find('.part-selectize').selectize({
   })
 });
+
+
+
 </script>
   

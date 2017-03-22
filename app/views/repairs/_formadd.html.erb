@@ -70,7 +70,6 @@ $('document').ready(function() {
   }).on('change', function(){
     var s = $(this).val()
     e = s.toString().length;
-    console.log("ur mom");
     e > 0 ? $.ajax({
         method: "GET",
         url: "/bushistory/",
@@ -116,6 +115,8 @@ $('document').ready(function() {
   $(addedItem).find('.mechanic-selectize').selectize({
      delimiter: ',',
      plugins: ['remove_button']
+
+     
   })
   $(addedItem).find('.job-selectize').selectize({
      create: true
