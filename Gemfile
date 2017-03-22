@@ -38,7 +38,7 @@ gem "paperclip" #for photos
 gem 'selectize-rails' 
 gem 'better_errors'
 gem 'sprockets-rails', '~> 2.3.3'
-gem 'chart-js-rails'
+
 gem 'chartkick', '~> 1.2.5'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median'

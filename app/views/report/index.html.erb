@@ -17,8 +17,10 @@
   </div>
    </div>
 <br> -->
+<%  @topjobparticular = Job.group(:jobparticular).group_by_month(:timefinished, format:  "%b").order("count(jobparticular) desc").limit(10).count %>
 
 
+<%= bar_chart @topjobparticular, stacked: true %> 
 
   <h3>Visits By Day</h3>
   <div>
@@ -29,7 +31,7 @@
 <div>
 
 
-  
+    
     <canvas id="myChart"></canvas>
 <!--     <canvas id="myChart"></canvas> -->
 

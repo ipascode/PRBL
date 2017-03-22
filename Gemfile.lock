@@ -68,8 +68,6 @@ GEM
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     cancancan (1.16.0)
-    chart-js-rails (0.1.1)
-      railties (> 3.1)
     chartkick (1.2.5)
     climate_control (0.1.0)
     cocaine (0.5.8)
@@ -240,7 +238,6 @@ DEPENDENCIES
   bullet
   byebug
   cancancan
-  chart-js-rails
   chartkick (~> 1.2.5)
   cocoon
   coffee-rails (~> 4.2)
