@@ -3,8 +3,15 @@
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :avatar, as: :file %>
+ <div class="input-group">
+  <%= f.input :avatar, as: :file, input_html: {class: "form-control"} %>
+      <span class="input-group-btn input-group-sm">
+        <button type="button" class="btn btn-fab btn-fab-mini">
+          <i class="material-icons">attach_file</i>
+        </button>
+      </span>
+  </div>
+
     <%= f.input :username, required: true, autofocus: true %>
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>

@@ -48,7 +48,7 @@
 
     
     <canvas id="myChart"></canvas>
-
+<% if !@mechanics.nil? %>
 <% @mechanics.each do |mech| %>
 <div class="mechanic">
 <h3><%= mech.lastname  %></h3>
@@ -81,6 +81,7 @@
     <% else %>
 
     <% mech.jobs.group(:jobparticular).each do |mjob|  %>
+
           <% next if  (@jpart[mjob.jobparticular.to_s].to_f - mjob.duration_minutes.to_f).abs < (@jpart[mjob.jobparticular.to_s].to_f*0.5) %>
           <tr class ="mechtr">  
               <td ><%= mjob.jobparticular  %></td>
@@ -95,6 +96,17 @@
     </div> 
      <% end %> 
 </div> 
+
+      <tr>  
+          <td><%= mjob.jobparticular  %></td>
+          <td><%= @jpart[mjob.jobparticular.to_s]  %></td>
+          <td><%= mjob.duration_minutes.to_f  %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+    <% end %>
+    <% end %>
 
 
 
