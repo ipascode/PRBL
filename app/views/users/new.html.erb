@@ -1,5 +1,23 @@
 <h2>Create User</h2>
 
-<%= render 'form', user: @user %>
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :avatar, as: :file %>
+    <%= f.input :username, required: true, autofocus: true %>
+    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, required: true %>
+    <%= f.input :firstname, required: true %>
+    <%= f.input :lastname, required: true%>
+    <%= f.input :position, required: true%>
+    <%= f.input :role, required: true, collection: ['user','admin'] %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', users_path %>
