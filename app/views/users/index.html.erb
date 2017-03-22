@@ -14,7 +14,7 @@
       <th>Email</th>
       <th>Position</th>
       <th>Type</th>
-      
+      <th>Signed in</th>
       <th colspan="2">Actions</th>
     </tr>
   </thead>
@@ -23,12 +23,13 @@
     <% @users.each do |user| %>
       <tr>
 
-        <td><%= user.firstname %><%= user.lastname %></td>
+        <td><%= user.firstname %> <%= user.lastname %></td>
         <td><%= user.email %></td>
         <td><%= user.position %></td>
         <td><%= user.role %></td>
-        
-        <td></td>
+        <td><%= user.current_sign_in_at %></td>
+        <td><td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-default btn-raised'  %></td>
+        <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-raised'  %></td></td>
       </tr>
     <% end %>
   </tbody>

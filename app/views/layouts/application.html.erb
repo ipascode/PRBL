@@ -32,6 +32,7 @@
         <li><%= link_to "Parts", parts_path%> <span class="sr-only"></li>
         <li><%= link_to "Personnel", mechanics_path%><span class="sr-only"></li>
         <li><%= link_to "Repairs", repairs_path%><span class="sr-only"></li>
+        <li><%= link_to "Users", users_path%><span class="sr-only"></li>
       </ul>
 
       
@@ -54,7 +55,7 @@
   <div class="container">
     <%= javascript_tag do %>
       window.flashMessages = $.parseJSON('<%=j flash.to_hash.to_json.html_safe %>');
-    <% end %>
+  <% end %>
     
       <%= yield %>
   </div>

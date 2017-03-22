@@ -36,6 +36,7 @@ $(document).on('ready page:load', function(){
   });
 });
 
-$(document).ready(function() {
+//$(document).ready(function() {
 // This command is used to initialize some elements and make them work properly
-$.material.init();
+//$.material.init();
+//}
