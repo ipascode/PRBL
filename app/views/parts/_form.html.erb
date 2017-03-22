@@ -36,7 +36,7 @@
 
 <div class='form-group'>
   <div class="checkbox col-sm-8">
-      <label id = "check-tires"> <%= f.check_box :group, collection: ["Tires"], input_html: {id: "check-tires"} %> Tire? </label>
+      <label id = "check-tires"> <%= f.check_box :group, collection: ["Tires"], input_html: {id: "tires"} %> Tire? </label>
   </div>
 </div>
 
@@ -76,12 +76,10 @@ $("#bus").prop("disabled", true);
 
 
 $("#check-tires").click(function () {
- 
-           if ($(this).is(':checked')) {
-             console.log("more yay");
-                $(".tire-field").removeAttr("disabled");
-                $("#bus").prop("disabled", false); 
-           }
+
+  $("#tires").prop("checked", $(".tire-field").removeAttr("disabled"));
+  $("#tires").prop("checked", $("#bus").prop("disabled", false));
+
 });
 
 
