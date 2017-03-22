@@ -6,6 +6,6 @@ class Job < ApplicationRecord
 
   scope :done, lambda { where(status: "Done") }
 
-
+  validates :jobparticular, :status, presence: true
 
 end
