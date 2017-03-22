@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
   attr_accessor :login
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, :default_url => ":style/avatar-placeholder.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  
   
   validates :username, :email, :firstname, :lastname, :role, presence: true
   validates :username, :email, uniqueness: {case_sensitive: false}

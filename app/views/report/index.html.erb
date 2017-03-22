@@ -48,7 +48,7 @@
 
     
     <canvas id="myChart"></canvas>
-
+<% if !@mechanics.nil? %>
 <% @mechanics.each do |mech| %>
 <h3><%= mech.lastname  %></h3>
 <table class="table table-striped log">
@@ -71,7 +71,7 @@
   </tbody>
 </table>
     <% end %>
-
+    <% end %>
 
 
 <!--     <canvas id="myChart"></canvas> -->
