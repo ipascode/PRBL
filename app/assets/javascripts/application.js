@@ -21,6 +21,7 @@
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
+//= require daterangepicker
 //= require pickers
 //= require bootstrap-material-design
 //= require snackbar

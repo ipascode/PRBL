@@ -43,6 +43,7 @@ gem 'chartkick', '~> 1.2.5'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median'
 gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap-daterangepicker-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'time_difference'
 gem 'cancancan'
