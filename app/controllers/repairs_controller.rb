@@ -123,6 +123,7 @@ class RepairsController < ApplicationController
          if @repair.jobs.count == @repair.jobs.done.count
           @repair.update(done: true)
         end
+
         update_parts(@repair)
         @bus= Bus.find(@repair.bus_id)
         bus_update(@bus)
@@ -162,6 +163,9 @@ class RepairsController < ApplicationController
 
     def update_parts(r)
       r.jobs.each do |job|
+        if job.status == nil
+          job.status = "Not Started"
+        end
             job.job_parts.each do |job_part|
               if job_part != nil
                 if job_part.quantity != nil && job_part.cost != nil

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   end
 
   get 'home/index' 
-  get 'home/exp'
   get 'report/index'
   get '/bushistory/' => 'repairs#bushistory', :defaults => { :format => 'json' }
 
