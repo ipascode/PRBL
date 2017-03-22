@@ -48,7 +48,7 @@
 
     
     <canvas id="myChart"></canvas>
-<% if !@mechanics.nil? %>
+
 <% @mechanics.each do |mech| %>
 <div class="mechanic">
 <h3><%= mech.lastname  %></h3>
@@ -97,16 +97,8 @@
      <% end %> 
 </div> 
 
-      <tr>  
-          <td><%= mjob.jobparticular  %></td>
-          <td><%= @jpart[mjob.jobparticular.to_s]  %></td>
-          <td><%= mjob.duration_minutes.to_f  %></td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
-    <% end %>
-    <% end %>
+
+
 
 
 
