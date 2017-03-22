@@ -48,6 +48,32 @@
 
     
     <canvas id="myChart"></canvas>
+
+<% @mechanics.each do |mech| %>
+<h3><%= mech.lastname  %></h3>
+<table class="table table-striped log">
+  <thead>
+    <tr>
+      <th>Job Particular</th>
+      <th>Overall Average Duration</th>
+      <th>Mechanic’s Average Duration</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% mech.jobs.group(:jobparticular).each do |mjob|  %>
+      <tr>  
+          <td><%= mjob.jobparticular  %></td>
+          <td><%= @jpart[mjob.jobparticular.to_s]  %></td>
+          <td><%= mjob.duration_minutes.to_f  %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+    <% end %>
+
+
+
 <!--     <canvas id="myChart"></canvas> -->
 
     <!-- Need to make duration work -->
@@ -56,6 +82,12 @@
   <!-- you can loop javscript -->
   </div>
 </div>
+
+
+
+
+
+
 </body>
 </html>
 
