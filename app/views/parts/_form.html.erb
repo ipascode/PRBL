@@ -36,7 +36,7 @@
 
 <div class='form-group'>
   <div class="checkbox col-sm-8">
-      <label> <%= f.check_box :group, collection: ["Tires"], input_html: {id: "tires"} %> Tires </label>
+      <label id = "check-tires"> <%= f.check_box :group, collection: ["Tires"], input_html: {id: "check-tires"} %> Tire? </label>
   </div>
 </div>
 
@@ -75,14 +75,16 @@ $('#model-selectize').selectize({
 $("#bus").prop("disabled", true); 
 
 
-$(function () {
-        $("#tires").click(function () {
-            if ($(this).is(":checked")) {
+$("#check-tires").click(function () {
+ 
+           if ($(this).is(':checked')) {
+             console.log("more yay");
                 $(".tire-field").removeAttr("disabled");
                 $("#bus").prop("disabled", false); 
-            } 
-        });
-    });
+           }
+});
+
+
 
 
 </script>
