@@ -40,6 +40,8 @@ class ReportController < ApplicationController
 			#parts cost deviation report
 			@deviatedpart = Part.includes(job_parts: [:job]).where('jobs.status = ? ', "Done").references(:jobs)
 
+			#tires cpk
+			@tires = Part.includes(:parts_tires, job_parts: [:job]).where('jobs.status = ? AND group = ?', "Done", "Tires").references(:jobs)
 
 			respond_to do |format|
 		      format.html

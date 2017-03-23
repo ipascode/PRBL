@@ -146,6 +146,12 @@
       </tr>
     </thead>
     <tbody>
+      <% @tires.parts_tires.each do |tire| %>
+      <tr>
+        <td><%= tire.serial_no%></td>
+        <td><%= tire.cpk %></td>
+      </tr>
+      <% end %>
     </tbody>
 
   </table>
