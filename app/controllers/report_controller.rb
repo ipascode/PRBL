@@ -11,6 +11,8 @@ class ReportController < ApplicationController
 			@avg = Job.done.datefilter(start_date, end_date.end_of_day).group_by_month(:timefinished).average(:duration_minutes)			
 			@jpart = Job.done.group(:jobparticular).average(:duration_minutes)
 			@mechanics = Mechanic.includes(:jobs).all	
+
+			
 		else
 			@topjobparticular = Job.done.group(:jobparticular).group_by_month(:timefinished, format:  "%b").order("count(jobparticular) desc").limit(10).count
 			@cumulative = Job.done.group_by_month(:timefinished).sum(:duration_minutes)
@@ -18,6 +20,9 @@ class ReportController < ApplicationController
 			@jpart = Job.done.all.group(:jobparticular).average(:duration_minutes)
 			@mechanics = Mechanic.includes(:jobs).where('jobs.status = ? ', "Done").references(:jobs)		
 
+			#for part cost pie chart
+			@partcost = JobPart.includes([:part, :job]).where('jobs.status = ? ', "Done").group(:partname).order("sum(total) desc").limit(5).sum(:total)
+			@totalspentonparts = JobPart.includes(:job).where('jobs.status = ? ', "Done").sum(:total) 
 		end
 
 

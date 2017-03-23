@@ -34,17 +34,16 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 gem 'cocoon' #for nested models
 gem 'devise' #for users
-gem "paperclip" #for photos
-gem 'selectize-rails' 
+gem "paperclip" #for photos 
 gem 'better_errors'
 gem 'sprockets-rails', '~> 2.3.3'
-
+gem 'selectize-rails'
 gem 'chartkick', '~> 1.2.5'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median'
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap-daterangepicker-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'bootstrap-daterangepicker-rails'
 gem 'time_difference'
 gem 'cancancan'
 gem 'wicked_pdf'
