@@ -13,8 +13,18 @@ class ReportController < ApplicationController
 			@mechanics = Mechanic.includes(:jobs).where('jobs.status = ? ', "Done").references(:jobs)	
 
 			#for part cost pie chart
-			@partcost = JobPart.datefilter(start_date, end_date.end_of_day).includes([:part, :job]).where('jobs.status = ? ', "Done").group(:partname).order("sum(total) desc").limit(5).sum(:total)
-			@totalspentonparts = JobPart.datefilter(start_date, end_date.end_of_day).includes(:job).where('jobs.status = ? ', "Done").sum(:total) 
+			@partcost = JobPart.includes(:part, :job)
+			.where('jobs.status = ? AND jobs.timefinished >= ? AND jobs.timefinished <= ?','Done', start_date, end_date.end_of_day)
+			.group(:partname).order("sum(total) desc").limit(5).sum(:total)
+
+			@totalspentonparts = JobPart.includes(:job)
+			.where('jobs.status = ? AND jobs.timefinished >= ? AND jobs.timefinished <= ?','Done', start_date, end_date.end_of_day)
+			.sum(:total)
+
+			#parts cost deviation report
+			@deviatedpart = Part.includes(job_parts: [:job])
+			.where('jobs.status = ? AND jobs.timefinished >= ? AND jobs.timefinished <= ?','Done', start_date, end_date.end_of_day)
+			.references(:jobs)
 			
 		else
 			@topjobparticular = Job.done.group(:jobparticular).group_by_month(:timefinished, format:  "%b").order("count(jobparticular) desc").limit(10).count
@@ -24,17 +34,20 @@ class ReportController < ApplicationController
 			@mechanics = Mechanic.includes(:jobs).where('jobs.status = ? ', "Done").references(:jobs)		
 
 			#for part cost pie chart
-			@partcost = JobPart.includes([:part, :job]).where('jobs.status = ? ', "Done").group(:partname).order("sum(total) desc").limit(5).sum(:total)
-			@totalspentonparts = JobPart.includes(:job).where('jobs.status = ? ', "Done").sum(:total) 
-		end
+			@partcost = JobPart.includes(:part, :job).where('jobs.status = ? ', "Done").group(:partname).order("sum(total) desc").limit(5).sum(:total)
+			@totalspentonparts = JobPart.includes(:job).where('jobs.status = ? ', "Done").sum(:total)
+
+			#parts cost deviation report
+			@deviatedpart = Part.includes(job_parts: [:job]).where('jobs.status = ? ', "Done").references(:jobs)
 
 
-		respond_to do |format|
-	      format.html
-	      format.pdf do
-        render pdf: 'Maintenance',
-        :template => "report/index.html.erb"
-      		end
+			respond_to do |format|
+		      format.html
+		      format.pdf do
+	        render pdf: 'Maintenance',
+	        :template => "report/index.html.erb"
+	      		end
+			end
 		end
 	end
 

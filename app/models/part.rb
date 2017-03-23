@@ -1,5 +1,6 @@
 class Part < ApplicationRecord
   belongs_to :bus_model, optional: true
+  has_many :job_parts
   has_one :parts_tire, inverse_of: :part
   accepts_nested_attributes_for :parts_tire, reject_if: :all_blank, allow_destroy: true
 

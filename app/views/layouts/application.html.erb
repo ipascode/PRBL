@@ -33,7 +33,13 @@
           <li><%= link_to "Report", report_index_path %></li> 
         <%end%>
         <li><%= link_to "Parts", parts_path%> <span class="sr-only"></li>
-        <li><%= link_to "Personnel", mechanics_path%><span class="sr-only"></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personnel<span class="caret"></span></a>
+          <ul class="dropdown-menu">           
+            <li><%= link_to "Mechanics", mechanics_path %></li>
+            <li><%= link_to "Drivers", drivers_path %></li>
+          </ul>
+        </li>
         <% if current_user.role == 'admin' %>
           <li><%= link_to "Repairs", repairs_path%><span class="sr-only"></li>
         <%end%>

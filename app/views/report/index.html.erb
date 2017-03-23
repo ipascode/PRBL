@@ -48,7 +48,8 @@
 
     
     <canvas id="myChart"></canvas>
-
+<h3>Mechanic Performance</h3>
+<p>Lists whenever each mechanic takes too long to finish a repair, or finishes a repair quickly.</p>
 <% @mechanics.each do |mech| %>
 <div class="mechanic">
 <h4><%= mech.lastname  %></h4>
@@ -80,7 +81,7 @@
  
     <% else %>
 
-    <% mech.jobs.done.group(:jobparticular).each do |mjob|  %>
+    <% mech.jobs.group(:jobparticular).each do |mjob|  %>
 
           <% next if  (@jpart[mjob.jobparticular.to_s].to_f - mjob.duration_minutes.to_f).abs < (@jpart[mjob.jobparticular.to_s].to_f*0.5) %>
           <tr class ="mechtr">  
@@ -103,7 +104,51 @@
 
   <%= pie_chart @partcost, donut: true %>
 
+  <h3>Important Part Cost Changes</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Part</th>
+        <th>Starting Cost</th>
+        <th>Current Cost</th>
+        <th>Change in Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @deviatedpart.each do |devpart|%>
+       
+          <% @orig = devpart.job_parts.order('updated_at').first %>
+          <% @curr = devpart.job_parts.order('updated_at desc').first %>
+                <% if @orig != nil &&  @curr != nil && @curr.cost >= @orig.cost + @orig.cost*0.5.abs %>
+          <tr>
+          <td><%= devpart.partname %></td>
+          <td><%= @orig.cost %> </td>
+          <td><%= @curr.cost %></td>
+          <td><%= (@curr.cost - @orig.cost).abs %></td>
+          </tr>
+           
+        <% end %>
+
+      <% end %> <!--if has date filter -->
+    </tbody>
+
+  </table>
+
   <h3>Tires Cost Per Kilometer</h3>
+
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Serial Number</th>
+        <th>Cost Per Kilometer</th>
+        <th>Bus Number</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+
+  </table>
 
   </div>
 </div>
