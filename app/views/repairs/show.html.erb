@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td style="padding-right: 10px;"><strong>Driver</strong></td>
-        <td style="padding-right: 10px;"><%= @repair.driver.lastname %></td>
+        <td style="padding-right: 10px;"><% if !@repair.driver.nil?%><%= @repair.driver.lastname %><%end%></td>
       </tr>
       <tr>
         <td style="padding-right: 10px;"><strong>Bus</strong></td>
