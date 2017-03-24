@@ -3,7 +3,7 @@
 
   </head>
 
-<body onload='report'>
+<body>
 <div class="document">
 <form method="get">
 <input type="text" class="daterange" id="datepickah"/>
@@ -99,10 +99,10 @@
 
 
   <h3>Parts Cost</h3>
-  <h5>Total Spent on Parts: <%= @totalspentonparts %> Php</h5>
+  <h5>Total Spent on Parts: <%= number_to_currency(@totalspentonparts, unit: '‎₱')%></h5>
 
   <%= pie_chart @partcost, donut: true %>
-
+  <center><p>For top 10 most costly parts</p><br></center>
   <h3>Important Part Cost Changes</h3>
 
   <table class="table">

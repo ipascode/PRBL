@@ -36,9 +36,9 @@ class Bus < ApplicationRecord
 
 
       if bus.count == 1
-       bus.first.update_attributes(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], cpk: bus_hash['cpk'], avatar_file_name: bus_hash['avatar_file_name'], status: bus_hash['status'], active: bus_hash['active']) 
+       bus.first.update_attributes(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], avatar_file_name: bus_hash['avatar_file_name'], status: bus_hash['status']) 
       else
-        Bus.create(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], cpk: bus_hash['cpk'], avatar_file_name: bus_hash['avatar_file_name'],  status: bus_hash['status'], active: bus_hash['active']) 
+        Bus.create(bus_no: bus_hash['bus_no'], bus_model_id: br_id, bus_line_id: bl_id, plate_no: bus_hash['plate_no'],  date_purchased: bus_hash['date_purchased'], odometer: bus_hash['odometer'], avatar_file_name: bus_hash['avatar_file_name'],  status: bus_hash['status']) 
       end
 
     end # end CSV.foreach
