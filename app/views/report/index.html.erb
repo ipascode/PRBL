@@ -20,33 +20,28 @@
 
   </div>
    </div>
-<br> 
-<h3> Repair Time </h3>
-<div>
-
-<%= line_chart  [
-  {name: "Cumulative Time Spent", data: @cumulative},
-  {name: "Average Time Spent", data: @avg}],
-  xtitle: "Month", ytitle: "Duration in Minutes" %>
-
-</div>
-
 
 <h3>Repair Frequency Chart</h3>
 <div>
-  <%= bar_chart @topjobparticular, stacked: true %> 
+  <%= bar_chart @topjobparticular, stacked: true, legend: "bottom", download: "Repair-Frequency" %> 
 </div>
-  <h3>Visits By Day</h3>
-  <div>
-    <%= column_chart Bus.group_by_day_of_week(:created_at, format: "%a").count %>
-  </div>
+  
+<br> 
+<h3>Average Repair Time for BLOWBAGS</h3>
+<div>
 
-  <h3> Duration per Repair </h3>
+<%= line_chart  [
+  {name: "Change Engine Oil", data: @avgchangeengineoil},
+  {name: "Change Fuel Filter", data: @avgchangefuelfilter},
+  {name: "Change Oil Filter", data: @avgchangeoilfilter}],
+  ytitle: "Duration in Minutes", legend: "bottom", download: "Average-Repair-Time" %>
+
+</div>
+
+
 <div>
 
 
-    
-    <canvas id="myChart"></canvas>
 <h3>Mechanic Performance</h3>
 <p>Lists whenever each mechanic takes too long to finish a repair, or finishes a repair quickly.</p>
 <% @mechanics.each do |mech| %>
@@ -99,10 +94,11 @@
 
 
   <h3>Parts Cost</h3>
-  <h5>Total Spent on Parts: <%= number_to_currency(@totalspentonparts, unit: '‎₱')%></h5>
+  <h5>Total Spent on Parts: <%= number_to_currency(@totalspentonparts, unit: '‎₱', precision: 2)%></h5>
 
-  <%= pie_chart @partcost, donut: true %>
-  <center><p>For top 10 most costly parts</p><br></center>
+  <center><p>For top 10 most costly parts</p></center>
+  <%= pie_chart @partcost, donut: true, legend: "bottom", download: "Part-Cost-Top-Ten" %>
+  <br>
   <h3>Important Part Cost Changes</h3>
 
   <table class="table">
@@ -161,39 +157,6 @@
 
 </body>
 </html>
-
-  <script>
-  <% duration = 0 %>
-  <%@buses.each do |bus|%>
-	  <% bus.repairs.each do |repair| %>
-	  	<%= repair.datefinished.to_i - repair.datestarted.to_i %>
-	  <% end %>
-  <% end %>
-
-
-  var js_array2 = <%= raw Bus.pluck(:bus_no).to_json %>;
-  var ctx = document.getElementById("myChart").getContext('2d');
-	var myChart = new Chart(ctx, {
-	  type: 'bar',
-	  data: {
-	    labels: js_array2,
-	    datasets: [{
-	      label: 'Duration',
-	    }, {
-	      data: [  <%@buses.each do |bus|%>
-	  <% bus.repairs.each do |repair| %>
-	  	<%= (repair.datefinished.to_i - repair.datestarted.to_i).minutes %>,
-	  <% end %>
-  <% end %>0]
-	    }]
-	  }
-	});
-
-  </script>
-
-
-
-
 
 
   <script type="text/javascript">
