@@ -38,15 +38,16 @@
 </div>
 <h3>Repairs</h3>
 <div class="row">
-
-
+  <div class="col-xs-12 col-md-12 col-lg-12">
        <%= link_to_add_association '+ Job', f, :jobs, :partial => 'jobs_fieldsadd', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success btn-raised" %>
-
+  </div>
 </div>
+<div class="row">
  <div class="col-xs-12 col-md-12 col-lg-12">
   <div class="actions">
     <%= f.submit :Submit, class: "btn btn-default btn-raised" %>
   </div>
+</div>
 </div>
 
 

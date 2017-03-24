@@ -1,5 +1,5 @@
 <div class='nested-fields'>
- 
+
   <div class="row">
     <div class="col-xs-4 col-md-4">
       <%= f.input :jobparticular, 
@@ -22,22 +22,21 @@
         <div id = "mechanic-warning"></div>
 
     </div>
-    <div class="col-xs-6 col-md-6">
-    <div id='job-parts'>
-    <%= f.fields_for :job_parts do |job_parts| %>
-      <%= render 'repairs/job_parts_fields', :f => job_parts %>
-    <% end %>
-    
-    <div class='links' style="padding-top:10px;">
-      <%= link_to_add_association '+ Part', f, :job_parts, :partial => 'job_parts_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success btn-raised" %>
-      <%= link_to_remove_association "- Job", f, :class => "btn btn-danger btn-raised" %>
-    </div>
-    </div>
 
+    <div class="col-xs-6 col-md-6">
+      <div id='job-parts'>
+        <%= f.fields_for :job_parts do |job_parts| %>
+          <%= render 'repairs/job_parts_fields', :f => job_parts %>
+        <% end %>
+      
+        <div class='links' style="padding-top:10px;">
+          <%= link_to_add_association '+ Part', f, :job_parts, :partial => 'job_parts_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success btn-raised" %>
+          <%= link_to_remove_association "- Job", f, :class => "btn btn-danger btn-raised" %>
+        </div>
+      </div>
+    </div>
   </div>
 
-    
-</div>
 </div>
 
 <script>
@@ -46,8 +45,6 @@ $('jobs_fieldsadd').on('cocoon:after-insert', function(e, addedItem) {
   $(addedItem).find('.part-selectize').selectize({
   })
 });
-
-
 
 </script>
   
