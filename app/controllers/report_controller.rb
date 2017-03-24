@@ -40,8 +40,11 @@ class ReportController < ApplicationController
 			.references(:jobs).group(:bus_model_id)
 			
 		else
+			
+			#start_date = Time.zone.parse(DateTime.days_ago(6))
+			#end_date = Time.zone.parse(DateTime.now)
 			#job particular frequency
-			@topjobparticular = Job.done.group(:jobparticular).group_by_month(:timefinished, format:  "%b").order("count(jobparticular) desc").limit(10).count
+			@topjobparticular = Job.done.group(:jobparticular).group_by_day(:timefinished, format:  "%x - %a").order("count(jobparticular) desc").limit(10).count
 			
 			#line chart repair average
 			@avgchangeengineoil = Job.done.where("jobparticular = ?", "Change Engine Oil").group_by_day(:timefinished).average(:duration_minutes)
@@ -49,7 +52,7 @@ class ReportController < ApplicationController
 			@avgchangeoilfilter = Job.done.where("jobparticular = ?", "Change Oil Filter").group_by_day(:timefinished).average(:duration_minutes)
 			
 			#mechanics performance
-			@jpart = Job.done.all.group(:jobparticular).average(:duration_minutes)
+			@jpart = Job.done.group(:jobparticular).average(:duration_minutes)
 			@mechanics = Mechanic.includes(:jobs).where('jobs.status = ? ', "Done").references(:jobs)		
 
 			#for part cost pie chart
