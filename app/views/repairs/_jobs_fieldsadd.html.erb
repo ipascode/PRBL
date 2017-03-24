@@ -1,8 +1,7 @@
 <div class='nested-fields'>
-  <div class="panel panel-default" style="padding: 10px;">
-  
+ 
   <div class="row">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-4 col-md-4">
       <%= f.input :jobparticular, 
       label: "Job Particular",
       collection: @jobs,
@@ -12,10 +11,8 @@
     </div>
 
     <%= f.input :status, :as => :hidden, input_html: { value: "Not Started"} %>
-
-    <section id="result"></section> 
      
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-2 col-md-2">
 
       <%= f.input :mechanic_ids, label: "Mechanic",
         collection: @mechanics,
@@ -25,24 +22,22 @@
         <div id = "mechanic-warning"></div>
 
     </div>
-
-  </div>
-
+    <div class="col-xs-6 col-md-6">
     <div id='job-parts'>
     <%= f.fields_for :job_parts do |job_parts| %>
       <%= render 'repairs/job_parts_fields', :f => job_parts %>
     <% end %>
     
-    <div class='links' style="padding-bottom:10px;">
-      <%= link_to_add_association 'Add Part', f, :job_parts, :partial => 'job_parts_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success btn-raised" %>
+    <div class='links' style="padding-top:10px;">
+      <%= link_to_add_association '+ Part', f, :job_parts, :partial => 'job_parts_fields', :render_options => {:bootstrap => 'inline'}, :class => "btn btn-success btn-raised" %>
+      <%= link_to_remove_association "- Job", f, :class => "btn btn-danger btn-raised" %>
+    </div>
     </div>
 
-
   </div>
 
-    <%= link_to_remove_association "Remove Task", f, :class => "btn btn-danger btn-raised" %>
-
-  </div>
+    
+</div>
 </div>
 
 <script>
