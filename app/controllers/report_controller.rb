@@ -25,6 +25,12 @@ class ReportController < ApplicationController
 			@deviatedpart = Part.includes(job_parts: [:job])
 			.where('jobs.status = ? AND jobs.timefinished >= ? AND jobs.timefinished <= ?','Done', start_date, end_date.end_of_day)
 			.references(:jobs)
+
+			
+			#tires cpk
+			@tires = Part.tire.includes(:parts_tire, :bus_model, job_parts: [:job])
+			.where('jobs.status = ? AND jobs.timefinished >= ? AND jobs.timefinished <= ?', "Done", start_date, end_date.end_of_day)
+			.references(:jobs).group(:bus_model_id)
 			
 		else
 			@topjobparticular = Job.done.group(:jobparticular).group_by_month(:timefinished, format:  "%b").order("count(jobparticular) desc").limit(10).count
@@ -41,7 +47,7 @@ class ReportController < ApplicationController
 			@deviatedpart = Part.includes(job_parts: [:job]).where('jobs.status = ? ', "Done").references(:jobs)
 
 			#tires cpk
-			@tires = Part.includes(:parts_tires, job_parts: [:job]).where('jobs.status = ? AND group = ?', "Done", "Tires").references(:jobs)
+			@tires = Part.tire.includes(:parts_tire, :bus_model, job_parts: [:job]).where('jobs.status = ?', "Done").references(:jobs).group(:bus_model_id)
 
 			respond_to do |format|
 		      format.html

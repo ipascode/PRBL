@@ -29,14 +29,12 @@
   </div>
 </div>
 
-
-
 <div class="row">
   
 
 <div class='form-group'>
   <div class="checkbox col-sm-8">
-      <label id = "check-tires"> <%= f.check_box :group, collection: ["Tires"], input_html: {id: "tires"} %> Tire? </label>
+      <label id = "check-tires"> <%= f.check_box :group, collection: ["Tire"], input_html: {id: "tires"} %> Tire? </label>
   </div>
 </div>
 
@@ -44,12 +42,11 @@
 </div>
 
 
-
 <div class="row">
   <div class="col-xs-12 col-md-12 col-lg-6">
     <%= f.simple_fields_for :parts_tire do |p| %>
     <%= p.input :serial_no, disabled: true, input_html: {class: "tire-field"} %>
-    <%= p.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "tire-field", :disabled => "disabled"} %>
+    <%= p.input :bus_id, label_method: :bus_no, collection: Bus.where('bus_model_id = ?', :bus_model_id), input_html: {class: "tire-field", :disabled => "disabled"} %>
   </div>
   <div class="col-xs-12 col-md-6">
     <%= p.input :odometer, disabled: true, input_html: {id: "odometer", class: "tire-field"} %>
@@ -65,7 +62,7 @@
 <script>
 
 $('#bus-selectize').selectize({
-  
+
   });
 
 $('#model-selectize').selectize({
@@ -76,11 +73,21 @@ $("#bus").prop("disabled", true);
 
 
 $("#check-tires").click(function () {
-
   $("#tires").prop("checked", $(".tire-field").removeAttr("disabled"));
   $("#tires").prop("checked", $("#bus").prop("disabled", false));
 
+  if($('#tires').not(':checked').length){
+  console.log("yay");
+  }
+
+  if ($('#tires').prop('checked')==true){ 
+        console.log("yay");
+    }
+
 });
+
+
+    
 
 
 

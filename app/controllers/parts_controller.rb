@@ -31,8 +31,8 @@ class PartsController < ApplicationController
   # GET /parts/new
   def new
     @part = Part.new
-    @buses = Bus.all
     @bus_models = BusModel.all
+    @buses = Bus.where('bus_model_id = ?', params[:bus_model_id])
     @part.build_parts_tire
   end
 

@@ -1,7 +1,6 @@
- <html>
-  <head>
+ <head>
     <meta charset='utf-8' />
-    <%= wicked_pdf_javascript_include_tag "chartkick" %>
+
   </head>
 
 <body onload='report'>
@@ -13,7 +12,7 @@
 <input type="submit" value="Filter" />
 </form>
 
-<!--
+
 <div class="row">
   <div class="col-md-6 col-xs-9">
 
@@ -21,7 +20,7 @@
 
   </div>
    </div>
-<br> -->
+<br> 
 <h3> Repair Time </h3>
 <div>
 
@@ -136,7 +135,8 @@
   </table>
 
   <h3>Tires Cost Per Kilometer</h3>
-
+  <% @tires.each do |bmodel| %>
+   <h4><%= bmodel.bus_model.brand %></h4>
     <table class="table">
     <thead>
       <tr>
@@ -146,22 +146,17 @@
       </tr>
     </thead>
     <tbody>
-      <% @tires.parts_tires.each do |tire| %>
+
       <tr>
-        <td><%= tire.serial_no%></td>
-        <td><%= tire.cpk %></td>
+        <td><%= bmodel.parts_tire.serial_no%></td>
+        <td><%= bmodel.parts_tire.cpk%></td>
+        <td><%= bmodel.parts_tire.bus.bus_no %></td>
       </tr>
-      <% end %>
     </tbody>
-
   </table>
-
+  <% end %>
   </div>
 </div>
-
-
-
-
 
 
 </body>

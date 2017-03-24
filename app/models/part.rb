@@ -5,6 +5,7 @@ class Part < ApplicationRecord
   accepts_nested_attributes_for :parts_tire, reject_if: :all_blank, allow_destroy: true
 
   require 'csv'
+  scope :tire, lambda { where(group: 1) }
   validates :partname, :presence => true
   validates :part_number, uniqueness: { case_sensitive: false, allow_nil: true}
 
