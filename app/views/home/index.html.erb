@@ -36,7 +36,7 @@
                 <div class="table-responsive">
                   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="style="overflow: auto"">
                   <div class="row-fluid" style="white-space: nowrap;">
-                    <% bus.repairs.to_finish.each do |repair| %>
+                    <% bus.repairs.each do |repair| %>
                     <p>
                     <br>
                     <span>Driver: <% if !repair.driver.nil? %> <%= repair.driver.lastname %><%end%></span>
