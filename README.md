@@ -30,6 +30,9 @@ mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 * Requirements
 ImageMagick must be installed and Paperclip must have access to it.
 
+For wicked_pdf gem:
+Download https://wkhtmltopdf.org/downloads.html
+
 * Database creation
 
 	maintainapp_development

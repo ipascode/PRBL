@@ -1,0 +1,185 @@
+ <head>
+    <meta charset='utf-8' />
+
+  </head>
+
+<body>
+<div class="document">
+<form method="get">
+<input type="text" class="daterange" id="datepickah"/>
+<input type="hidden" name="startDate" id="range_start">
+<input type="hidden" name="endDate" id="range_end">
+<input type="submit" value="Filter" />
+</form>
+
+
+<div class="row">
+  <div class="col-md-6 col-xs-9">
+
+      <%= button_to "Print as pdf", report_index_path(format: "pdf"), :class => "btn btn-primary button pull-right",:method => :get,target: '_blank'  %>
+
+  </div>
+   </div>
+
+<h3>Repair Frequency Chart</h3>
+<div>
+  <%= bar_chart @topjobparticular, stacked: true, legend: "bottom", download: "Repair-Frequency" %> 
+</div>
+  
+<br> 
+<h3>Average Repair Time for BLOWBAGS</h3>
+<div>
+
+<%= line_chart  [
+  {name: "Change Engine Oil", data: @avgchangeengineoil},
+  {name: "Change Fuel Filter", data: @avgchangefuelfilter},
+  {name: "Change Oil Filter", data: @avgchangeoilfilter}],
+  ytitle: "Duration in Minutes", legend: "bottom", download: "Average-Repair-Time" %>
+
+</div>
+
+
+<div>
+
+
+<h3>Mechanic Performance</h3>
+<p>Lists whenever each mechanic takes too long to finish a repair, or finishes a repair quickly.</p>
+<% @mechanics.each do |mech| %>
+<div class="mechanic">
+<h4><%= mech.lastname  %></h4>
+<table class="table table-striped log">
+  <thead>
+    <tr>
+      <th>Job Particular</th>
+      <th>Overall Average Duration (in minutes)</th>
+      <th>Mechanic’s Average Duration (in minutes)</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if(params[:startDate].present? && params[:endDate].present?) %>
+      <% start_date = Time.zone.parse(params[:startDate])%>
+      <%  end_date = Time.zone.parse(params[:endDate])%>
+      <% mech.jobs.where("jobs.timefinished >= ? AND jobs.timefinished <= ?", start_date, end_date.end_of_day).group(:jobparticular).each do |mjob|  %>
+            <% next if  (@jpart[mjob.jobparticular.to_s].to_f - mjob.duration_minutes.to_f).abs < (@jpart[mjob.jobparticular.to_s].to_f*0.5) %>
+            <tr class ="mechtr">  
+                <td ><%= mjob.jobparticular  %></td>
+                <td><%= @jpart[mjob.jobparticular.to_s]  %></td>
+                <td><%= mjob.duration_minutes.to_f  %></td>
+
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+ 
+    <% else %>
+
+    <% mech.jobs.group(:jobparticular).each do |mjob|  %>
+
+          <% next if  (@jpart[mjob.jobparticular.to_s].to_f - mjob.duration_minutes.to_f).abs < (@jpart[mjob.jobparticular.to_s].to_f*0.5) %>
+          <tr class ="mechtr">  
+              <td ><%= mjob.jobparticular  %></td>
+              <td><%= @jpart[mjob.jobparticular.to_s]  %></td>
+              <td><%= mjob.duration_minutes.to_f  %></td>
+
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+        <% end %>
+    </div> 
+     <% end %> 
+</div> 
+
+
+  <h3>Parts Cost</h3>
+  <h5>Total Spent on Parts: <%= number_to_currency(@totalspentonparts, unit: '‎₱', precision: 2)%></h5>
+
+  <center><p>For top 10 most costly parts</p></center>
+  <%= pie_chart @partcost, donut: true, legend: "bottom", download: "Part-Cost-Top-Ten" %>
+  <br>
+  <h3>Important Part Cost Changes</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Part</th>
+        <th>Starting Cost</th>
+        <th>Current Cost</th>
+        <th>Change in Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @deviatedpart.each do |devpart|%>
+       
+          <% @orig = devpart.job_parts.order('updated_at').first %>
+          <% @curr = devpart.job_parts.order('updated_at desc').first %>
+                <% if @orig != nil &&  @curr != nil && @curr.cost >= @orig.cost + @orig.cost*0.5.abs %>
+          <tr>
+          <td><%= devpart.partname %></td>
+          <td><%= @orig.cost %> </td>
+          <td><%= @curr.cost %></td>
+          <td><%= (@curr.cost - @orig.cost).abs %></td>
+          </tr>
+           
+        <% end %>
+
+      <% end %> <!--if has date filter -->
+    </tbody>
+
+  </table>
+
+  <h3>Tires Cost Per Kilometer</h3>
+  <% @tires.each do |bmodel| %>
+   <h4><%= bmodel.bus_model.brand %></h4>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Serial Number</th>
+        <th>Cost Per Kilometer</th>
+        <th>Bus Number</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td><%= bmodel.parts_tire.serial_no%></td>
+        <td><%= bmodel.parts_tire.cpk%></td>
+        <td><%= bmodel.parts_tire.bus.bus_no %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('input[class="daterange"]').daterangepicker({
+      format: "yyyy-mm-dd"
+  }, function(start, end, label) {
+    console.log("New date range selected:" + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD'));
+          document.getElementById("range_start").value = start.format('YYYY-MM-DD');
+         document.getElementById("range_end").value = end.format('YYYY-MM-DD');
+  })
+    .on('changeDate', function(ev){
+   var range = $("#datepickah").daterangepicker("getRange");
+
+  });
+    ;
+
+    $(".mechanic").each(function() {
+        if ($(this).find(".mechtr").length == 0) {
+            console.log("ur mom");  
+            $(this).hide();
+        }
+    });
+  });
+  </script>
+

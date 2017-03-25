@@ -47,7 +47,7 @@ gem 'bootstrap-daterangepicker-rails'
 gem 'time_difference'
 gem 'cancancan'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+#gem 'wkhtmltopdf-binary'
 source 'http://insecure.rails-assets.org' do
 	gem 'rails-assets-bootstrap-material-design'
 end
@@ -65,7 +65,6 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
-  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
