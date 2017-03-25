@@ -115,7 +115,7 @@
        
           <% @orig = devpart.job_parts.order('updated_at').first %>
           <% @curr = devpart.job_parts.order('updated_at desc').first %>
-                <% if @orig != nil &&  @curr != nil && @curr.cost >= @orig.cost + @orig.cost*0.5.abs %>
+                <% if @orig != nil &&  @curr != nil && @orig.cost != nil && @curr.cost != nil && @curr.cost >= @orig.cost + @orig.cost*0.5.abs %>
           <tr>
           <td><%= devpart.partname %></td>
           <td><%= @orig.cost %> </td>
