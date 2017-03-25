@@ -69,7 +69,7 @@ class ReportController < ApplicationController
 		      format.html
 		      format.pdf do
 	        render pdf: 'Maintenance',
-	        :template => "report/index.html.erb"
+	        :template => "report/index.pdf.html.erb"
 	      		end
 			end
 		end

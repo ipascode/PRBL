@@ -18,7 +18,7 @@ download timezone_2017a_posix_sql.zip (under 5.7+ since this uses InnoDB) from h
 Unzip the file and add it to bitnami>rubystack2.2.6>mysql>data>mysql
 
 In your bitnami rubystack environment, go to C:/Bitnami/rubystack2.2.6/mysql/data/mysql and run the following command:
-mysql -u root -p mysql < timezone_posix.mysql
+mysql -u root -p mysql < timezone_posix.sql
 input your password
 
 restart your server

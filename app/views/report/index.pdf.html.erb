@@ -1,25 +1,16 @@
  <head>
     <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "application" %>
+    <% content_for :head do %>
+     
+       <%= wicked_pdf_javascript_include_tag "application", "chartkick" %>
+       <% end %>
 
   </head>
 
 <body>
 <div class="document">
-<form method="get">
-<input type="text" class="daterange" id="datepickah"/>
-<input type="hidden" name="startDate" id="range_start">
-<input type="hidden" name="endDate" id="range_end">
-<input type="submit" value="Filter" />
-</form>
 
-
-<div class="row">
-  <div class="col-md-6 col-xs-9">
-
-      <%= button_to "Print as pdf", report_index_path(format: "pdf"), :class => "btn btn-primary button pull-right",:method => :get,target: '_blank'  %>
-
-  </div>
-   </div>
 
 <h3>Repair Frequency Chart</h3>
 <div>
