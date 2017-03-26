@@ -50,7 +50,7 @@ class ReportController < ApplicationController
 			@avgchangeengineoil = Job.done.where("jobparticular = ?", "Change Engine Oil").group_by_day(:timefinished).average(:duration_minutes)
 			@avgchangefuelfilter = Job.done.where("jobparticular = ?", "Change Fuel Filter").group_by_day(:timefinished).average(:duration_minutes)
 			@avgchangeoilfilter = Job.done.where("jobparticular = ?", "Change Oil Filter").group_by_day(:timefinished).average(:duration_minutes)
-			
+			@avgcheckbattfluid = Job.done.where("jobparticular = ?", "Check Battery Fluid").group_by_day(:timefinished).average(:duration_minutes)
 			#mechanics performance
 			@jpart = Job.done.group(:jobparticular).average(:duration_minutes)
 			@mechanics = Mechanic.includes(:jobs).where('jobs.status = ? ', "Done").references(:jobs)		
@@ -69,7 +69,8 @@ class ReportController < ApplicationController
 		      format.html
 		      format.pdf do
 	        render pdf: 'Maintenance',
-	        :template => "report/index.pdf.html.erb"
+	         :template => "report/index.pdf.html.erb",
+	         javascript_delay: 5000
 	      		end
 			end
 		end

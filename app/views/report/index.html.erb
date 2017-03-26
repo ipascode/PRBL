@@ -33,7 +33,8 @@
 <%= line_chart  [
   {name: "Change Engine Oil", data: @avgchangeengineoil},
   {name: "Change Fuel Filter", data: @avgchangefuelfilter},
-  {name: "Change Oil Filter", data: @avgchangeoilfilter}],
+  {name: "Change Oil Filter", data: @avgchangeoilfilter},
+  {name: "Check Battery Fluid", data: @avgcheckbattfluid}],
   ytitle: "Duration in Minutes", legend: "bottom", download: "Average-Repair-Time" %>
 
 </div>

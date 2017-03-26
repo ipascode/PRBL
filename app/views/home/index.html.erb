@@ -11,7 +11,7 @@
 <h4><span class="badge"><%= pluralize(@buses.in_repair.count, 'bus') %> in repair</span></h4>
 
 <div class="btn-group" role="group" aria-label="...">
-  <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-raised btn-info" %>
+  <%= link_to 'Add Job Card', new_repair_path, :class => "btn btn-raised btn-primary" %>
   <button type="button" class="btn btn-default openall" id = "openall">Expand All</button>
   <button type="button" class="btn btn-default openall" id = "closeall">Close All</button>
 </div>
@@ -21,8 +21,49 @@
           <h4><%= bus.bus_no %>
           <%= link_to '<i class="tiny material-icons">info</i>'.html_safe, bus %>
           </h4>
-          
-          </div> 
+          <!-- Button trigger modal -->
+          <!--  <button type="button" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#<%= bus.bus_no %>">
+              BLOWBAGS
+            </button>
+          </div> -->
+
+                <!-- Modal 
+                      <div class="modal fade" id="<%= bus.bus_no %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" id="myModalLabel">Bus <%= bus.bus_no %></h4>
+                            </div>
+                            <div class="modal-body">
+                                 <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox"> Battery
+                                    </label>
+                                    <label>
+                                      <input type="checkbox"> Headlight
+                                    </label>
+                                    <label>
+                                      <input type="checkbox"> Brakelight
+                                    </label>
+                                    <label>
+                                      <input type="checkbox"> Signal light
+                                    </label>
+                                    <label>
+                                      <input type="checkbox"> Oil
+                                    </label>
+                                  </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+
 
       <% bus.repairs.each do |repair| %>
         <div class="panel panel-default">
@@ -102,6 +143,10 @@
         </div>
       
       <% end %>
+
+
+
+
 
 
 <script>

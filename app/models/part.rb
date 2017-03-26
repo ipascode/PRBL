@@ -16,7 +16,7 @@ class Part < ApplicationRecord
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       part_hash = row.to_hash
-      part = Part.where(partname: part_hash["partname"], )
+      part = Part.where(partname: part_hash["partname"], part_number: part_hash['part_number'])
       br_id = nil
 
       if row['brand'] != nil 
@@ -30,10 +30,10 @@ class Part < ApplicationRecord
 
 
       if part.count == 1
-       part.first.update_attributes(partname: part_hash['partname'], part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
+       part.first.update_attributes(partname: (part_hash['partname']).titleize, part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
       
       else
-        Part.create(partname: part_hash['partname'], part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
+        Part.create(partname: (part_hash['partname']).titleize, part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
       end
 
     end # end CSV.foreach
