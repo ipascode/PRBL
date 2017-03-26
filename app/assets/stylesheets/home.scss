@@ -7,10 +7,12 @@
     padding: 0 !important;
 }
 
-div.circle {
-    border: 3px solid red;
-    border-radius: 50%;
-    width: 100px; height: 100px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+.body{
+	background-color: grey;
+}
+
+ .panel-heading > i{ vertical-align: middle !important; }
+
+ .btn btn-default btn-fab{
+  vertical-align: top;
+ }

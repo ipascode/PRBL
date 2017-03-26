@@ -46,9 +46,11 @@
     <% @bus.repairs.each do |repair| %> 
       <% repair.jobs.each do |job| %> 
         <% job.job_parts.each do |job_part| %>
+        <tr>
           <td><%= job_part.quantity %><%= job_part.part.unit %> </td>
           <td><%= job_part.part.partname %> </td>
           <td><%= job_part.cost %> </td>
+        </tr>
         <% end %>
       <% end %>
     <% end %>
@@ -56,9 +58,8 @@
 </table>
 </div>
 
-<h1>History</h1>
 
-<div class="row">
+<h1>History</h1>
 <!--
 <div class="col-md-2 col-xs-4">
 <div class="input-group">
@@ -103,59 +104,53 @@
 
 </div>
 -->
-<div class="table-responsive">
-<table class="table">
-  <thead>
-    <tr>
-      <th>Date Finished</th>
-      <th>Date Started</th>
-      <th>Repair Type</th>
-      <th>Driver</th>
-      <th>Repair</th>
-      <th>Status</th>
-      <th>Time Started</th>
-      <th>Time Finished</th>
-      <th>Duration</th>
-      <th>Mechanic</th>
-      <th>Part</th>
-      <th>Unit</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <!-- <th>Total</th> -->
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-<tbody class="table-hover">
-    <% @bus.repairs.each do |repair| %> 
-    <tr>
-      <td><%= repair.datefinished %> </td>
-      <td><%= repair.datestarted %> </td>
-      <td><%= repair.repairtype %></td> 
-      <td><% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%></td>
-
-        <% repair.jobs.each do |job| %> 
-          <td><%= job.jobparticular %> </td>
-          <td><%= job.status %> </td>
-          <td><%= job.timestarted %> </td>
-          <td><%= job.timefinished %> </td>
-          <td><%= job.duration %> </td>
-
-          <td><% job.mechanics.each do |mechanic| %>
-                            <%= mechanic.lastname%>
-                            <%end%> </td>
-        
-            <% job.job_parts.each do |job_part| %> 
-              <td><%= job_part.part_id %> </td>
-              <td>  </td>
-              <td><%= job_part.quantity %> </td>
-              <td><%= job_part.cost %> </td>
-              <!-- <td>   </td> -->
-          <% end %>
-          
-        <% end %>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class= 'row'>
+    <div class= 'col-md-1 col-xs-4'><h4>Date</h4></div>
+    <div class= 'col-md-1 col-xs-4'><h4>Driver</h4></div>
+    <div class= 'col-md-10 col-xs-9'>
+      <div class= 'col-md-4 col-xs-4'><h4>Repair</h4></div>
+      <div class= 'col-md-2 col-xs-2'><h4>Status</h4></div>
+      <div class= 'col-md-2 col-xs-4'><h4>Mechanic</h4></div>
+      <div class= 'col-md-4 col-xs-4'>
+        <div class= 'col-md-9 col-xs-2'><h4>Part</h4></div>
+        <div class= 'col-md-3 col-xs-2'><h4>Price</h4></div>
+      </div>
+    </div>
 </div>
+
+<% @bus.repairs.each do |repair| %> 
+  <div class= 'row'>
+      <div class= 'col-md-1 col-xs-4'>
+        Started: <%= repair.datestarted.strftime("%x") %> Ended: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%>
+      </div>
+      <div class= 'col-md-1 col-xs-4'><% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%></div>
+      <div class= 'col-md-10 col-xs-10'>
+       <% repair.jobs.each do |job| %> 
+       <div class= 'row'>
+        <div class= 'col-md-4 col-xs-4'><%= job.jobparticular %></div>
+        <div class= 'col-md-2 col-xs-2'>
+          <% if job.status = "In Repair" || job.status = "Not Started" %><%= job.status %>
+          <% else %>
+          <%= job.duration %>
+          <% end %>
+        </div>
+        <div class= 'col-md-2 col-xs-2'>
+          <% job.mechanics.each do |mechanic| %>
+                              <%= mechanic.lastname%>
+                              <%end%>
+          </div>
+          <div class= 'col-md-4 col-xs-2'>
+            <% job.job_parts.each do |job_part| %> 
+            <div class= 'col-md-9 col-xs-4'>
+              <%= job_part.quantity %> <%= job_part.part.unit %> <%= job_part.part.partname%> </div>
+            <div class= 'col-md-3 col-xs-4'>
+              <%= job_part.cost %></div>
+            <% end %>
+        </div>
+        </div>
+      <% end %>
+      
+      </div>
+  </div>
+<% end %>
+

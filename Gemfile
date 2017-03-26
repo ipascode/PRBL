@@ -47,7 +47,6 @@ gem 'bootstrap-daterangepicker-rails'
 gem 'time_difference'
 gem 'cancancan'
 gem 'wicked_pdf'
-#gem 'wkhtmltopdf-binary'
 source 'http://insecure.rails-assets.org' do
 	gem 'rails-assets-bootstrap-material-design'
 end
