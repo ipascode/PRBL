@@ -18,8 +18,6 @@
 
       <% @buses.each do |bus| %>
         <div class = 'row'>
-          <br>
-          
           <h4><%= bus.bus_no %>
           <%= link_to '<i class="tiny material-icons">info</i>'.html_safe, bus %>
           </h4>
@@ -50,13 +48,21 @@
                     <% repair.jobs.each do |job| %>
                       
                        <div class="list-group-item">
-                          <div class="row-action-primary">
+                        <div class="action-primary">
+                          <div class= 'col-md-1 col-xs-2'>
                              <%= button_to job_start_repair_path(job), 
                              class: 'btn btn-default btn-fab',
                              remote: true do %>
-                              <i class="material-icons">timer</i>
-                              <p id = 'job-<%=job.id %>'></p>
+                             <p id = 'job-<%=job.id %>'></p>
+                               <% if job.status == "Not Started" %>
+                                  <i class="material-icons">timer</i>
+                                <% elsif job.status == "Repairing" %>
+                                  <i class="material-icons">restore</i>
+                                <% elsif job.status == "Done" %>
+                                  <i class="material-icons">done</i>
+                                <% end %>
                               <% end %>
+                              </div>
                           </div>
 
                               <div class="row-content">
