@@ -45,4 +45,13 @@
 
   </div>
 </div>
+
+<script>
+
+$('jobs_fields').on('cocoon:after-insert', function(e, addedItem) {
+  $(addedItem).find('.part-selectize').selectize({
+  })
+});
+
+</script>
   

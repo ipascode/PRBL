@@ -26,15 +26,16 @@
 
       <% bus.repairs.each do |repair| %>
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
+          <div class="panel-heading" role="tab" id="headingOne">         
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= bus.bus_no %>" aria-expanded="true" aria-controls="collapseOne">
-                Date Started: <%= repair.datestarted.strftime("%x") %> | Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%> | Driver: <% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%> <%= link_to '<i class="vertical-align-middle material-icons">mode edit</i>'.html_safe, edit_repair_path(repair), :class => 'pull-right'%> <%= link_to '<i class="vertical-align-middle material-icons">delete</i>'.html_safe, repair, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right'%>
-
-
+                <div class = 'col-md-3 col-xs-4'>Date Started: <%= repair.datestarted.strftime("%x") %> </div>
+                <div class = 'col-md-3 col-xs-4'> Date Finished: <% if !repair.datefinished.nil? %><%= repair.datefinished.strftime("%x") %> <%end%> </div>
+                Driver: <% if !repair.driver.nil? %> <%= repair.driver.lastname %> <%end%>
+                    <div class = "pull-right"></div>
+                <%= link_to '<i class="vertical-align-middle material-icons">mode edit</i>'.html_safe, edit_repair_path(repair)%> 
+                <%= link_to '<i class="vertical-align-middle material-icons">delete</i>'.html_safe, repair, method: :delete, data: { confirm: 'Are you sure?' }%>
               </a>
-                
-            </h4>
+             
           </div>
 
 
@@ -48,19 +49,20 @@
                     <% repair.jobs.each do |job| %>
                       
                        <div class="list-group-item">
-                        <div class="action-primary">
-                          <div class= 'col-md-1 col-xs-2'>
+                        <div class="action-primary ">
+                          <div class= 'col-md-1 col-xs-1'>
+                            <p  id = 'job-<%=job.id%>'>
                              <%= button_to job_start_repair_path(job), 
-                             class: 'btn btn-default btn-fab',
+                             class: 'btn btn-default btn-fab vertical-align-middle', 
                              remote: true do %>
-                             <p id = 'job-<%=job.id %>'></p>
                                <% if job.status == "Not Started" %>
                                   <i class="material-icons">timer</i>
                                 <% elsif job.status == "Repairing" %>
-                                  <i class="material-icons">restore</i>
-                                <% elsif job.status == "Done" %>
-                                  <i class="material-icons">done</i>
+                                  <i class="material-icons" >update</i>
+                                <% elsif job.status == "Done"  %>
+                                  <i class="material-icons" style="color: green;" >done</i>
                                 <% end %>
+                              </p>
                               <% end %>
                               </div>
                           </div>
@@ -70,16 +72,16 @@
                                     <h4 class="list-group-item-heading"><%= job.jobparticular %></h4>
 
                                     <p class="list-group-item-text"> 
-                                      <p id = 'duration-<%=job.id %>'>
-                                      <%= job.duration %>
-                                    </p>
+                                      <p id = 'duration-<%=job.id %>'><%= job.duration %></p>
+                                      
                                 <% job.job_parts.each do |job_part| %>
-                                  <i class="tiny vertical-align-middle material-icons">build</i>  <%= job_part.quantity %> <%= job_part.part.partname %>
+                                  <i class="vertical-align-middle material-icons" style = "font-size: 16px;">build</i>
+                                  <%= job_part.quantity %> <%= job_part.part.partname %>
                                 <% end %>
                                 <br>
                                 <div></div>
                                   <% job.mechanics.each do |mechanic| %>
-                                  <i class="tiny vertical-align-middle material-icons">face</i>
+                                  <i class="vertical-align-middle material-icons" style = "font-size: 16px;">face</i>
                                   <%= mechanic.lastname%>
                                   <% end %>
                               </div>
@@ -99,6 +101,22 @@
           </div>
         </div>
       
-      <!-- </div> -->
       <% end %>
-<!-- </div> -->
+
+
+<script>
+$('.btn-fab').click(function(){
+
+
+  if($(this).find($("i")).text() == 'timer'){
+        $(this).find($("i")).text('update')
+        console.log($(this).text());
+      }
+  else if ($(this).find($("i")).text() == 'update'){
+    $(this).find($("i")).text('done')
+    console.log($(this).text());
+    }
+  
+});
+  
+</script>
