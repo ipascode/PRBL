@@ -19,11 +19,11 @@
     <%= f.input :firstname, required: true %>
     <%= f.input :lastname, required: true%>
     <%= f.input :position, required: true%>
-    <%= f.input :role, required: true, collection: ['user','admin'] %>
-  </div>
+    <%= f.input :role, required: true, collection: ['accounting','mechanic','manager','admin'] %>
+ 
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Create User" %>
   </div>
 <% end %>
 
