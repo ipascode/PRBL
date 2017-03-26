@@ -46,7 +46,7 @@
   <div class="col-xs-12 col-md-12 col-lg-6">
     <%= f.simple_fields_for :parts_tire do |p| %>
     <%= p.input :serial_no, disabled: true, input_html: {class: "tire-field"} %>
-    <%= p.input :bus_id, label_method: :bus_no, collection: Bus.where('bus_model_id = ?', :bus_model_id), input_html: {class: "tire-field", :disabled => "disabled"} %>
+    <%= p.input :bus_id, label_method: :bus_no, collection: @buses, input_html: {class: "tire-field", :disabled => "disabled"} %>
   </div>
   <div class="col-xs-12 col-md-6">
     <%= p.input :odometer, disabled: true, input_html: {id: "odometer", class: "tire-field"} %>
