@@ -39,7 +39,10 @@ class Part < ApplicationRecord
         price: part_hash['price'], 
         lifespan: part_hash['lifespan'], 
         bus_model_id: br_id, 
-        last_used: Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y'))     
+        last_used: if !part_hash['last updated'].nil?
+                   Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y')  
+                   end  
+                   )
       else
         Part.create(partname: (part_hash['part name']).split(/([ _(-])/).map(&:capitalize).join, 
           part_number: part_hash['part number'], 
@@ -48,7 +51,10 @@ class Part < ApplicationRecord
           price: part_hash['price'], 
           lifespan: part_hash['lifespan'], 
           bus_model_id: br_id, 
-          last_used: Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y')) 
+          last_used: if !part_hash['last updated'].nil?
+          Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y')
+          end
+          )
       end
 
     end # end CSV.foreach
