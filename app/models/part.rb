@@ -14,9 +14,9 @@ class Part < ApplicationRecord
   end
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
+    CSV.foreach(file.path, headers: true, :header_converters=> lambda {|f| f.strip}, :converters=> lambda {|f| f ? f.strip : nil}) do |row|
       part_hash = row.to_hash
-      part = Part.where(partname: part_hash["partname"], part_number: part_hash['part_number'])
+      part = Part.where(partname: part_hash["part name"], part_number: part_hash['part number'])
       br_id = nil
 
       if row['brand'] != nil 
@@ -24,16 +24,31 @@ class Part < ApplicationRecord
          if br == nil
           br = BusModel.create(brand: part_hash["brand"])
          end
+
          br_id = br.id
      
       end 
 
 
       if part.count == 1
-       part.first.update_attributes(partname: (part_hash['partname']).titleize, part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
-      
+       part.first.update_attributes(
+        partname: (part_hash['part name']).split(/([ _-])/).map(&:capitalize).join, 
+        part_number: part_hash['part number'], 
+        unit: part_hash['unit'], 
+        index_number: part_hash['index number'], 
+        price: part_hash['price'], 
+        lifespan: part_hash['lifespan'], 
+        bus_model_id: br_id, 
+        last_used: Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y'))     
       else
-        Part.create(partname: (part_hash['partname']).titleize, part_number: part_hash['part_number'], unit: part_hash['unit'], index_number: part_hash['index_number'], price: part_hash['price'], lifespan: part_hash['lifespan'], bus_model_id: br_id, last_used: part_hash['last_used']) 
+        Part.create(partname: (part_hash['part name']).split(/([ _-])/).map(&:capitalize).join, 
+          part_number: part_hash['part number'], 
+          unit: part_hash['unit'], 
+          index_number: part_hash['index number'], 
+          price: part_hash['price'], 
+          lifespan: part_hash['lifespan'], 
+          bus_model_id: br_id, 
+          last_used: Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y')) 
       end
 
     end # end CSV.foreach
