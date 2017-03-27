@@ -32,7 +32,7 @@ class Part < ApplicationRecord
 
       if part.count == 1
        part.first.update_attributes(
-        partname: (part_hash['part name']).split(/([ _-])/).map(&:capitalize).join, 
+        partname: (part_hash['part name']).split(/([ _(-])/).map(&:capitalize).join, 
         part_number: part_hash['part number'], 
         unit: part_hash['unit'], 
         index_number: part_hash['index number'], 
@@ -41,7 +41,7 @@ class Part < ApplicationRecord
         bus_model_id: br_id, 
         last_used: Time.zone.strptime(part_hash['last updated'],'%m/%d/%Y'))     
       else
-        Part.create(partname: (part_hash['part name']).split(/([ _-])/).map(&:capitalize).join, 
+        Part.create(partname: (part_hash['part name']).split(/([ _(-])/).map(&:capitalize).join, 
           part_number: part_hash['part number'], 
           unit: part_hash['unit'], 
           index_number: part_hash['index number'], 
