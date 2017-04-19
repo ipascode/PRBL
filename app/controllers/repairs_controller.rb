@@ -13,15 +13,12 @@ class RepairsController < ApplicationController
   end
 
   def bushistory
-    @repair = Repair.includes(jobs: :job_parts).where(bus_id: params[:bn], done: true).limit(10)
+    @repair = Repair.includes(jobs: [:job_parts, :mechanics]).where(bus_id: params[:bn], done: true).limit(10)
     respond_to do |format|
       if @repair.present?
         format.json { render json: @repair, 
-                             :include => { :jobs => {
-                             :include => { :job_parts => {
-                              :include => :part
-                             }
-                             }}}}
+                    :include => {:jobs => {:include => [:mechanics, :job_parts=> {:include => :part}]}}}
+
       else
         format.json { render json: 'null'}
       end

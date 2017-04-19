@@ -21,14 +21,24 @@
   </div>
    </div>-->
 
-<h3>Repair Frequency Chart</h3>
-<div>
-  <%= bar_chart @topjobparticular, stacked: true, legend: "bottom", download: "Repair-Frequency" %> 
+<ul class="nav nav-pills">
+  <li class="active"><a data-toggle="tab" href="#rfc"><h3>Repair Frequency Chart</h3></a></li>
+  <li><a data-toggle="tab" href="#arter "><h3>Average Repair Time for Essential Repairs</h3 ></a></li>
+  <li><a data-toggle="tab" href="#mechperf "><h3>Mechanic Performance</h3 ></a></li>
+  <li><a data-toggle="tab" href="#paco "><h3>Parts Cost</h3 ></a></li>
+  <li><a data-toggle="tab" href="#ipcc "><h3>Important Part Cost Changes</h3 ></a></li>
+  <li><a data-toggle="tab" href="#tcpk "><h3>Tires Cost Per Kilometer</h3 ></a></li>
+</ul>
+
+<div class="tab-content">
+
+<div id="rfc" class="tab-pane fade in active">
+  <%= bar_chart @topjobparticular, stacked: true, legend: "bottom", download: "Repair-Frequency" %>
 </div>
   
-<br> 
-<h3>Average Repair Time for Essential Repairs</h3>
-<div>
+
+
+<div id="arter" class="tab-pane fade">
 
 <%= line_chart  [
   {name: "Change Engine Oil", data: @avgchangeengineoil},
@@ -40,10 +50,9 @@
 </div>
 
 
-<div>
+<div id="mechperf" class="tab-pane fade">
 
 
-<h3>Mechanic Performance</h3>
 <p>Lists whenever each mechanic takes too long to finish a repair, or finishes a repair quickly.</p>
 <% @mechanics.each do |mech| %>
 <div class="mechanic">
@@ -93,13 +102,15 @@
      <% end %> 
 </div> 
 
-
+<div id="paco" class="tab-pane fade">
   <h3>Parts Cost</h3>
   <h5>Total Spent on Parts: <%= number_to_currency(@totalspentonparts, unit: '‎₱', precision: 2)%></h5>
 
   <center><p>For top 10 most costly parts</p></center>
   <%= pie_chart @partcost, donut: true, legend: "bottom", download: "Part-Cost-Top-Ten" %>
-  <br>
+</div>
+  
+<div id="ipcc" class="tab-pane fade">
   <h3>Important Part Cost Changes</h3>
 
   <table class="table">
@@ -130,7 +141,9 @@
     </tbody>
 
   </table>
+</div>
 
+<div id="tcpk" class="tab-pane fade">
   <h3>Tires Cost Per Kilometer</h3>
   <% @tires.each do |bmodel| %>
    <h4><%= bmodel.bus_model.brand %></h4>
@@ -154,7 +167,7 @@
   <% end %>
   </div>
 </div>
-
+</div>
 
 </body>
 </html>
