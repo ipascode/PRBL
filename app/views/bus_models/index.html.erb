@@ -41,9 +41,9 @@
     <% @bus_models.each do |bus_model| %>
       <tr>
         <td><%= bus_model.brand %></td>
-        <td><%= link_to 'View', bus_model, :class => "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_bus_model_path(bus_model), :class => "btn btn-default" %></td>
-        <td><%= link_to 'Delete', bus_model, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+        <td><%= link_to 'Info', bus_model, :class => "btn btn-default btn-raised" %></td>
+        <td><%= link_to 'Edit', edit_bus_model_path(bus_model), :class => "btn btn-default btn-raised" %></td>
+        <td><%= link_to 'Delete', bus_model, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-raised" %></td>
       </tr>
     <% end %>
   </tbody>

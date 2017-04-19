@@ -1,6 +1,8 @@
 <h1>Editing Driver</h1>
 
+<div class="panel panel-default" style="padding: 10px;">
 <%= render 'form', driver: @driver %>
+</div>
 
-<%= link_to 'Show', @driver %> |
-<%= link_to 'Back', drivers_path %>
+<%= link_to 'Driver Info', @driver, :class => "btn btn-default" %>
+<%= link_to 'Back', drivers_path, :class => "btn btn-default"   %>
