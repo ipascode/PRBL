@@ -80,12 +80,13 @@ $(document).on("ready page:load", function(){
 
               var stuff = '<div class="panel panel-default" id="removemepls" style="padding: 10px;"><div class="table-responsive "><table class="table"><thead><span>'
               var stuff2 = ' '
-              var stuff3 = ' </span><tr><th>Repair</th><th>Duration</th><th>Mechanic</th><th>Part Name</th><th>Quantity</th></tr></thead><tbody class="table-hover">'
-              var stuff4 = '<tr>Date Started: ' + s[i].datestarted + ' | Date Finished: ' + s[i].datefinished
+              var stuff3 = ' </span><tr><th>Repair</th><th>Duration</th><th>Part Name</th><th>Quantity</th></tr></thead><tbody class="table-hover">'
+              var stuff4 = '<tr>Date Started: ' + s[i].datestarted + ' | Date Finished: ' + s[i].datefinished+ '</tr>'
+              
 
              
               $.each(s[i].jobs, function (index, value){ 
-                stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].jobs[index].duration + '</td>'
+                stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].datestarted + '</td><td>' +  s[i].datefinished + '</td><td>' + s[i].jobs[index].duration + '</td>'
                 stuff4 += '<td>'
 
                 $.each(s[i].jobs[index].mechanics, function(h, c){
