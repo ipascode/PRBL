@@ -159,6 +159,42 @@
 </body>
 </html>
 
+<<<<<<< Updated upstream
+=======
+  <script>
+  <% duration = 0 %>
+  <%@buses.each do |bus|%>
+	  <% bus.repairs.each do |repair| %>
+	  	<%= repair.datefinished.to_i - repair.datestarted.to_i %>
+	  <% end %>
+  <% end %>
+
+
+  var js_array2 = <%= raw Bus.pluck(:bus_no).to_json %>;
+  var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	  type: 'bar',
+	  data: {
+	    labels: js_array2,
+	    datasets: [{
+	      label: 'Duration',
+	    }, {
+	      data: [  <%@buses.each do |bus|%>
+	  <% bus.repairs.each do |repair| %>
+	  	<%= (repair.datefinished.to_i - repair.datestarted.to_i).seconds %>,
+	  <% end %>
+  <% end %>0]
+	    }]
+	  }
+	});
+
+  </script>
+
+
+
+
+
+>>>>>>> Stashed changes
 
   <script type="text/javascript">
   $(document).ready(function() {
