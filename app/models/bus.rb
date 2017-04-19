@@ -1,5 +1,5 @@
 class Bus < ApplicationRecord
-  belongs_to :bus_model
+  belongs_to :bus_model, optional: true
   has_many :repairs
   belongs_to :bus_line
   has_many :parts_tires
