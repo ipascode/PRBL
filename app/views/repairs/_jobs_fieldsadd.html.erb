@@ -43,7 +43,7 @@
 
 <script>
 
-$('jobs_fieldsadd').on('cocoon:after-insert', function(e, addedItem) {
+$('#job-parts').on('cocoon:after-insert', function(e, addedItem) {
   $(addedItem).find('.part-selectize').selectize({
   })
 });

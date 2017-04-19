@@ -26,7 +26,7 @@
           <%= f.input :bus_id, label: "Bus No.", 
           label_method: :bus_no, 
           collection: @buses, 
-          input_html: {class: "bus-selectize selectabuzz"} %>
+          input_html: {class: "bus-selectize selectabuzz"}, required: true %>
       </div>
 
       <div class="col-xs-12 col-md-6" >
@@ -55,7 +55,7 @@
 </body>
 
 <script>
-$('document').ready(function() {
+$(document).on("ready page:load", function(){
 
    $('#test').BootSideMenu({
         side: "right",
@@ -80,12 +80,24 @@ $('document').ready(function() {
 
               var stuff = '<div class="panel panel-default" id="removemepls" style="padding: 10px;"><div class="table-responsive "><table class="table"><thead><span>'
               var stuff2 = ' '
-              var stuff3 = ' </span><tr><th>Repair</th><th>Duration</th><th>Part Name</th><th>Quantity</th></tr></thead><tbody class="table-hover">'
-              var stuff4 = ''
+              var stuff3 = ' </span><tr><th>Repair</th><th>Duration</th><th>Mechanic</th><th>Part Name</th><th>Quantity</th></tr></thead><tbody class="table-hover">'
+              var stuff4 = '<tr>Date Started: ' + s[i].datestarted + ' | Date Finished: ' + s[i].datefinished+ '</tr>'
+              
+
              
               $.each(s[i].jobs, function (index, value){ 
-                console.log("why is nothing happening");
                 stuff4 += '<tr><td>' + s[i].jobs[index].jobparticular + '</td><td>' + s[i].jobs[index].duration + '</td>'
+                stuff4 += '<td>'
+
+                $.each(s[i].jobs[index].mechanics, function(h, c){
+                  
+                  if (h == 0) {
+                      stuff4 += s[i].jobs[index].mechanics[h].lastname
+                  } else { 
+                      stuff4 += ', '+s[i].jobs[index].mechanics[h].lastname  
+                  }
+                })
+                stuff4 += '</td>'
                 $.each(s[i].jobs[index].job_parts, function(h, c){
                   stuff4 += '<td>' + s[i].jobs[index].job_parts[h].part.partname + '</td><td>' + s[i].jobs[index].job_parts[h].quantity + s[i].jobs[index].job_parts[h].part.unit
                 })
@@ -120,6 +132,12 @@ $('document').ready(function() {
      create: true
   })
 });
+
+
+
+
+
+
 
 });
 

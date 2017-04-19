@@ -70,7 +70,7 @@ class ReportController < ApplicationController
 		      format.pdf do
 	        render pdf: 'Maintenance',
 	         :template => "report/index.pdf.html.erb",
-	         javascript_delay: 5000
+	         javascript_delay: 2000
 	      		end
 			end
 		end

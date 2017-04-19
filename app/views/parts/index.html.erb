@@ -90,7 +90,7 @@
         <% end %>
         </td>
         <td><%= part.index_number %></td>
-        <td><%= part.last_used %></td>
+        <td><% if !part.last_used.nil? %><%= part.last_used.strftime("%x") %><%end%></td>
         <td><%= part.price %></td>
         <!-- <td><%= part.lifespan %></td> -->
         <td><%= link_to 'Part Info', part, :class => "btn btn-default btn-raised" %></td>

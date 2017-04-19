@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322192549) do
+ActiveRecord::Schema.define(version: 20170327021351) do
 
   create_table "bus_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "linename",                            null: false
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20170322192549) do
     t.string   "part_number"
     t.string   "unit"
     t.integer  "bus_model_id"
-    t.integer  "index_number"
+    t.string   "index_number"
     t.string   "price",        default: "0"
     t.integer  "lifespan"
     t.datetime "created_at",                 null: false
